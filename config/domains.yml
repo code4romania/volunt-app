@@ -1,0 +1,10 @@
+common: &common
+  digest: voluntari.gov.ro
+  mail: voluntari.gov.ro
+
+development:
+  <<: *common
+test:
+  <<: *common
+production:
+  <<: *common

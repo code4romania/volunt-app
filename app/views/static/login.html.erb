@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="login-form">
+      <%= bootstrap_form_for(@login_presenter,
+            method: :post,
+            url: login_path,
+            layout: :horizontal,
+            label_col: 'col-sm-3',
+            control_col: 'col-sm-9',
+            role: :form) do |f| %>
+          <%= f.email_field :email %>
+          <%= f.password_field :password %>
+          <%= f.submit 'Login', class: 'col-sm-offset-3 btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
