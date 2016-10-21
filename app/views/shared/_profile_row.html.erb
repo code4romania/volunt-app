@@ -1,0 +1,15 @@
+<tr>
+  <td><%= profile_row.full_name %></td>
+  <td><%= profile_row.email %></td>
+  <td><%= profile_row.location %></td>
+  <td><% if profile_row.skills.nil? %>
+        <%= profile_row.title %>
+      <% else %>
+        <%= render partial: 'shared/skills', locals: {skills: profile_row.skills} %>
+      <% end %>
+  </td>
+  <td><%= link_to volunteer_path(profile_row), class: 'btn btn-link' do %>
+    <span class="glyphicon glyphicon-play-circle"></span>
+  <% end %></td>
+</tr>
+

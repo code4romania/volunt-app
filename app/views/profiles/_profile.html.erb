@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-sm-3 text-center">
+    <img class="img-responsive img-rounded img-profile-png center-block" src="<%= profile.photo %>" />
+  </div>
+  <div class="col-sm-9">
+    <dl class="dl-horizontal">
+      <dt>Nume Complet</dt><dd><%= profile.full_name %></dd>
+      <dt>Nume Scurt</dt><dd><%= profile.nick_name %></dd>
+      <dt>Email</dt><dd><%= profile.email %></dd>
+      <dt>Locatie</dt><dd><%= profile.location %></dd>
+      <dt>Ocupatie</dt><dd><%= profile.title %></dd>
+      <dt>Angajator</dt><dd><%= profile.workplace %></dd>
+      <dt>Skills</dt><dd><%= render partial: 'shared/skills', locals: {skills: profile.skills} %></dd>
+      <dt>Links</dt><dd><%= render partial: 'shared/urls', locals: {urls: profile.urls} %></dd>
+    </dl>
+  </div>
+</div>
+<div class="row">
+</div>

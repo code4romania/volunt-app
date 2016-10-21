@@ -12,3 +12,23 @@ div.login-form {
   max-width: 450px;
   margin: auto;
 }
+
+img.img-profile-png {
+  width: 150px;
+}
+
+table.fixed-table {
+  table-layout: fixed;
+  td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.profile {
+  dl.dl-horizontal {
+    dt {
+      padding-bottom: 5px;
+    }
+  }
+}

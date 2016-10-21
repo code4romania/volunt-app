@@ -1,0 +1,22 @@
+<table class="table fixed-table profiles-table">
+  <colgroup>
+    <col class="col-xs-3" />
+    <col class="col-xs-3" />
+    <col class="col-xs-3" />
+    <col class="col-xs-2" />
+    <col class="col-xs-1" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Nume</th>
+      <th>Email</th>
+      <th>Locatie</th>
+      <th>Skills</th>
+      <th />
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'shared/profile_row', collection: profiles %>
+  </tbody>
+</table>
+<%= will_paginate profiles, renderer: BootstrapPagination::Rails %>

@@ -1,6 +1,7 @@
 *.rbc
 *.sassc
 .sass-cache
+.byebug_history
 capybara-*.html
 /test_event*
 .rspec

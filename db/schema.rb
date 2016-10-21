@@ -10,10 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161021085629) do
+ActiveRecord::Schema.define(version: 20161021134618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "full_name"
+    t.string   "nick_name"
+    t.string   "email"
+    t.json     "contacts"
+    t.string   "location"
+    t.string   "photo"
+    t.string   "curriculum"
+    t.text     "description"
+    t.jsonb    "urls"
+    t.string   "title"
+    t.string   "workplace"
+    t.string   "tags",                                 array: true
+    t.string   "skills",                               array: true
+    t.integer  "status",      default: 0, null: false
+    t.integer  "flags",       default: 0, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["email"], name: "index_profiles_on_email", unique: true, using: :btree
+    t.index ["full_name"], name: "index_profiles_on_full_name", using: :btree
+    t.index ["skills"], name: "index_profiles_on_skills", using: :gin
+    t.index ["tags"], name: "index_profiles_on_tags", using: :gin
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                     null: false

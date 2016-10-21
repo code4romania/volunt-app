@@ -1,0 +1,5 @@
+<ul class="list-unstyled">
+  <% urls.each do |k, v| %>
+    <li><a class="profile-link" href="<%= ensure_http_scheme(v) %>" target="_blank"><%= v %></a></li>
+  <% end unless urls.nil? %>
+</ul>

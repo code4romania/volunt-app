@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   post '/login', to: 'static#login_post'
   post '/logout', to: 'static#logout'
 
-  resources :volunteers do
-    
+  resources :volunteers, only:[:show, :index] do
+    collection do
+      post 'search'
+    end
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
