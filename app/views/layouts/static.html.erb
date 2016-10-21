@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gov IT Hub: voluntari</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= csrf_meta_tags %>
+  <%= javascript_include_tag "static" %>
+  <%= stylesheet_link_tag "static", media: "all" %>
+</head>
+<body id="default-body">
+  <div id="main-nav" class="navbar bs-docs-nav fixed" role="banner">
+    <div class="container">
+      <div class="navbar-header responsive-logo">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a href="/" class="navbar-brand"><%= image_tag 'govithub000.png', alt: "GovITHub" %></a>
+      </div>
+      <nav class="navbar-collapse bs-navbar-collapse collapse" role="navigation" id="site-navigation">
+        <ul id="menu-nou" class="nav navbar-nav navbar-right responsive-nav main-nav-list">
+          <li class="menu-item"><a href="http://ithub.gov.ro/">Acasă</a></li>
+          <li class="menu-item"><a href="http://ithub.gov.ro/despre-noi/">Despre program</a></li>
+          <li class="menu-item"><a href="http://ithub.gov.ro/inregistrare/">Alătură-te GovITHub!</a></li>
+          <li class="menu-item"><a href="http://ithub.gov.ro/hackathon/">GovCamp</a></li>
+          <li class="menu-item"><a href="http://ithub.gov.ro/faq/">FAQ</a></li>
+          <li class="menu-item"><a href="http://ithub.gov.ro/govithub-in-media/">GovITHub în media</a></li>
+          <li class="menu-item"><a href="http://ithub.gov.ro/membri/">Membri</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+<%= yield %>
