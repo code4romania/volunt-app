@@ -40,7 +40,7 @@ gem 'bootstrap-sass', '~> 3.2'
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
+# group :assets do
   gem 'sprockets' #, '=2.11.0'
   # Use SCSS for stylesheets
   gem 'sass-rails', '~> 5.0'
@@ -55,7 +55,8 @@ group :assets do
     gem 'rails-assets-google-code-prettify'
     gem 'rails-assets-bowser'
   end
-end
+  gem 'summernote-rails'
+#end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,0 +1,16 @@
+<div class="container">  
+  <div class="btn-group" role="group">
+    <%= link_to new_template_path, class: 'btn btn-default' do %>
+     New Template
+    <% end %>
+  </div>
+  <div class="row">
+    <span class="text-info notice"><%= notice %></span>
+  <div>
+  <div class="row">
+    <%= render partial: 'shared/templates_table', locals: {templates: @templates} %> 
+  </div>
+  <div class="row will-paginate">
+    <%= will_paginate @templates, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>

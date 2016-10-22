@@ -12,4 +12,5 @@
 //
 //= require jquery
 //= require bootstrap
+//= require summernote
 //= require_self

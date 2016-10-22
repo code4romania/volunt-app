@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161021134618) do
+ActiveRecord::Schema.define(version: 20161022060952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,19 @@ ActiveRecord::Schema.define(version: 20161021134618) do
     t.index ["full_name"], name: "index_profiles_on_full_name", using: :btree
     t.index ["skills"], name: "index_profiles_on_skills", using: :gin
     t.index ["tags"], name: "index_profiles_on_tags", using: :gin
+  end
+
+  create_table "templates", force: :cascade do |t|
+    t.string   "name",                   null: false
+    t.string   "subject"
+    t.text     "body"
+    t.string   "tags",                                array: true
+    t.integer  "status",     default: 0, null: false
+    t.integer  "flags",      default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["name"], name: "index_templates_on_name", unique: true, using: :btree
+    t.index ["tags"], name: "index_templates_on_tags", using: :gin
   end
 
   create_table "users", force: :cascade do |t|

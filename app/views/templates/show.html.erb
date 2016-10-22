@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+   <span class="text-info notice"><%= notice %></span>
+  </div>
+  <div class="row">
+    <ul class="dl-horizontal">
+      <dt>Name<dt>
+      <dd><%= @template.name %></dd>
+      <dt>Tags<dt>
+      <dd><%= render partial: 'shared/tags', locals: {tags: @template.tags } %></dd>
+      <dt>Subject<dt>
+      <dd><%= @template.subject %></dd>
+      <dt>Body<dt>
+      <dd><div class="email-body"><%= @template.body.html_safe %></div></dd>
+      <dt></dt>
+      <dd>
+        <%= form_for(@template, method: :delete) do %>
+          <div class="btn-group" role='group'>
+            <%= link_to 'Edit', edit_template_path(@template), class: 'btn btn-default' %>
+            <input type='submit' value='Delete' class =  'btn btn-danger' />
+          </div>
+        <% end %>
+      </dd>
+    </ul>
+  </div>
+</div>
