@@ -1,0 +1,11 @@
+<%%= bootstrap_form_for(<%= singular_table_name %>,
+    layout: :horizontal,
+    label_col: 'col-sm-3',
+    control_col: 'col-sm-9',
+    role: :form) do |f| %>
+
+<% attributes.each do |attribute| -%>
+    <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %>
+<% end -%>
+    <%%= yield f %>
+<%% end %>

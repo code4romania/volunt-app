@@ -1,0 +1,16 @@
+<div class="container">  
+  <div class="btn-group" role="group">
+    <%%= link_to new_<%= singular_table_name %>_path, class: 'btn btn-default' do %>
+     New <%= singular_table_name.titleize %>
+    <%% end %>
+  </div>
+  <div class="row">
+    <span class="text-info notice"><%%= notice %></span>
+  <div>
+  <div class="row">
+    <%%= render partial: 'shared/<%= plural_table_name %>_table', locals: {<%= plural_table_name %>: @<%= plural_table_name %>} %> 
+  </div>
+  <div class="row will-paginate">
+    <%%= will_paginate @<%= plural_table_name %>, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>
