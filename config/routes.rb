@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :volunteers, only:[:show, :index] do
     collection do
-      post 'search'
+      match 'search', via: [:get, :post]
     end
   end
 

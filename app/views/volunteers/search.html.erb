@@ -1,2 +1,5 @@
-<h1>Volunteers#search</h1>
-<p>Find me in app/views/volunteers/search.html.erb</p>
+<div class="container">
+  <div class="row">
+    <%= render partial: 'shared/profiles_table', locals: {profiles: @volunteers} %>
+  </div>
+</div>

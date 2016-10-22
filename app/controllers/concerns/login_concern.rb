@@ -12,5 +12,15 @@ module LoginConcern
   def is_user_logged_in?
     session.key? :user_id
   end
+    
+  def check_user_authorization
+    redirect_to login_path unless is_user_logged_in?
+  end
+
+  module ClassMethods
+    def authorization_required(opts={})
+      before_filter :check_user_authorization, opts
+    end
+  end
   
 end
