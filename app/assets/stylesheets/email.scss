@@ -1,9 +1,26 @@
+/* 
+ * This is the scss that is used by email templates. 
+ * Emails do not include bootstrap, so copy here any relevand scss rules.
+ * Email clients do not support much css, and certainly not media queries.
+ * The CSS will be applied directly to matched tags as 'style: ...'
+*/
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 table.fixed {
   table-layout: fixed;
   td {
     overflow:hidden;
     text-overflow: ellipsis;
   }
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #ddd !important;
 }
 
 .email_content {
@@ -30,6 +47,10 @@ table.fixed {
 }
 .col-4 {
   width: 33.32%;
+}
+
+.col-12 {
+  width: 100%;
 }
 
 tr.brand {
