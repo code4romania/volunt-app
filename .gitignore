@@ -1,5 +1,6 @@
 *.rbc
 *.sassc
+*.csv
 .sass-cache
 .byebug_history
 capybara-*.html
