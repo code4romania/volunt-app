@@ -1,0 +1,16 @@
+common: &common
+  
+
+development:
+  <<: *common
+  from: <%= ENV['VOLUNTARI_EMAIL_DEVELOPMENT_FROM'] %>
+  to: <%= ENV['VOLUNTARI_EMAIL_DEVELOPMENT_TO'] %>
+  
+test:
+  <<: *common
+  from: someone@example.com
+  to: none@example.com
+
+production:
+  from: <%= ENV['VOLUNTARI_EMAIL_PROD_FROM'] %>
+

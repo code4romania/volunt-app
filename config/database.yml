@@ -4,7 +4,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   host: <%= ENV['VOLUNTARI_DATABASE_HOST'] %>
-  port: <%= ENV['VOLUNTARI_DATAABSE_PORT'] %>
+  port: <%= ENV['VOLUNTARI_DATABASE_PORT'] %>
 
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
