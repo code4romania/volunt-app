@@ -1,10 +1,14 @@
 common: &common
   digest: voluntari.gov.ro
-  mail: voluntari.gov.ro
 
 development:
   <<: *common
+  mail_url_host: test-contribute.rusanu.com
+
 test:
   <<: *common
+  mail_url_host: example.com
+
 production:
   <<: *common
+  mail_url_host: voluntari.gov.ro

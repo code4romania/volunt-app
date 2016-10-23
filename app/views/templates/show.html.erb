@@ -11,7 +11,7 @@
       <dt>Subject<dt>
       <dd><%= @template.subject %></dd>
       <dt>Body<dt>
-      <dd><div class="email-body"><%= @template.body.html_safe %></div></dd>
+      <dd><div class="email-body"><%= sanitize_email_body(@template.body).html_safe %></div></dd>
       <dt></dt>
       <dd>
         <%= form_for(@template, method: :delete) do %>
