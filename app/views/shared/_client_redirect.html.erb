@@ -1,0 +1,6 @@
+<script>
+  window.setTimeout(function() {
+    window.location = '<%= local_assigns[:location] %>';
+  },
+  <%= local_assigns[:timeout] %>);
+</script>

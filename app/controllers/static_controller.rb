@@ -1,6 +1,6 @@
 class StaticController < ApplicationController
   include LoginConcern
-  force_ssl only: [:login, :login_post]
+  force_ssl only: [:login, :login_post, :password_reset]
   layout 'static'
 
   def home
@@ -30,5 +30,4 @@ class StaticController < ApplicationController
     logout_user
     redirect_to root_path
   end
-
 end

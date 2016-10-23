@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="row">
+    <div class="login-form">
+      <p class="text-primary">The email address <%= @token.user.email %> has been confirmed.</p>
+    </div>
+  </div>
+</div>
+<%= render partial: 'shared/client_redirect', locals: {location: '/', timeout: 5000} %>

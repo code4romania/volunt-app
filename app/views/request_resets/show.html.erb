@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <span class="text-info notice"><%= notice %></span>
+    <div class="login-form">
+      <%= bootstrap_form_for(@request_reset_presenter,
+            method: :post,
+            url: request_reset_path,
+            layout: :horizontal,
+            label_col: 'col-sm-3',
+            control_col: 'col-sm-9',
+            role: :form) do |f| %>
+          <%= f.email_field :email %>
+          <%= f.submit 'Reset Password', class: 'col-sm-offset-3 btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
