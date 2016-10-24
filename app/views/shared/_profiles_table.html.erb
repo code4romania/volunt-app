@@ -24,19 +24,19 @@
       <td><%= f.text_field :full_name,
               hide_label: true,
               placeholder: 'Filtreaza dupa nume...',
-              append: f.submit('Go') %></td>
+              append: glyphicon_submit_helper('search') %></td>
       <td><%= f.text_field :email,
               hide_label: true,
               placeholder: 'Filtreaza dupa email...',
-              append: f.submit('Go') %></td>
+              append: glyphicon_submit_helper('search') %></td>
       <td><%= f.text_field :location,
               hide_label: true,
               placeholder: 'Filtreaza dupa locatie...',
-              append: f.submit('Go') %></td>
+              append: glyphicon_submit_helper('search') %></td>
       <td><%= f.text_field :skills,
               hide_label: true,
               placeholder: 'Filtreaza dupa cunostinte...',
-              append: f.submit('Go') %></td>
+              append: glyphicon_submit_helper('search') %></td>
       <td></td>
     <% end %>
     </tr>

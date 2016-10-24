@@ -1,0 +1,2 @@
+class LoginConcernException < StandardError
+end
