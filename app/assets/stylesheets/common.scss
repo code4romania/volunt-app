@@ -28,6 +28,20 @@ table.fixed-table {
   }
 }
 
+table.profiles-table {
+  tbody {
+    counter-reset: rowNumber;
+    tr {
+      counter-increment: rowNumber;
+      td:first-child::before {
+        content: counter(rowNumber);
+        min-width: 1em;
+        margin-right: 0.5em;
+      }
+    }
+  }
+}
+
 .profile {
   dl.dl-horizontal {
     dt {

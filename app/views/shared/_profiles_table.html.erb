@@ -14,8 +14,6 @@
       <th>Cunostinte</th>
       <th />
     </tr>
-  </thead>
-  <tbody>
     <tr>
     <%= bootstrap_form_for(@profile_search_presenter,
           url: search_volunteers_path,
@@ -40,6 +38,8 @@
       <td></td>
     <% end %>
     </tr>
+  </thead>
+  <tbody>
     <%= render partial: 'shared/profile_row', collection: profiles %>
   </tbody>
 </table>

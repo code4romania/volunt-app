@@ -5,6 +5,7 @@ class ValidationTokensController < ApplicationController
   helper_method :reset_password_presenters_path
   before_action :find_token
   define_callbacks :confirm_user_email
+  layout 'static'
 
   def show
     # Any link that is clicked is actually a valid user email confirmation
