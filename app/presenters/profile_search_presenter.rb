@@ -3,13 +3,13 @@ class ProfileSearchPresenter
   include ActiveModel::AttributeMethods
   include ActiveModel::Translation
 
-  attr_accessor :skills, :email, :full_name, :location
+  attr_accessor :email, :full_name, :location, :attrs
 
   def blank?
     full_name.blank? and
     email.blank? and
     location.blank? and
-    skills.blank?
+    attrs.blank?
   end
 
 end

@@ -1,5 +1,6 @@
 class Profile < ApplicationRecord
   include FlagBitsConcern
+  include TagsConcern
 
   PROFILE_FLAG_APPLICANT    = 0x00000001
   PROFILE_FLAG_VOLUNTEER    = 0x00000002
