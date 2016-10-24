@@ -91,7 +91,7 @@ namespace :volunteers do
         attrs[:workplace] = v[COMPANY].strip unless v[COMPANY].blank?
         attrs[:title] = v[POSITION].strip unless v[COMPANY].blank?
 
-        attrs[:flags] = Profile::FLAG_PROFILE_VOLUNTEER
+        attrs[:flags] = Profile::PROFILE_FLAG_VOLUNTEER
 
         Profile.find_or_create_by(email: attrs[:email]) do |p|
           p.update(attrs)
