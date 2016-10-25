@@ -5,7 +5,7 @@
     <% end %>
   </div>
   <div class="row">
-    <span class="text-info notice"><%= notice %></span>
+    <%= render partial: 'shared/notice' %>
   <div>
   <div class="row">
     <%= render partial: 'shared/templates_table', locals: {templates: @templates} %> 

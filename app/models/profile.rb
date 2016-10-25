@@ -1,6 +1,10 @@
 class Profile < ApplicationRecord
   include FlagBitsConcern
   include TagsConcern
+  
+  array_field :tags
+  array_field :skills
+  #array_field :urls, {upcase: false}
 
   PROFILE_FLAG_APPLICANT    = 0x00000001
   PROFILE_FLAG_VOLUNTEER    = 0x00000002

@@ -2,6 +2,37 @@ class VolunteersController < ApplicationController
   include LoginConcern
   include SearchConcern
   authorization_required
+  before_action :set_volunteer, only: [:show, :edit, :update, :destroy]
+
+  def new
+    @volunteer = Profile.new(flags: Profile::PROFILE_FLAG_VOLUNTEER)
+  end
+  
+  def edit
+  end
+
+  def create
+    @volunteer = Profile.new(volunteer_params)
+    @volunteer.is_volunteer = true
+    if @volunteer.save
+      redirect_to volunteer_path(@volunteer), notice: 'Volunteer was succsfully created'
+    else
+      render :new
+    end
+  end
+
+  def update
+    if @volunteer.update(volunteer_params)
+      redirect_to volunteer_path(@volunteer), notice: 'Volunteer was succesfully updated'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @volunteer.destroy
+    redirect_to volunteers_path, notice: 'Volunteer was succesfully deleted'
+  end
 
   def index
     @profile_search_presenter = ProfileSearchPresenter.new
@@ -9,7 +40,6 @@ class VolunteersController < ApplicationController
   end
 
   def show
-    @volunteer = Profile.volunteers.find params[:id]
   end
 
   def search
@@ -55,10 +85,42 @@ class VolunteersController < ApplicationController
     @volunteers = volunteers.order(:full_name)
   end
 
+  # In this context 'profiles' means 'volunteers'
+  # need helper methods or the form_for gets confused
+  #
+  helper_method :profile_path, :profiles_path
+  def profile_path(profile)
+    volunteer_path(profile)
+  end
+
+  def profiles_path
+    volunteers_path
+  end
+
   private
 
   def search_params
     params.fetch(:profile_search_presenter, {}).permit(
       :full_name, :email, :location, :attrs)
   end
+
+  def set_volunteer
+    @volunteer = Profile.volunteers.find params[:id]
+  end
+
+  def volunteer_params
+    params.fetch(:profile, {}).permit(
+      :full_name,
+      :nick_name,
+      :photo,
+      :tags_string,
+      :skills_string,
+      :location,
+      :title,
+      :workplace,
+      :email,
+      :description,
+      :urls_string)
+  end
+
 end

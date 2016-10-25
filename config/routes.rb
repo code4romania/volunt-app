@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resource :request_reset, only: [:show, :create], protocol: 'https', path: '/request-reset'
   resources :validation_tokens, only: [:show, :update], protocol: 'https'
 
-  resources :volunteers, only:[:show, :index] do
+  resources :volunteers do
     collection do
       match 'search', via: [:get, :post]
     end

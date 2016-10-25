@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-3 text-center">
-    <img class="img-responsive img-rounded img-profile-png center-block" src="<%= profile.photo %>" />
+    <img class="img-responsive img-rounded img-profile center-block" src="<%= profile.photo %>" />
   </div>
   <div class="col-sm-9">
     <dl class="dl-horizontal">
@@ -9,11 +9,18 @@
       <dt>Email</dt><dd><%= profile.email %></dd>
       <dt>Locatie</dt><dd><%= profile.location %></dd>
       <dt>Ocupatie</dt><dd><%= profile.title %></dd>
-      <dt>Angajator</dt><dd><%= profile.workplace %></dd>
+      <dt>Locul de munca</dt><dd><%= profile.workplace %></dd>
       <dt>Skills</dt><dd><%= render partial: 'shared/skills', locals: {skills: profile.skills} %></dd>
+      <dt>Tags</dt><dd><%= render partial: 'shared/tags', locals: {tags: profile.tags} %></dd>
       <dt>Links</dt><dd><%= render partial: 'shared/urls', locals: {urls: profile.urls} %></dd>
     </dl>
   </div>
 </div>
 <div class="row">
+  <div class="col-sm-offset-3 col-sm-9">
+    <%= profile.description %>
+  </div>
+</div>
+<div class="row">
+    <%= yield %>
 </div>
