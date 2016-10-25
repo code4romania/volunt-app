@@ -10,6 +10,6 @@ class UserMailer < ApplicationMailer
     @url = validation_token_url(validation)
     @user = user
     @to = @user.email
-    mail(to: @user.email, subject: 'Reseteaza parola Volunntari Gov IT Hub')
+    mail(to: @user.email, subject: 'Reseteaza parola Voluntari Gov IT Hub')
   end
 end
