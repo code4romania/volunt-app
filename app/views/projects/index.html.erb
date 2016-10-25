@@ -1,0 +1,16 @@
+<div class="container">  
+  <div class="btn-group" role="group">
+    <%= link_to new_project_path, class: 'btn btn-default' do %>
+      Creeaza Proiect
+    <% end %>
+  </div>
+  <div class="row">
+    <span class="text-info notice"><%= notice %></span>
+  <div>
+  <div class="row">
+    <%= render partial: 'shared/projects_table', locals: {projects: @projects} %> 
+  </div>
+  <div class="row will-paginate">
+    <%= will_paginate @projects, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<tr>
+  <td><%= project_row.name %></td>
+  <td></td>
+  <td><%= render partial: 'shared/tags', locals: {tags: project_row.tags} %></td>
+  <td><%= link_to project_path(project_row) do %>
+    <span class="glyphicon glyphicon-play-circle"></span>
+  <% end %></td>
+</tr>

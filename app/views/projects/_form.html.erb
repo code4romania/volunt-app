@@ -1,0 +1,11 @@
+<%= bootstrap_form_for(project,
+    layout: :horizontal,
+    label_col: 'col-sm-3',
+    control_col: 'col-sm-9',
+    role: :form) do |f| %>
+
+    <%= f.text_field :name, label: 'Nume' %>
+    <%= f.text_area :description, label: 'Descriere' %>
+    <%= f.text_field :tags_string %>
+    <%= yield f %>
+<% end %>
