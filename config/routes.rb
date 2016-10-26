@@ -18,8 +18,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :projects, shallow: true do
-    resources :members
+  resources :projects do
+    resources :members, except: [:new] do
+      collection do
+        get 'new_volunteer'
+        get 'new_fellow'
+      end
+    end
   end
   
 

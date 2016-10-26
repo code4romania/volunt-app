@@ -1,16 +1,18 @@
 <%= bootstrap_form_for(member,
+    url: form_action_path,
     layout: :horizontal,
     label_col: 'col-sm-3',
     control_col: 'col-sm-9',
     role: :form) do |f| %>
+    <%= hidden_field_tag :member_type, @member_type %>
     <%= f.collection_select(:profile_id,
-        Profile.all.order(:full_name),
+        @profiles,
         :id,
-        :full_name) %>
-    <%= f.collection_select(:project_id,
-        Project.all,
-        :id,
-        :name) %>
+        :select_name,
+        label: 'Nume') %>
+    <%= f.fields_for(:project, @project) do |ff| %>
+      <%= ff.text_field :name, disabled: true, label: 'Proiect' %>
+    <% end %>
     <%= f.text_field :role, label: 'Rol', placeholder: 'Programator' %>
     <%= yield f %>
 <% end %>

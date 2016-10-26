@@ -3,7 +3,7 @@
   <td><%= members_profile_row.profile.email %></td>
   <td><%= members_profile_row.role %></td>
   <td><%= render partial: 'shared/profile_attributes', locals: {profile: members_profile_row.profile} %></td>
-  <td><%= link_to member_path(members_profile_row), class: 'btn btn-link' do %>
+  <td><%= link_to project_member_path(members_profile_row.project, members_profile_row), class: 'btn btn-link' do %>
     <span class="glyphicon glyphicon-play-circle"></span>
   <% end %><td>
 </tr>

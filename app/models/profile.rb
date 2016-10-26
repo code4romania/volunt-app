@@ -25,7 +25,11 @@ class Profile < ApplicationRecord
   validates :nick_name, presence: true
   validates :email, presence: true, uniqueness: true, email: true
 
-  has_many :memberships, class_name: 'ProjectMember'
+  has_many :memberships, class_name: 'ProjectMember', dependent: :delete_all
   has_many :projects, through: :memberships
+
+  def select_name
+    "%-20s: %s" % [full_name, email]
+  end
 
 end

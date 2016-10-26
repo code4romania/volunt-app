@@ -11,9 +11,9 @@
       <dt>Rol<dt>
       <dd><%= @member.role %></dd>
       <dd>
-        <%= form_for(@member, method: :delete) do %>
+        <%= form_for(@member, url: project_member_path(@project, @member), method: :delete) do %>
           <div class="btn-group" role='group'>
-            <%= link_to 'Edit', edit_member_path(@member), class: 'btn btn-default' %>
+            <%= link_to 'Edit', edit_project_member_path(@project, @member), class: 'btn btn-default' %>
             <input type='submit' value='Delete' class =  'btn btn-danger' />
           </div>
         <% end %>

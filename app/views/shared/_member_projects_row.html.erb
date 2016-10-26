@@ -1,0 +1,7 @@
+<tr>
+  <td><%= member_projects_row.project.name %></td>
+  <td><%= member_projects_row.role %></td>
+  <td><%= link_to project_member_path(member_projects_row.project, member_projects_row), class: 'btn btn-link' do %>
+    <span class="glyphicon glyphicon-play-circle"></span>
+  <% end %></td>
+</tr>

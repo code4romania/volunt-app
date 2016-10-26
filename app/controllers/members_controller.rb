@@ -2,6 +2,7 @@ class MembersController < ApplicationController
   include LoginConcern
   authorization_required
   before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :set_project
 
   # GET /members
   def index
@@ -13,25 +14,35 @@ class MembersController < ApplicationController
   end
 
 
-  # GET /members/new
-  def new
-    @project = Project.find(params['project_id']) if params.has_key? 'project_id'
-    @profile = Profile.find(params['profile_id']) if params.has_key? 'profile_id'
-    @member = ProjectMember.new(profile: @profile, project: @project)
+  def new_volunteer
+    @member = ProjectMember.new(project: @project)
+    @profiles = Profile.volunteers
+    @member_type = Profile::PROFILE_FLAG_VOLUNTEER
+    render 'new'
+  end
+
+  def new_fellow
+    @member = ProjectMember.new(project: @project)
+    @profiles = Profile.fellows
+    @member_type = Profile::PROFILE_FLAG_FELLOW
+    render 'new'
   end
 
   # GET /members/1/edit
   def edit
+    @profiles = [@member.profile]
   end
 
   # POST /members
   def create
     @member = ProjectMember.new(member_params)
-    @project = Project.find(params['project_id']) if params.has_key? 'project_id'
-    @profile = Profile.find(params['profile_id']) if params.has_key? 'profile_id'
+    @member.project = @project
     if @member.save
-      redirect_to back_path, notice: 'Member was successfully added.'
+      redirect_to back_path, notice: 'Member was successfully added to project.'
     else
+      puts @member.errors.inspect
+      @member_type = params.fetch(:member_type, Profile::PROFILE_FLAG_VOLUNTEER)
+      @profiles = Profile::PROFILE_FLAG_FELLOW.to_s == @member_type.to_s ? Profile.fellows : Profile.volunteers
       render :new
     end
   end
@@ -39,7 +50,7 @@ class MembersController < ApplicationController
   # PATCH/PUT /members/1
   def update
     if @member.update(member_params)
-      redirect_to member_path(@member), notice: 'Member was successfully updated.'
+      redirect_to project_member_path(@project, @member), notice: 'Member was successfully updated.'
     else
       render :edit
     end
@@ -48,33 +59,32 @@ class MembersController < ApplicationController
   # DELETE /members/1
   def destroy
     @member.destroy
-    redirect_to back_path, notice: 'Member was successfully removed.'
-  end
-
-  # In this context project_members resource is actually members
-  # need helpers to make form_for happy
-  helper_method :project_member_path
-  def project_member_path(member)
-    member_path(member)
+    redirect_to back_path, notice: 'Member was successfully removed from project.'
   end
 
   # back_path returns to the calling project or profile
   helper_method :back_path
   def back_path
-    return project_path(@project) unless @project.nil?
-    return profile_path(@profile) unless @profile.nil?
+    return project_path(@project)
+  end
+
+  helper_method :form_action_path
+  def form_action_path
+    @member.new_record? ? project_members_path(@project) :  project_member_path(@project, @member)
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_member
-      @project = Project.find(params['project_id']) if params.has_key? 'project_id'
-      @profile = Profile.find(params['profile_id']) if params.has_key? 'profile_id'
       @member = ProjectMember.find(params[:id])
+    end
+    
+    def set_project
+      @project = Project.find(params['project_id'])
     end
 
     # Only allow a trusted parameter "white list" through.
     def member_params
-      params.require(:project_member).permit(:profile_id, :project_id, :role, :status)
+      params.require(:project_member).permit(:profile_id, :role, :status)
     end
 end

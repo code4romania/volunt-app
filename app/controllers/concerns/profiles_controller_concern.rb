@@ -35,10 +35,7 @@ module ProfilesControllerConcern
   end
 
   def destroy
-    Profile.transaction do
-      @Profile.memeberships.destroy
-      @profile.destroy
-    end
+    @profile.destroy
     redirect_to profiles_path, notice: "#{profile_resource_name} was succesfully deleted"
   end
 
@@ -49,6 +46,7 @@ module ProfilesControllerConcern
   end
 
   def show
+    @memberships = @profile.memberships.includes(:project)
     render 'profiles/show'
   end
 
