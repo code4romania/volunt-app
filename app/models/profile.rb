@@ -21,6 +21,10 @@ class Profile < ApplicationRecord
   scope :fellows, -> { where('profiles.flags & ? > 0', PROFILE_FLAG_FELLOW) }
   scope :coordinators, -> { where('profiles.flags & ? > 0', PROFILE_FLAG_COORDINATOR) }
 
+  validates :full_name, presence: true, uniqueness: true
+  validates :nick_name, presence: true
+  validates :email, presence: true, uniqueness: true, email: true
+
   has_many :memberships, class_name: 'ProjectMember'
   has_many :projects, through: :memberships
 
