@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  profile: one
+  status: 1
+  flags: 1
+
+two:
+  project: two
+  profile: two
+  status: 1
+  flags: 1

@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+   <span class="text-info notice"><%= notice %></span>
+  </div>
+  <div class="row">
+    <dl class="dl-horizontal">
+      <dt>Membru<dt>
+      <dd><%= @member.profile.full_name %></dd>
+      <dt>Proiect<dt>
+      <dd><%= @member.project.name %></dd>
+      <dt>Rol<dt>
+      <dd><%= @member.role %></dd>
+      <dd>
+        <%= form_for(@member, method: :delete) do %>
+          <div class="btn-group" role='group'>
+            <%= link_to 'Edit', edit_member_path(@member), class: 'btn btn-default' %>
+            <input type='submit' value='Delete' class =  'btn btn-danger' />
+          </div>
+        <% end %>
+      </dd>
+    </dl>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="container">  
+  <div class="btn-group" role="group">
+    <%= link_to new_member_path, class: 'btn btn-default' do %>
+     New Member
+    <% end %>
+  </div>
+  <div class="row">
+    <span class="text-info notice"><%= notice %></span>
+  <div>
+  <div class="row">
+    <%= render partial: 'shared/members_table', locals: {members: @members} %> 
+  </div>
+  <div class="row will-paginate">
+    <%= will_paginate @members, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>

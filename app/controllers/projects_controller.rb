@@ -10,6 +10,8 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
+    @volunteers = @project.members.volunteers.includes(:profile)
+    @fellows = @project.members.fellows.includes(:profile)
   end
 
   # GET /projects/new

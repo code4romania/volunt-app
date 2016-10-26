@@ -16,7 +16,12 @@ class Profile < ApplicationRecord
   flag_bit :fellow
   flag_bit :coordinator
 
-  scope :volunteers, -> { where('flags & ? > 0', PROFILE_FLAG_VOLUNTEER) }
-  scope :applicants, -> { where('flags & ? > 0', PROFILE_FLAG_APPLICANT) }
+  scope :volunteers, -> { where('profiles.flags & ? > 0', PROFILE_FLAG_VOLUNTEER) }
+  scope :applicants, -> { where('profiles.flags & ? > 0', PROFILE_FLAG_APPLICANT) }
+  scope :fellows, -> { where('profiles.flags & ? > 0', PROFILE_FLAG_FELLOW) }
+  scope :coordinators, -> { where('profiles.flags & ? > 0', PROFILE_FLAG_COORDINATOR) }
+
+  has_many :memberships, class_name: 'ProjectMember'
+  has_many :projects, through: :memberships
 
 end

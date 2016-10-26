@@ -18,6 +18,22 @@
           </div>
         <% end %>
       </dd>
+      <dt>Voluntari
+          <%= link_to new_project_member_path(@project), class: 'btn btn-link' do %>
+            <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+      </dt>
+      <dd>
+        <%= render partial: 'shared/members_profile_table', locals: {members: @volunteers} %>
+      </dd>  
+      <dt>Bursieri
+          <%= link_to new_project_member_path(@project), class: 'btn btn-link' do %>
+            <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+      </dt>
+      <dd>
+        <%= render partial: 'shared/members_profile_table', locals: {members: @fellows} %>
+      </dd>  
     </dl>
   </div>
 </div>

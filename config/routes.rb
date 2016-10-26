@@ -16,7 +16,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :projects 
+  resources :projects, shallow: true do
+    resources :members
+  end
+  
 
   resources :templates
 

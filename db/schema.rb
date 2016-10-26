@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161025153420) do
+ActiveRecord::Schema.define(version: 20161025171901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,20 @@ ActiveRecord::Schema.define(version: 20161025153420) do
     t.index ["full_name"], name: "index_profiles_on_full_name", using: :btree
     t.index ["skills"], name: "index_profiles_on_skills", using: :gin
     t.index ["tags"], name: "index_profiles_on_tags", using: :gin
+  end
+
+  create_table "project_members", force: :cascade do |t|
+    t.string   "role"
+    t.integer  "project_id",             null: false
+    t.integer  "profile_id",             null: false
+    t.integer  "status",     default: 0, null: false
+    t.integer  "flags",      default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["profile_id", "project_id"], name: "index_project_members_on_profile_id_and_project_id", unique: true, using: :btree
+    t.index ["profile_id"], name: "index_project_members_on_profile_id", using: :btree
+    t.index ["project_id", "profile_id"], name: "index_project_members_on_project_id_and_profile_id", unique: true, using: :btree
+    t.index ["project_id"], name: "index_project_members_on_project_id", using: :btree
   end
 
   create_table "projects", force: :cascade do |t|
@@ -120,6 +134,8 @@ ActiveRecord::Schema.define(version: 20161025153420) do
 
   add_foreign_key "communications", "templates"
   add_foreign_key "communications", "users"
+  add_foreign_key "project_members", "profiles"
+  add_foreign_key "project_members", "projects"
   add_foreign_key "recipients", "communications"
   add_foreign_key "recipients", "profiles"
 end

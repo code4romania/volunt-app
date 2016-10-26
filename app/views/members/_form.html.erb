@@ -1,0 +1,16 @@
+<%= bootstrap_form_for(member,
+    layout: :horizontal,
+    label_col: 'col-sm-3',
+    control_col: 'col-sm-9',
+    role: :form) do |f| %>
+    <%= f.collection_select(:profile_id,
+        Profile.all.order(:full_name),
+        :id,
+        :full_name) %>
+    <%= f.collection_select(:project_id,
+        Project.all,
+        :id,
+        :name) %>
+    <%= f.text_field :role, label: 'Rol', placeholder: 'Programator' %>
+    <%= yield f %>
+<% end %>

@@ -1,0 +1,21 @@
+<table class="table fixed-table member-profiles-table">
+  <colgroup>
+    <col class="col-xs-3"/>
+    <col class="col-xs-2"/>
+    <col class="col-xs-2"/>
+    <col class="col-xs-4"/>
+    <col class="col-xs-1"/>
+  </colgroup>
+  <thead>
+    <tr>
+      <td>Nume</td>
+      <td>Email</td>
+      <td>Rol</td>
+      <td>Atribute</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'shared/members_profile_row.html.erb', collection: members %>
+  </tbody>
+</table>
