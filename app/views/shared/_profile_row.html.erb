@@ -3,8 +3,6 @@
   <td><%= profile_row.email %></td>
   <td><%= profile_row.location %></td>
   <td><%= render partial: 'shared/profile_attributes', locals: {profile: profile_row} %></td>
-  <td><%= link_to profile_path(profile_row), class: 'btn btn-link' do %>
-    <span class="glyphicon glyphicon-play-circle"></span>
-  <% end %></td>
+  <td><%= glyphicon_link_to profile_path(profile_row) %></td>
 </tr>
 
