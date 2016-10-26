@@ -9,40 +9,47 @@ module ProfilesControllerConcern
   def new
     @profile = Profile.new
     profile_set_flag(@profile)
+    render 'profiles/new'
   end
   
   def edit
+    render 'profiles/edit'
   end
 
   def create
     @profile = Profile.new(profile_params)
     profile_set_flag(@profile)
     if @profile.save
-      redirect_to profile_path(@profile), notice: 'Profile was succesfully created'
+      redirect_to profile_path(@profile), notice: "#{profile_resource_name} was succesfully created"
     else
-      render :new
+      render 'profiles/new'
     end
   end
 
   def update
     if @profile.update(profile_params)
-      redirect_to profile_path(@profile), notice: 'Profile was succesfully updated'
+      redirect_to profile_path(@profile), notice: "#{profile_resource_name} was succesfully updated"
     else
-      render :edit
+      render 'profiles/edit'
     end
   end
 
   def destroy
-    @profile.destroy
-    redirect_to profiles_path, notice: 'Profile was succesfully deleted'
+    Profile.transaction do
+      @Profile.memeberships.destroy
+      @profile.destroy
+    end
+    redirect_to profiles_path, notice: "#{profile_resource_name} was succesfully deleted"
   end
 
   def index
     @profile_search_presenter = ProfileSearchPresenter.new
     @profiles = profiles_scope.order(:full_name).paginate(page: params[:page])
+    render 'profiles/index'
   end
 
   def show
+    render 'profiles/show'
   end
 
   def search
@@ -86,6 +93,7 @@ module ProfilesControllerConcern
     end
 
     @profiles = profiles.order(:full_name)
+    render 'profiles/search'
   end
 
 
@@ -117,18 +125,45 @@ module ProfilesControllerConcern
 
   module ClassMethods
 
-    def profile_controller(controller)
+    def profile_controller(controller, resource_name)
       controller_path = "#{controller}_path"
-      # sym pluralize wannabe
+      controller_edit_path = "edit_#{controller}_path"
+      controller_new_path = "new_#{controller}_path"
+      controllers_search_path = "search_#{controller}s_path"
       controllers_path = "#{controller}s_path"
       controller_scope = "#{controller}s"
       profile_flag = "Profile::PROFILE_FLAG_#{controller.upcase}".constantize
-      helper_method :profile_path, :profiles_path
+      
+      # Define the route helpers as aliases of the current type
+      helper_method :profile_path,
+        :profiles_path,
+        :edit_profile_path,
+        :new_profile_path,
+        :search_profiles_path
+      
       define_method 'profile_path' do |profile|
         send(controller_path, profile)
       end
+      
       define_method 'profiles_path' do
         send(controllers_path)
+      end
+
+      define_method 'new_profile_path' do
+        send(controller_new_path)
+      end
+
+      define_method 'edit_profile_path' do |profile|
+        send(controller_edit_path, profile)
+      end
+
+      define_method 'search_profiles_path' do
+        send(controllers_search_path)
+      end
+
+      helper_method :profile_resource_name
+      define_method 'profile_resource_name' do
+        resource_name
       end
 
       define_method 'profiles_scope' do

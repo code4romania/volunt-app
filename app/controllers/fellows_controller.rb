@@ -3,7 +3,7 @@ class FellowsController < ApplicationController
   include LoginConcern
   authorization_required
 
-  profile_controller :fellow
+  profile_controller :fellow, 'Bursier'
   
 end
 

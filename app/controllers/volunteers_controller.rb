@@ -3,6 +3,6 @@ class VolunteersController < ApplicationController
   include LoginConcern
   authorization_required
 
-  profile_controller :volunteer
+  profile_controller :volunteer, 'Voluntar'
   
 end

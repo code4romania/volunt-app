@@ -16,7 +16,7 @@
     </tr>
     <tr>
     <%= bootstrap_form_for(@profile_search_presenter,
-          url: search_volunteers_path,
+          url: search_profiles_path,
           class: 'form-inline',
           method: 'POST') do |f| %>
       <td><%= f.text_field :full_name,
