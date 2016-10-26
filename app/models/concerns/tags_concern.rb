@@ -12,7 +12,7 @@ module  TagsConcern
         d = ''
         val.each do |k,v|
           s << "#{d}#{k}:#{v}"
-          d = '\n'
+          d = "\r"
         end
         return s.string
       end

@@ -113,6 +113,7 @@ module ProfilesControllerConcern
       :photo,
       :tags_string,
       :skills_string,
+      :contacts_string,
       :location,
       :title,
       :workplace,

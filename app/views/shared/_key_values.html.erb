@@ -1,0 +1,5 @@
+<ul class="list-unstyled key-values">
+  <% key_values.each do |k, v| %>
+    <li><span class="key-value key"><%= k %></span><span class="key-value value"><%= v %></li>
+  <% end unless key_values.nil? %>
+</ul>
