@@ -1,8 +1,9 @@
-class VolunteersController < ApplicationController
+class FellowsController < ApplicationController
   include ProfilesControllerConcern
   include LoginConcern
   authorization_required
 
-  profile_controller :volunteer
+  profile_controller :fellow
   
 end
+

@@ -7,7 +7,7 @@
     <span class="profile-attributes"><%= render partial: 'shared/tags', locals: {tags: profile_row.tags } %></span>
     <span class="profile-attributes"><%= render partial: 'shared/skills', locals: {skills: profile_row.skills} %></span>
   </td>
-  <td><%= link_to volunteer_path(profile_row), class: 'btn btn-link' do %>
+  <td><%= link_to profile_path(profile_row), class: 'btn btn-link' do %>
     <span class="glyphicon glyphicon-play-circle"></span>
   <% end %></td>
 </tr>
