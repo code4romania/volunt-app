@@ -5,7 +5,7 @@
   <div class="row">
     <dl class="dl-horizontal">
       <dt>Membru<dt>
-      <dd><%= @member.profile.full_name %> <%= glyphicon_link_to detect_profile_path(@member.profile) %></dd>
+      <dd><%= render partial: 'shared/profile_with_link', locals: {profile: @member.profile } %></dd>
       <dt>Proiect<dt>
       <dd><%= @member.project.name %> <%= glyphicon_link_to project_path(@member.project) %></dd>
       <dt>Rol<dt>
