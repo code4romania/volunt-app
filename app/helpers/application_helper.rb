@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def glyphicon_link_to(url, glyph='play-circle')
-    link_to url, class: 'btn btn-link' do
+    link_to url, class: 'btn btn-link btn-glyph' do
       glyphicon_tag(glyph)
     end
   end

@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    @projects = Project.all.paginate(page: params[:page])
+    @projects = Project.all.includes(:owner).paginate(page: params[:page])
   end
 
   # GET /projects/1
@@ -61,6 +61,8 @@ class ProjectsController < ApplicationController
           :name,
           :description,
           :tags_string,
+          :owner_id,
+          :urls_string,
           :status,
           :flags)
     end
