@@ -1,39 +1,39 @@
-<%= bootstrap_form_for(profile,
-    layout: :horizontal,
-    label_col: 'col-sm-3',
-    control_col: 'col-sm-9',
-    role: :form) do |f| %>
-  <div class="row">
-    <div class="col-sm-3 text-center">
-      
-      <img class="img-responsive img-rounded img-profile center-block" src="<%= profile.photo %>" />
-      <%= f.text_field :photo, placeholder: 'http://example.org/full_path/somephot.png' %>
-    </div>
-    <div class="col-sm-9"> 
-      <%= f.text_field :full_name, label: 'Nume Complet', placeholder: 'Coman Otilia', help: 'In ordinea nume prenume'  %>
-      <%= f.text_field :nick_name, label: 'Nume Scurt', placeholder: 'Otilia', help: 'Numele de adresare in communicare' %>
-      <%= f.email_field :email, placeholder: 'blandiana@example.com' %>
-      <%= f.text_area  :contacts_string, label: 'Contacte', 
-              placeholder: "email2: other@example.com\rphone: 555-5555",
-              help: "Separa pe linii si prefixeaza cu `phone1:`, `email2:` etc" %>
-      <%= f.text_field :location, label: 'Locatie', placeholder: 'Timisoara, Romania' %>
-      <%= f.text_field :title, label: 'Ocupatia', placeholder: 'Programator' %>
-      <%= f.text_field :workplace, label: 'Locul de munca' %>
-      <%= f.text_field :skills_string, label: 'Skills',
-          placeholder: '.Net, Java, Angular, React Native, UI, Adobe Illustrator',
-          help: 'Skill-uri tehnice, separate prin virgula' %>
-      <%= f.text_field :tags_string, label: 'Tags',
-          placeholder: 'Remote, Hackaton',
-          help: 'Orice tag-uri care permit ulterior filtrare si cautare' %>
-      <%= f.text_area :urls_string, label: 'Links',
-          placeholder: "ro.wikipedia.org/wiki/ana_blandiana\rstackoverflow.com/users/105929",
-          help: 'Link-uri relevante pentru profil' %>
-    </div>
+<div class="row">
+  <div class="col-sm-9">
+    <%= bootstrap_form_for(profile,
+        layout: :horizontal,
+        label_col: 'col-sm-3',
+        control_col: 'col-sm-9',
+        role: :form) do |f| %>
+      <div class="row">
+          <%= f.text_field :full_name, label: 'Nume Complet', placeholder: 'Coman Otilia', help: 'In ordinea nume prenume'  %>
+          <%= f.text_field :nick_name, label: 'Nume Scurt', placeholder: 'Otilia', help: 'Numele de adresare in communicare' %>
+          <%= f.text_field :photo, placeholder: 'http://example.org/full_path/somephoto.png',
+                label: 'Photo',
+                help: 'URL for a hot-linked photo' %>
+          <%= f.email_field :email, placeholder: 'blandiana@example.com' %>
+          <%= f.text_area  :contacts_string, label: 'Contacte', 
+                  placeholder: "email2: other@example.com\rphone: 555-5555",
+                  help: "Separa pe linii si prefixeaza cu `phone1:`, `email2:` etc" %>
+          <%= f.text_field :location, label: 'Locatie', placeholder: 'Timisoara, Romania' %>
+          <%= f.text_field :title, label: 'Ocupatia', placeholder: 'Programator' %>
+          <%= f.text_field :workplace, label: 'Locul de munca' %>
+          <%= f.text_field :skills_string, label: 'Skills',
+              placeholder: '.Net, Java, Angular, React Native, UI, Adobe Illustrator',
+              help: 'Skill-uri tehnice, separate prin virgula' %>
+          <%= f.text_field :tags_string, label: 'Tags',
+              placeholder: 'Remote, Hackaton',
+              help: 'Orice tag-uri care permit ulterior filtrare si cautare' %>
+          <%= f.text_area :urls_string, label: 'Links',
+              placeholder: "ro.wikipedia.org/wiki/ana_blandiana\rstackoverflow.com/users/105929",
+              help: 'Link-uri relevante pentru profil' %>
+      </div>
+      <div class="row">
+          <%= f.text_area :description, placeholder: "Cover letter: 1-2 paragrafe depre #{profile_resource_name}" %>
+      </div>
+      <div class="row">
+        <%= yield %>
+      </div>
+    <% end %>
   </div>
-  <div class="row">
-    <%= f.text_area :description, placeholder: "Cover letter: 1-2 paragrafe depre #{profile_resource_name}" %>
-  </div>
-  <div class="row">
-    <%= yield %>
-  </div>
-<% end %>
+</div>

@@ -42,7 +42,7 @@ module LoginConcern
 
   module ClassMethods
     def authorization_required(opts={})
-      before_filter :check_user_authorization, opts
+      before_action :check_user_authorization, opts
     end
   end
   

@@ -1,6 +1,14 @@
 *.rbc
 *.sassc
 *.csv
+*.txt
+*.xls
+*.xslx
+*.doc
+*.docx
+*.ppt
+*.pptx
+TODO.md
 .sass-cache
 .byebug_history
 capybara-*.html
