@@ -2,11 +2,18 @@ class StatusReportsController < ApplicationController
   include LoginConcern
   authorization_required
   before_action :set_status_report, only: [:show, :edit, :update, :destroy]
-  before_action :set_profile_or_project, only: [:new, :create]
+  before_action :set_profile_or_project, only: [:new, :create, :index]
 
   # GET /status_reports
   def index
-    @status_reports = StatusReport.all.paginate(page: params[:page])
+    if not @project.nil?
+      @status_reports = @project.status_reports
+    elsif not @profile.nil?
+      @status_reports = @profile.status_reports
+    else
+      @status_reports = StatusReport.all
+    end
+    @status_reports = @status_reports.paginate(page: params[:page])
   end
 
   # GET /status_reports/1

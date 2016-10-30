@@ -6,11 +6,11 @@
     role: :form) do |f| %>
 
     <%= f.fields_for(:profile, @status_report.profile) do |ff| %>
-      <%=ff.text_field :full_name, label: 'Nume', disabled: true %>
+      <%=ff.text_field :full_name, label: 'Ref', disabled: true %>
     <% end unless @profile.nil? %>
 
     <%= f.fields_for(:project, @status_report.project) do |ff| %>
-      <%=ff.text_field :name, label: 'Proiect', disabled: true %>
+      <%=ff.text_field :name, label: 'Ref', disabled: true %>
     <% end unless @project.nil? %>
 
     <%= f.date_field :report_date, label: 'Data raportului' %>

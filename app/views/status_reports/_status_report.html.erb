@@ -1,12 +1,13 @@
 <dl class="dl-horizontal">
+  <dt>Ref</dt>
+  <dd>
   <% unless status_report.profile.nil? %>
-    <dt>Bursier</dt>
-    <dd><%= profile_with_link(status_report.profile) %></dd>
+    <%= profile_with_link(status_report.profile) %>
   <% end %>
   <% unless status_report.project.nil? %>
-    <dt>Proiect</dt>
-    <dd><%= project_with_link(status_report.project) %></dd>
+    <%= project_with_link(status_report.project) %>
   <% end %>
+  </dd>
   <dt>Data</dt>
   <dd><%= status_report.report_date.to_date %></dd>
   <dt>Sumar</dt>
