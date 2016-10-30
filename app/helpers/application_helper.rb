@@ -47,4 +47,9 @@ module ApplicationHelper
     return applicant_path(profile) if profile.is_applicant?
   end
 
+  def sanitize_html_area(html)
+    # TODO: actually sanitize the html
+    (html || '').html_safe
+  end
+
 end
