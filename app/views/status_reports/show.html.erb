@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+   <span class="text-info notice"><%= notice %></span>
+  </div>
+  <div class="row">
+    <%= render @status_report do %>
+      <dd>
+        <%= form_for(@status_report, method: :delete) do %>
+          <div class="btn-group" role='group'>
+            <%= link_to 'Edit', edit_status_report_path(@status_report), class: 'btn btn-default' %>
+            <input type='submit' value='Delete' class =  'btn btn-danger' />
+          </div>
+        <% end %>
+      </dd>
+    <% end %>
+  </div>
+</div>

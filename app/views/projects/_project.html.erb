@@ -1,0 +1,14 @@
+<dl class="dl-horizontal project">
+  <dt>Name<dt>
+  <dd><%= @project.name %></dd>
+  <dt>Leader</dt>
+  <dd><%= profile_with_link(@project.owner) %></dd>
+  <dt>Description<dt>
+  <dd><%= @project.description %></dd>
+  <dt>Links</dt>
+  <dd><%= render partial: 'shared/key_values', locals: {key_values: @project.urls } %>
+  <dt>Tags</dt>
+  <dd><%= render partial: 'shared/tags', locals: {tags: @project.tags} %></dd>
+  <%= yield %>
+</dl>
+

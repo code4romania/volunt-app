@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  profile: one
+  report_date: 2016-10-28 14:53:28
+  summary: MyString
+  details: MyText
+  tags: MyString
+  status: 1
+  flags: 1
+
+two:
+  project: two
+  profile: two
+  report_date: 2016-10-28 14:53:28
+  summary: MyString
+  details: MyText
+  tags: MyString
+  status: 1
+  flags: 1

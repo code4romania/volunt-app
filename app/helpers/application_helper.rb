@@ -16,6 +16,22 @@ module ApplicationHelper
     end
   end
 
+  def project_with_link(project)
+    capture do
+      concat content_tag(:span, project.name, class: 'project-name')
+      concat ' '
+      concat glyphicon_link_to project_path(project)
+    end
+  end
+  
+  def profile_with_link(profile)
+    capture do
+      concat content_tag(:span, profile.full_name, class: 'profile-full-name')
+      concat ' '
+      concat glyphicon_link_to detect_profile_path(profile)
+    end
+  end
+
   def ensure_http_scheme(url)
     uri = URI.parse(url)
     if (!uri.scheme)

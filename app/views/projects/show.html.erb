@@ -7,7 +7,7 @@
       <dt>Name<dt>
       <dd><%= @project.name %></dd>
       <dt>Leader</dt>
-      <dd><%= render partial: 'shared/profile_with_link', locals: {profile: @project.owner } %></dd>
+      <dd><%= profile_with_link(@project.owner) %></dd>
       <dt>Description<dt>
       <dd><%= @project.description %></dd>
       <dt>Links</dt>
@@ -22,21 +22,26 @@
           </div>
         <% end %>
       </dd>
-      <dt>Voluntari
-          <%= link_to new_volunteer_project_members_path(@project), class: 'btn btn-link' do %>
-            <span class="glyphicon glyphicon-plus"></span>
-          <% end %>
-      </dt>
+      <dt>Status <%= glyphicon_link_to new_project_status_report_path(@project), 'plus' %></dt>
+      <dd>
+        <%= render partial: 'shared/status_reports_table', locals: {status_reports: @status_reports} %>
+        <%= will_paginate @status_reports,
+                param_name: 'status_reports_page',
+                renderer: BootstrapPagination::Rails %>
+      </dd>
+      <dt>Voluntari <%= glyphicon_link_to new_volunteer_project_members_path(@project), 'plus'%></dt>
       <dd>
         <%= render partial: 'shared/members_profile_table', locals: {members: @volunteers} %>
+        <%= will_paginate @volunteers,
+                param_name: 'volunteers_page',
+                renderer: BootstrapPagination::Rails %>
       </dd>  
-      <dt>Bursieri
-          <%= link_to new_fellow_project_members_path(@project), class: 'btn btn-link' do %>
-            <span class="glyphicon glyphicon-plus"></span>
-          <% end %>
-      </dt>
+      <dt>Bursieri <%= glyphicon_link_to new_fellow_project_members_path(@project), 'plus'%></dt>
       <dd>
         <%= render partial: 'shared/members_profile_table', locals: {members: @fellows} %>
+        <%= will_paginate @fellows,
+                param_name: 'fellows_page',
+                renderer: BootstrapPagination::Rails %>
       </dd>  
     </dl>
   </div>

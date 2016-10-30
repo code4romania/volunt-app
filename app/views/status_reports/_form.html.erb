@@ -1,0 +1,22 @@
+<%= bootstrap_form_for(status_report,
+    url: form_submit_path,
+    layout: :horizontal,
+    label_col: 'col-sm-3',
+    control_col: 'col-sm-9',
+    role: :form) do |f| %>
+
+    <%= f.fields_for(:profile, @status_report.profile) do |ff| %>
+      <%=ff.text_field :full_name, label: 'Nume', disabled: true %>
+    <% end unless @profile.nil? %>
+
+    <%= f.fields_for(:project, @status_report.project) do |ff| %>
+      <%=ff.text_field :name, label: 'Proiect', disabled: true %>
+    <% end unless @project.nil? %>
+
+    <%= f.date_field :report_date, label: 'Data raportului' %>
+    <%= f.text_field :summary, label: 'Sumar', placeholder: 'tl;dr' %>
+    <%= f.text_area :details, label: 'Status', placeholder: 'Am terminat tot ce aveam de facut' %>
+    <%= f.text_field :tags_string, label: 'Tags' %>
+    
+    <%= yield f %>
+<% end %>

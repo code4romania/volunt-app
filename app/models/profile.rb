@@ -29,8 +29,32 @@ class Profile < ApplicationRecord
   has_many :memberships, class_name: 'ProjectMember', dependent: :delete_all
   has_many :projects, through: :memberships
 
+  has_many :status_reports, dependent: :delete_all
+
   def select_name
     "%-20s: %s" % [full_name, email]
+  end
+
+  def has_email?(some_email)
+    return true if self.email.casecmp(some_email) == 0
+    ["email", "email1", "email2", "email3"].each do |k|
+      return true if self.contacts.has_key?(k) and 
+        some_email.casecmp(self.contacts[k]) == 0
+    end unless self.contacts.nil?
+    return false
+  end
+
+  def self.for_email(email)
+    # TODO: there is no :gin index on :contacts
+    # Overall, I'm not happy with how we store emails. Needs refactoring
+    sql = <<-SQL
+      profiles.email ILIKE :email or 
+      profiles.contacts::json->>'email' ILIKE :email or 
+      profiles.contacts::json->>'email1' ILIKE :email or 
+      profiles.contacts::json->>'email2' ILIKE :email or 
+      profiles.contacts::json->>'email3' ILIKE :email
+SQL
+    self.where(sql,  email: email).first
   end
 
 end

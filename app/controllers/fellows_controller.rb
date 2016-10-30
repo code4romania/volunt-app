@@ -4,6 +4,6 @@ class FellowsController < ApplicationController
   authorization_required
 
   profile_controller :fellow, 'Bursier'
-  
+
 end
 

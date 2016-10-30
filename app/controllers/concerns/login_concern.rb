@@ -10,7 +10,7 @@ module LoginConcern
 
   def current_user
     ensure_user_is_logged_in
-    User.find session[:user_id][:id]
+    User.find session[:user_id]["id"]
   end
 
   # Most times only the user display name is needed

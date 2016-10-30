@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post '/login', to: 'static#login_post'
   match '/logout', to: 'static#logout', via: [:get, :post]
 
+  get 'me', to: 'redirect#me'
+
   resource :request_reset, only: [:show, :create], protocol: 'https', path: '/request-reset'
   resources :validation_tokens, only: [:show, :update], protocol: 'https'
 
@@ -14,6 +16,9 @@ Rails.application.routes.draw do
     resources p do
       collection do
         match 'search', via: [:get, :post]
+      end
+      if p == :fellows
+        resources :status_reports, shallow: true if p == :fellows
       end
     end
   end
@@ -25,6 +30,7 @@ Rails.application.routes.draw do
         get 'new_fellow'
       end
     end
+    resources :status_reports, shallow: true
   end
   
 

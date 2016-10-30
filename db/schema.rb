@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027065046) do
+ActiveRecord::Schema.define(version: 20161028145328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,22 @@ ActiveRecord::Schema.define(version: 20161027065046) do
     t.index ["profile_id"], name: "index_recipients_on_profile_id", using: :btree
   end
 
+  create_table "status_reports", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "profile_id"
+    t.datetime "report_date",             null: false
+    t.string   "summary",                 null: false
+    t.text     "details"
+    t.string   "tags",                                 array: true
+    t.integer  "status",      default: 0, null: false
+    t.integer  "flags",       default: 0, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["profile_id"], name: "index_status_reports_on_profile_id", using: :btree
+    t.index ["project_id"], name: "index_status_reports_on_project_id", using: :btree
+    t.index ["tags"], name: "index_status_reports_on_tags", using: :gin
+  end
+
   create_table "templates", force: :cascade do |t|
     t.string   "name",                   null: false
     t.string   "subject"
@@ -142,4 +158,6 @@ ActiveRecord::Schema.define(version: 20161027065046) do
   add_foreign_key "project_members", "projects"
   add_foreign_key "recipients", "communications"
   add_foreign_key "recipients", "profiles"
+  add_foreign_key "status_reports", "profiles"
+  add_foreign_key "status_reports", "projects"
 end

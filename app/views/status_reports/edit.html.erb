@@ -1,0 +1,10 @@
+<div class="container">
+  <%= render 'form', status_report: @status_report do |f|%>
+    <div class="form-group">
+      <div class="btn-group col-sm-9 col-sm-offset-3" role="group">
+        <input type="submit" class="btn btn-default" value="Save" />
+        <%= link_to 'Cancel', @status_report, class: 'btn btn-default' %>
+      </div>
+    </div>
+  <% end %>
+</div>

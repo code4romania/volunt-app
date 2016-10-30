@@ -46,10 +46,15 @@ module ProfilesControllerConcern
   end
 
   def show
-    @memberships = @profile.memberships.includes(:project)
-    render 'profiles/show'
+    @memberships = @profile.memberships.includes(:project).paginate(page: params[:memberships_page])
+    if @profile.has_email?(current_user_email)
+      @status_reports = @profile.status_reports.paginate(page: params[:status_reports_page])
+      render 'profiles/me'
+    else
+      render  'profiles/show'
+    end
   end
-
+  
   def search
     @profile_search_presenter = ProfileSearchPresenter.new search_params
     if @profile_search_presenter.blank?

@@ -10,8 +10,9 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
-    @volunteers = @project.members.volunteers.includes(:profile)
-    @fellows = @project.members.fellows.includes(:profile)
+    @status_reports = @project.status_reports.paginate(page: params[:status_reports_page])
+    @volunteers = @project.members.volunteers.includes(:profile).paginate(page: params[:volunteers_page])
+    @fellows = @project.members.fellows.includes(:profile).paginate(page: params[:fellows_page])
   end
 
   # GET /projects/new

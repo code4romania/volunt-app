@@ -1,0 +1,19 @@
+<dl class="dl-horizontal">
+  <% unless status_report.profile.nil? %>
+    <dt>Bursier</dt>
+    <dd><%= profile_with_link(status_report.profile) %></dd>
+  <% end %>
+  <% unless status_report.project.nil? %>
+    <dt>Proiect</dt>
+    <dd><%= project_with_link(status_report.project) %></dd>
+  <% end %>
+  <dt>Data</dt>
+  <dd><%= status_report.report_date.to_date %></dd>
+  <dt>Sumar</dt>
+  <dd><%= status_report.summary %></dd>
+  <dt>Detaliat</dt>
+  <dd><%= status_report.details %></dd>
+  <dt>Tags</dt>
+  <dd><%= render partial: 'shared/tags', locals: {tags: status_report.tags} %></dd>
+  <%= yield %>
+</dl>

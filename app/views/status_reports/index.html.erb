@@ -1,0 +1,16 @@
+<div class="container">  
+  <div class="btn-group" role="group">
+    <%= link_to new_status_report_path, class: 'btn btn-default' do %>
+     New Status Report
+    <% end %>
+  </div>
+  <div class="row">
+    <span class="text-info notice"><%= notice %></span>
+  <div>
+  <div class="row">
+    <%= render partial: 'shared/status_reports_table', locals: {status_reports: @status_reports} %> 
+  </div>
+  <div class="row will-paginate">
+    <%= will_paginate @status_reports, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>

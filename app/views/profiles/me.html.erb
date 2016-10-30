@@ -1,0 +1,32 @@
+<div class="container profile">
+  <%= render partial: 'shared/notice' %>
+  <%= render @profile do %>
+    <dl class="dl-horizontal">
+      <dt></dt>
+      <dd>
+        <div class="btn-group col-sm-9" role="group">
+          <%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-default' %>
+        </div>
+      </dd>
+    </dl>
+  <% end %>
+  <div class="row">
+    <dl class="dl-horizontal">
+      <% if @profile.is_fellow? %>
+      <dt>Status <%= glyphicon_link_to new_fellow_status_report_path(@profile), 'plus' %></dt>
+      <dd>
+        <%= render partial: 'shared/status_reports_table', locals: {status_reports: @status_reports} %>
+        <%= will_paginate @status_reports, 
+                param_name: 'status_reports_page',
+                renderer: BootstrapPagination::Rails %>
+      </dd>
+      <% end %>
+      <dt>Proiecte</dt>
+      <dd><%= render partial: 'shared/member_projects_table', locals: {members: @memberships} %>
+          <%= will_paginate @memberships,
+                param_name: 'memberships_page',
+                renderer: BootstrapPagination::Rails %>
+      </dd>
+    </dl>
+  </div>
+</div>
