@@ -21,7 +21,7 @@ module ApplicationHelper
       concat content_tag(:span, project.name, class: 'project-name')
       concat ' '
       concat glyphicon_link_to project_path(project)
-    end
+    end unless project.nil?
   end
   
   def profile_with_link(profile)
@@ -29,7 +29,7 @@ module ApplicationHelper
       concat content_tag(:span, profile.full_name, class: 'profile-full-name')
       concat ' '
       concat glyphicon_link_to detect_profile_path(profile)
-    end
+    end unless profile.nil?
   end
 
   def ensure_http_scheme(url)
