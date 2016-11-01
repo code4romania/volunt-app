@@ -10,4 +10,6 @@ class Project < ApplicationRecord
   has_many :status_reports, dependent: :delete_all
   
   belongs_to :owner, class_name: 'Profile'
+  
+  default_scope { order('name ASC') }
 end
