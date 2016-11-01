@@ -42,3 +42,7 @@ In acest moment modul cum se tin emailurile in `Profile` este broken (as in real
  - [ ] emailurile nu sunt validate. In afara de problema de comunicare (trimiterea de newsletter fara verificare), exista o problema de autorizare. User-ul x poate adauga adresa de email foo@example.com in profilul sau. Apoi, cind foo@example.com se logheaza in volunt-app, este directionat spre profilul lui X, pentru ca identificarea profilui se face pe baza oricarui email declarat in profil. 
 
 Trebuie sa pastram posibilitatea de a adauga mai multe email-uri per profile. Ma gindesc o tabele `emails` si has_many: in profil. Fiecare email trebuie validat separat si doar cele validate pot fi folosite in volunt-app. NB. tabela `users` este in principiu un overlap significant cu o tabela `emails` (e deja index uniq pentru `user.email`). 
+
+## SSO
+
+Gov IT Hub are si proiectul [Single Sign On](https://github.com/gov-ithub/govithub-auth-sso). Eu cred in [Eating your own dog food](https://en.wikipedia.org/wiki/Eating_your_own_dog_food) si consider ca volunt-app trebuie sa inceapa sa foloseasca in curind SSO-ul Gov IT Hub. Gov IT Hub, in acest moment, se orienteaza catre un Api ~copiat~ inspirat de [Auth0](https://auth0.com/) dar nu este inca definitivat. De asemenea, trebuie un fall back daca SSO este indisponibil. Intreaga problema este din acest motiv un pic mai complexa si nu vreau sa trecem direct pe devise, nu acum cel putin.
