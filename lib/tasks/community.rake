@@ -108,8 +108,9 @@ namespace :community do
 
       p = Profile.where(full_name: attrs[:full_name]).first
       if !p.nil?
+        p.update(contacts_string: p.contacts_string + ',' + attrs[:email])
         totals[:duplicate] = (totals[:duplicate] || 0) + 1
-        puts "#{p.full_name} existent: #{p.email} importat: #{attrs[:email]}"
+        puts "#{p.full_name} #{attrs[:email]} #{p.contacts_string}"
         next
       end
 
