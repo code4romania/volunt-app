@@ -35,7 +35,15 @@ namespace :community do
     totals = {}
 
     CSV.foreach(filename, headers: true, col_sep: ',', encoding:'utf-8') do |row|
-      next if row[full_name].blank? or row[full_name].include? '_'
+      if row[full_name].blank? or row[full_name].include? '_'
+        totals[:bad] = (totals[:bad] || 0) + 1
+        next 
+      end
+
+      if row[email].blank?
+        totals[:noemail] = (totals[:noemail] || 0) + 1
+        next
+      end
 
       p = Profile.for_email(row[email])
       if !p.nil?
@@ -94,11 +102,24 @@ namespace :community do
         }
       if surnames.length > 0
         attrs[:nick_name] = surnames[0].titleize
+      else
+        attrs[:nick_name] = name_parts[-1].titleize
       end
 
-      Profile.create(attrs)
+      p = Profile.where(full_name: attrs[:full_name]).first
+      if !p.nil?
+        totals[:duplicate] = (totals[:duplicate] || 0) + 1
+        puts "#{p.full_name} existent: #{p.email} importat: #{attrs[:email]}"
+        next
+      end
 
-      totals[:created] = (totals[:created] || 0) + 1
+      p = Profile.create(attrs)
+      if (!p.errors.empty?)
+        totals[:errors] = (totals[:errors] || 0) + 1
+        puts "#{p.errors.messages.inspect} #{attrs[:full_name]} #{attrs[:email]}"
+      else
+        totals[:created] = (totals[:created] || 0) + 1
+      end
 
     end
     puts totals.inspect
