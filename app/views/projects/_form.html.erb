@@ -12,9 +12,15 @@
           Profile.fellows,
           :id,
           :select_name,
-          label: 'Leader') %>
+          label: 'Leader',
+          include_blank: true) %>
     <%= f.text_area :description, label: 'Descriere' %>
     <%= f.text_area :urls_string, label: 'Links' %>
     <%= f.text_field :tags_string %>
     <%= yield f %>
 <% end %>
+<script>
+  $(function() {
+    $('#project_description').summernote();
+  });
+</script>

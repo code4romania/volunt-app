@@ -3,20 +3,9 @@
    <span class="text-info notice"><%= notice %></span>
   </div>
   <div class="row">
-    <dl class="dl-horizontal project">
-      <dt>Name<dt>
-      <dd><%= @project.name %></dd>
-      <dt>Status</dt>
-      <dd><%= project_status_badge(@project) %></dd>
-      <dt>Leader</dt>
-      <dd><%= profile_with_link(@project.owner) %></dd>
-      <dt>Description<dt>
-      <dd><%= @project.description %></dd>
-      <dt>Links</dt>
-      <dd><%= render partial: 'shared/key_values', locals: {key_values: @project.urls } %>
-      <dt>Tags</dt>
-      <dd><%= render partial: 'shared/tags', locals: {tags: @project.tags} %></dd>
-      <dd>
+    <%= render @project do %>
+    <dt></dt>
+     <dd>
         <%= form_for(@project, method: :delete) do %>
           <div class="btn-group" role='group'>
             <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-default' %>
@@ -44,7 +33,7 @@
         <%= will_paginate @fellows,
                 param_name: 'fellows_page',
                 renderer: BootstrapPagination::Rails %>
-      </dd>  
-    </dl>
+      </dd>
+    <% end %>
   </div>
 </div>

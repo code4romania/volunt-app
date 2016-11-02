@@ -9,7 +9,7 @@ class Project < ApplicationRecord
   has_many :profiles, through: :members
   has_many :status_reports, dependent: :delete_all
   
-  belongs_to :owner, class_name: 'Profile'
+  belongs_to :owner, class_name: 'Profile', required: false
   
   default_scope { order('name ASC') }
 end
