@@ -1,0 +1,33 @@
+# NB: This is an "on-disk" structure. These values exists in the database.
+# You cannot change exiting values. If you must, a migration is required.
+
+0:  
+  status: Initial
+  bgcolor: grey
+  textcolor: white
+
+1:
+  status: Executie
+  bgcolor: green
+  textcolor: white
+
+2:
+  status: Blocat
+  bgcolor: yellow
+  textcolor: black
+
+3:
+  status: Analiza
+  bgcolor: grey
+  textcolor: black
+
+4:
+  status: Abandonat
+  bgcolor: red
+  textcolor: white
+
+5:
+  status: Failed
+  bgcolor: red
+  textcolor: black
+

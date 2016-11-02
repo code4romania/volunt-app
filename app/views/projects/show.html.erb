@@ -6,6 +6,8 @@
     <dl class="dl-horizontal project">
       <dt>Name<dt>
       <dd><%= @project.name %></dd>
+      <dt>Status</dt>
+      <dd><%= project_status_badge(@project) %></dd>
       <dt>Leader</dt>
       <dd><%= profile_with_link(@project.owner) %></dd>
       <dt>Description<dt>

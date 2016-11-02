@@ -52,4 +52,37 @@ module ApplicationHelper
     (html || '').html_safe
   end
 
+  def options_for_project_status
+    capture do 
+      Rails.configuration.x.project_status.each do |(k,v)|
+        concat content_tag(:option, v["status"], value: k)
+      end
+    end
+  end
+
+  def project_status_tag(project, tag)
+    clazz = "project-status"
+    statuses = Rails.configuration.x.project_status
+    if !project.nil? and statuses.has_key? project.status
+      clazz = "#{clazz} project-status-#{statuses[project.status]["status"].parameterize.underscore}"
+    end
+    content_tag(tag, class: clazz) do
+      yield if block_given?
+    end
+  end
+
+  def project_status_badge(project)
+    return if project.nil?
+    statuses = Rails.configuration.x.project_status
+    text = 'Unknown'
+    bgcolor = 'grey'
+    textcolor = 'white'
+    if statuses.has_key? project.status
+      text = statuses[project.status]["status"]
+      bgcolor = statuses[project.status]["bgcolor"]
+      textcolor = statuses[project.status]["textcolor"]
+    end
+    content_tag(:span, text, class: "label", style: "color: #{textcolor}; background-color: #{bgcolor}")
+  end
+
 end

@@ -5,6 +5,9 @@
     role: :form) do |f| %>
 
     <%= f.text_field :name, label: 'Nume' %>
+    <%= f.select(:status,
+          options_for_project_status,
+          label: 'Status') %>
     <%= f.collection_select(:owner_id,
           Profile.fellows,
           :id,
