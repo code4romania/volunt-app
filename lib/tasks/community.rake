@@ -106,11 +106,12 @@ namespace :community do
         attrs[:nick_name] = name_parts[-1].titleize
       end
 
+      # This is only provisional due to the unique constraint on full name, which is a bug
+      # will have to be removed, and we'll have to decide how to handle import of duplicate names
       p = Profile.where(full_name: attrs[:full_name]).first
       if !p.nil?
         p.update(contacts_string: p.contacts_string + ',' + attrs[:email])
         totals[:duplicate] = (totals[:duplicate] || 0) + 1
-        puts "#{p.full_name} #{attrs[:email]} #{p.contacts_string}"
         next
       end
 
