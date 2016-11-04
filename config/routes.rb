@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   match '/logout', to: 'static#logout', via: [:get, :post]
 
   get 'me', to: 'redirect#me'
+  
+  # This route is fordeveloment only, allows to impersonate random site user
+  get 'impersonate/:email', to: 'static#impersonate', constraints: {email: /[^\/]+/} if Rails.env.development?
 
   resource :request_reset, only: [:show, :create], protocol: 'https', path: '/request-reset'
   resources :validation_tokens, only: [:show, :update], protocol: 'https'

@@ -1,9 +1,15 @@
 module ProfilesControllerConcern
   extend ActiveSupport::Concern
   include SearchConcern
+  include LoginConcern
   
   included do
     before_action :set_profile, only: [:show, :edit, :update, :destroy]
+
+    # 'show' action has special authorization in order to be able to view one own profile
+    authorization_required LoginConcern::USER_LEVEL_FELLOW, except: [:show, :edit, :update]
+    before_action :authorization_required_self, only: [:show, :edit, :update]
+
   end
 
   def new
@@ -125,6 +131,12 @@ module ProfilesControllerConcern
       :email,
       :description,
       :urls_string)
+  end
+
+  def authorization_required_self
+    redirect_to login_path if !is_user_logged_in? or (
+      !is_user_level_authorized?(LoginConcern::USER_LEVEL_FELLOW) and 
+      !@profile.has_email?(current_user_email))
   end
 
   module ClassMethods

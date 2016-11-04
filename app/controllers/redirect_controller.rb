@@ -1,11 +1,10 @@
 class RedirectController < ApplicationController
   include LoginConcern
-  authorization_required
+  authorization_required USER_LEVEL_COMMUNITY, only: [:me]
 
   # GET /me
   def me
     profile = Profile.for_email(current_user_email)
-    puts "p: #{profile.inspect} u:#{current_user_email.inspect}"
     if profile.nil?
       redirect_to new_applicant_path
     elsif profile.is_coordinator?

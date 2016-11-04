@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Gov IT Hub: bursieri</title>
+  <title>Gov IT Hub: comunitate</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= csrf_meta_tags %>
   <%= javascript_include_tag "application" %>
@@ -21,27 +21,6 @@
       </div>
       <nav class="navbar-collapse bs-navbar-collapse collapse" role="navigation" id="site-navigation">
         <ul id="menu-nou" class="nav navbar-nav navbar-right responsive-nav main-nav-list">
-          <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-              Profile <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to 'Comunitate', applicants_path %></li>
-              <li><%= link_to 'Voluntari', volunteers_path %></li>
-              <li><%= link_to 'Bursieri', fellows_path %></li>
-              <li><%= link_to 'Coordonatori', coordinators_path %></li>
-            </ul>
-          </li>
-          <li><%= link_to 'Proiecte', projects_path %></li>
-          <li><%= link_to 'Status', status_reports_path %></li>
-          <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-              Communicare <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to 'Templates', templates_path %></li>
-            </ul>
-          </li>
           <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               <span class=""><%= current_user_email %><span class="caret"></span>

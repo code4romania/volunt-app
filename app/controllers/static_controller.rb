@@ -4,7 +4,8 @@ class StaticController < ApplicationController
   layout 'static'
 
   def home
-    redirect_to is_user_logged_in? ? volunteers_path : login_path
+    flash.keep(:notice)
+    redirect_to is_user_logged_in? ? me_path : login_path
   end
 
   def login
@@ -29,5 +30,19 @@ class StaticController < ApplicationController
   def logout
     logout_user
     redirect_to root_path
+  end
+
+  def impersonate
+    notice = 'Not found'
+    if Rails.env.development?
+      p = Profile.for_email(params[:email])
+      if p
+        logout_user
+        user = User.find_or_create_by(email: params[:email])
+        login_user(user)
+        notice = "You have impersonated user: #{user.id}: #{user.email}: at level: #{current_user_level}"
+      end
+    end
+    redirect_to root_path, notice: notice
   end
 end
