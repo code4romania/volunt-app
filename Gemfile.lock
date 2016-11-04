@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/bootstrap-ruby/rails-bootstrap-forms.git
+  revision: 1f93ff54e0f09e9ebf7d78bb8673029f49b84482
+  specs:
+    bootstrap_form (2.5.2)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -46,7 +52,6 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
-    bootstrap_form (2.4.0)
     builder (3.2.2)
     byebug (9.0.6)
     concurrent-ruby (1.0.2)
@@ -176,7 +181,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 3.2)
-  bootstrap_form
+  bootstrap_form!
   byebug
   email_validator
   jbuilder (~> 2.5)

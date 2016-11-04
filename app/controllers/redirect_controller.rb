@@ -1,6 +1,6 @@
 class RedirectController < ApplicationController
   include LoginConcern
-  authorization_required USER_LEVEL_COMMUNITY, only: [:me]
+  authorization_required USER_LEVEL_NEWUSER, only: [:me]
 
   # GET /me
   def me

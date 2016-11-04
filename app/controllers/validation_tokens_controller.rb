@@ -2,6 +2,7 @@ require 'base64'
 
 class ValidationTokensController < ApplicationController
   include ActiveSupport::Callbacks
+  include LoginConcern
   helper_method :reset_password_presenters_path
   before_action :find_token
   define_callbacks :confirm_user_email
@@ -40,7 +41,8 @@ class ValidationTokensController < ApplicationController
         user.password = @reset_password_presenter.password
         user.password_confirmation = @reset_password_presenter.password_confirmation
         if user.save
-          render :password_updated
+          login_user(user)
+          redirect_to me_path, notice: "Parola pentru #{user.email} a fost schimbata"
         else
           @reset_password_presenter.errors << user.errors
           render :reset_password, status: :conflict

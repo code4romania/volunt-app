@@ -7,14 +7,18 @@ module ProfilesControllerConcern
     before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
     # 'show' action has special authorization in order to be able to view one own profile
-    authorization_required LoginConcern::USER_LEVEL_FELLOW, except: [:show, :edit, :update]
-    before_action :authorization_required_self, only: [:show, :edit, :update]
+    authorization_required LoginConcern::USER_LEVEL_FELLOW, except: [:new, :create, :show, :edit, :update]
+    before_action :authorization_required_or_self, only: [:show, :edit, :update]
+    before_action :authorization_required_or_new_user, only: [:new, :create]
 
   end
 
   def new
     @profile = Profile.new
     profile_set_flag(@profile)
+    if is_new_user?
+      @profile.email = current_user_email
+    end
     render 'profiles/new'
   end
   
@@ -25,6 +29,9 @@ module ProfilesControllerConcern
   def create
     @profile = Profile.new(profile_params)
     profile_set_flag(@profile)
+    if is_new_user?
+      @profile.email = current_user_email
+    end
     if @profile.save
       redirect_to profile_path(@profile), notice: "#{profile_resource_name} was succesfully created"
     else
@@ -133,10 +140,16 @@ module ProfilesControllerConcern
       :urls_string)
   end
 
-  def authorization_required_self
+  def authorization_required_or_self
     redirect_to login_path if !is_user_logged_in? or (
       !is_user_level_authorized?(LoginConcern::USER_LEVEL_FELLOW) and 
       !@profile.has_email?(current_user_email))
+  end
+  
+  def authorization_required_or_new_user
+    redirect_to login_path if !is_user_logged_in? or (
+      !is_user_level_authorized?(LoginConcern::USER_LEVEL_FELLOW) and 
+      !is_new_user?)
   end
 
   module ClassMethods

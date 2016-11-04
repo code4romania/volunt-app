@@ -11,7 +11,8 @@
           <%= f.text_field :photo, placeholder: 'http://example.org/full_path/somephoto.png',
                 label: 'Photo',
                 help: 'URL for a hot-linked photo' %>
-          <%= f.email_field :email, placeholder: 'blandiana@example.com' %>
+          <%= f.email_field :email, placeholder: 'blandiana@example.com',
+                disabled: is_new_user? %>
           <%= f.text_area  :contacts_string, label: 'Contacte', 
                   placeholder: "email2: other@example.com\rphone: 555-5555",
                   help: "Separa pe linii si prefixeaza cu `phone1:`, `email2:` etc" %>

@@ -12,4 +12,12 @@ class UserMailer < ApplicationMailer
     @to = @user.email
     mail(to: @user.email, subject: 'Reseteaza parola Voluntari Gov IT Hub')
   end
+
+  def welcome(user)
+    validation = ValidationToken.reset_password user
+    @url = validation_token_url(validation)
+    @user = user
+    @to = @user.email
+    mail(to: @user.email, subject: 'Bine ai venit in comunitatea Gov IT Hub')
+  end
 end

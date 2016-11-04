@@ -7,6 +7,10 @@ a.navbar-brand {
   }
 }
 
+.landing {
+  min-height: 70vh;
+}
+
 div.login-form {
   padding: 25px;
   max-width: 450px;
@@ -40,6 +44,10 @@ table.profiles-table {
       }
     }
   }
+}
+
+div.main-content {
+  min-height: 75vh;
 }
 
 .profile {
@@ -81,3 +89,21 @@ span.key-value {
 a.btn-glyph {
   padding: 0;
 }
+
+.panel-signup {
+  text-align: center;
+  height: 250px;
+  position: relative;
+  
+  .panel-body {
+    .signup-panel-icon {
+      font-size: 3em;
+    }
+
+    .title-container {
+      height: 50px;
+    }
+  }
+}
+
+

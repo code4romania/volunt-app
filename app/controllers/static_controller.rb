@@ -1,14 +1,65 @@
 class StaticController < ApplicationController
   include LoginConcern
-  force_ssl only: [:login, :login_post, :password_reset]
+  force_ssl only: [:home, :signup, :signup_post, :login, :login_post, :password_reset]
   layout 'static'
 
   def home
-    flash.keep(:notice)
-    redirect_to is_user_logged_in? ? me_path : login_path
+    if is_user_logged_in?
+      flash.keep(:notice)
+      redirect_to me_path
+    end
+    @signup_presenter = SignupPresenter.new
+  end
+
+  def signup
+    @signup_presenter = SignupPresenter.new params.fetch(:signup_presenter, {}).permit(:email)
+
+    if !@signup_presenter.valid?
+      render :home
+      return
+    end
+
+    user = User.find_by(email: @signup_presenter.email)
+    if user
+      @login_presenter = LoginPresenter.new email: @signup_presenter.email
+      flash[:notice] = "Exista deja un cont pentru #{@signup_presenter.email}"
+      render :login
+      return
+    end
+
+    # Try to create the user
+    user = User.create(email: @signup_presenter.email)
+    if !user.valid?
+      render :home
+      return
+    end
+
+    begin
+      UserMailer.welcome(user).deliver_now
+    rescue Exception=>x
+      Rails.logger.error("signup: #{x.class.name}: #{x.message}")
+    end
+
+    # Locate the profile. If the email already has a profile, the user must first
+    # confirm the email address before being allowed into the site.
+    # Since he can edit its own profile, he must first proove control of the email
+
+    profile = Profile.for_email(user.email)
+    if profile
+      logout_user
+      render 'confirm_email'
+    else
+      # No existing profile.Allow the user in.
+      # me_path will automatically redirect him to applicants/new
+      # strictly speaking there is a race condition here, as a profile
+      # could had been created since we checked, before the redirect. Not worth bother.
+      login_user(user)
+      redirect_to me_path, notice: "Contul #{@signup_presenter.email} a fost creat."
+    end
   end
 
   def login
+    logout_user
     @login_presenter = LoginPresenter.new
   end
 

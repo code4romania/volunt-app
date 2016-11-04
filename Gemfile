@@ -30,7 +30,7 @@ gem 'will_paginate-bootstrap'
 gem 'premailer-rails'
 
 # Bootstrap-form for bootstraop styled forms
-gem 'bootstrap_form'
+gem 'bootstrap_form', git: 'https://github.com/bootstrap-ruby/rails-bootstrap-forms.git'
 
 # email model validator
 gem 'email_validator'

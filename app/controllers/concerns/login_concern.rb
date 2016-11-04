@@ -1,18 +1,21 @@
 module LoginConcern
   extend ActiveSupport::Concern
 
-  USER_LEVEL_COMMUNITY = 10
-  USER_LEVEL_VOLUNTEER = 20
+  USER_LEVEL_NEWUSER   =   1
+  USER_LEVEL_COMMUNITY =  10
+  USER_LEVEL_VOLUNTEER =  20
   USER_LEVEL_FELLOW    = 100
 
   def login_user(user)
-    level = USER_LEVEL_COMMUNITY
+    level = USER_LEVEL_NEWUSER
     profile = Profile.for_email(user.email)
     if profile
       if profile.is_fellow? or profile.is_coordinator?
         level = USER_LEVEL_FELLOW
       elsif profile && profile.is_volunteer?
         level = USER_LEVEL_VOLUNTEER
+      else
+        level = USER_LEVEL_COMMUNITY
       end
     end
     session[:user_id] = {
@@ -44,12 +47,24 @@ module LoginConcern
 
   def current_user_level
     ensure_user_is_logged_in
-    return session[:user_id]["level"] || USER_LEVEL_COMMUNITY
+    return session[:user_id]["level"] || 0
   end
 
   def is_user_level_authorized?(required_level)
     ensure_user_is_logged_in
     return current_user_level >= required_level
+  end
+
+  def is_new_user?
+    return current_user_level == USER_LEVEL_NEWUSER
+  end
+
+  def is_user_level_volunteer?
+    return is_user_level_authorized? USER_LEVEL_VOLUNTEER
+  end
+
+  def is_user_level_fellow?
+    return is_user_level_authorized? USER_LEVEL_FELLOW
   end
 
   def ensure_user_is_logged_in
@@ -63,7 +78,9 @@ module LoginConcern
   end
 
   included do
-    helper_method :current_user_email
+    helper_method :current_user_email, :is_new_user?,
+        :is_user_level_volunteer?,
+        :is_user_level_fellow?
 
     layout :layout_for_current_user
   end
