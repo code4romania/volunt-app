@@ -4,8 +4,8 @@
 
 Este necesar ca volunt-app sa poata sa fie folosit si de catre voluntari si comunitatea extinsa Gov IT Hub, nu numai de catre bursieri. Memberii comunitatii trebuie sa fie autentificati si autorizati de catre volunt-app si aplicatia trebuie sa afiseze un menu de navigare specific pentru nevoile membrilor comunitatii. Voluntarii pot folosi volunt-app pentru:
 
- - [ ] a-si vedea si modifica profilul. Acesta contine datele personale ale voluntarului (nume, email, telefon, poza, URL-uri relevante pentru profil)
- - [ ] editeaza skill-urile declarate in profil
+ - [x] a-si vedea si modifica profilul. Acesta contine datele personale ale voluntarului (nume, email, telefon, poza, URL-uri relevante pentru profil)
+ - [x] editeaza skill-urile declarate in profil
  - [ ] sa vada profilurile bursierilor Gov IT Hub, dara fara date personale (Eg. fara email-uri in afara celor @ithub.gov.ro)
  - [ ] vede lista de proiecte Gov IT Hub
  - [ ] sa vada datele public despre progresul proiectelor (status reports)
@@ -24,15 +24,17 @@ Odata acceptata ca colaborator intr-un proiect, voluntarii trebuie sa:
 
 Pentru inceput este necesar sa implementam primele doua puncte (vedere/editare profil si skill-uri voluntar). Pasi necesari:
 
- - [ ] adaugarea de autorizare pentru login in aplicatei. In acest moment aplicatia are doar un nivel de autorizare (`authorization_required` in controller-ele private). Este necesar sa se poata specifica mai multe nivele, in functie de rolul user-ului logat (comunitatea extinsa, voluntar, bursier). [`cancan`](https://github.com/ryanb/cancan) posibil sa mearga, de studiat. Anumite actiuni pot fir permise pentru user-ul curent (de eg. un user poate sa-si vada si sa-si editeze profilul proriu, dar nu poate vedea alte profile. Un voluntar poate sa vada profilurile celorlati participanti la proiectele la care participa, dar nu le poate edita)
- - [ ] declarare de rol pentru login. `User` nu contine rol/tip. Ma gindesc ca nu este nevoie, pentru ca avem informatia in `Profile` si profilul unui user poate fi rezolvat din email (user === email).
- - [ ] un layout diferit in aplicatie pentru voluntari vs. bursieri. Chiar daca controller-ele auorizeaza user-ul, nu e un user-experience bun daca aplicattion layout (si implicit navbar-ul) ramine cel de la bursieri.
- - [ ] la login user-ul trebuie directionat la pagina de profil propiu.
+ - [x] adaugarea de autorizare pentru login in aplicatei. In acest moment aplicatia are doar un nivel de autorizare (`authorization_required` in controller-ele private). Este necesar sa se poata specifica mai multe nivele, in functie de rolul user-ului logat (comunitatea extinsa, voluntar, bursier). [`cancan`](https://github.com/ryanb/cancan) posibil sa mearga, de studiat. Anumite actiuni pot fir permise pentru user-ul curent (de eg. un user poate sa-si vada si sa-si editeze profilul proriu, dar nu poate vedea alte profile. Un voluntar poate sa vada profilurile celorlati participanti la proiectele la care participa, dar nu le poate edita)
+ - [x] declarare de rol pentru login. `User` nu contine rol/tip. Ma gindesc ca nu este nevoie, pentru ca avem informatia in `Profile` si profilul unui user poate fi rezolvat din email (user === email).
+ - [x] un layout diferit in aplicatie pentru voluntari vs. bursieri. Chiar daca controller-ele auorizeaza user-ul, nu e un user-experience bun daca aplicattion layout (si implicit navbar-ul) ramine cel de la bursieri.
+ - [x] la login user-ul trebuie directionat la pagina de profil propiu.
+
+11.04: dupa [7f43bbc4cacb51d4ae4e56f462723ef4e8ffaf42](https://github.com/gov-ithub/volunt-app/commit/7f43bbc4cacb51d4ae4e56f462723ef4e8ffaf42) multe din punctele de mai sus au fost fixate. Exista un layer de autorizare, nu am folosit CanCan(Can) din cauza cerintei ca un user sa-si poata edita propriul profil indiferent de nivel/rol. 
 
 ## Signup
  
- - [ ] Curent un login este permis daca exista `User`, dar nu exista posibilitatea de a aduga useri (nu exista sign-up). Este necesar flow de sign-up, pentru ca doritorii sa poata sa aplice ca voluntari la Gov IT Hub.
- - [ ] Nu exista enforcement la email verification. Flow-ul trebuie sa fie Signup -> Verify -> Profile. La login user-ul trebuie blocat intr-o pagina de 'pending verification' pina link-ul din email (validation_token) este validata, abia apoi permisa navigarea mai departe (profil). Acesta trebuie enforced pe toate controllel-le 'private'. Asta creeaza problem cu user-ii care nu primesc mail-ul de validare, dar daca nu se face enforcement intreaga infrastructura de user-profile se duce de ripa pentru ca este bazata pe email === identity
+ - [x] Curent un login este permis daca exista `User`, dar nu exista posibilitatea de a aduga useri (nu exista sign-up). Este necesar flow de sign-up, pentru ca doritorii sa poata sa aplice ca voluntari la Gov IT Hub.
+ - [x] Nu exista enforcement la email verification. Flow-ul trebuie sa fie Signup -> Verify -> Profile. La login user-ul trebuie blocat intr-o pagina de 'pending verification' pina link-ul din email (validation_token) este validata, abia apoi permisa navigarea mai departe (profil). Acesta trebuie enforced pe toate controllel-le 'private'. Asta creeaza problem cu user-ii care nu primesc mail-ul de validare, dar daca nu se face enforcement intreaga infrastructura de user-profile se duce de ripa pentru ca este bazata pe email === identity
  
 ## Email storage
 
