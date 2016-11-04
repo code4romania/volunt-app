@@ -13,19 +13,28 @@
   <div class="row">
     <dl class="dl-horizontal">
       <% if @profile.is_fellow? %>
-      <dt>Status <%= glyphicon_link_to new_fellow_status_report_path(@profile), 'plus' %></dt>
       <dd>
-        <%= render partial: 'shared/status_reports_table', locals: {status_reports: @status_reports} %>
-        <%= will_paginate @status_reports, 
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title">Status <span class="pull-right"><%= glyphicon_link_to new_fellow_status_report_path(@profile), 'plus' %></span></h2>
+          </div>
+          <%= render partial: 'shared/status_reports_table', locals: {status_reports: @status_reports} %>
+          <%= will_paginate @status_reports, 
                 param_name: 'status_reports_page',
                 renderer: BootstrapPagination::Rails %>
+        </div>
       </dd>
       <% end %>
-      <dt>Proiecte</dt>
-      <dd><%= render partial: 'shared/member_projects_table', locals: {members: @memberships} %>
+      <dd>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title">Proiecte</h2>
+          </div>
+          <%= render partial: 'shared/member_projects_table', locals: {members: @memberships} %>
           <%= will_paginate @memberships,
-                param_name: 'memberships_page',
-                renderer: BootstrapPagination::Rails %>
+              param_name: 'memberships_page',
+              renderer: BootstrapPagination::Rails %>
+        </div>
       </dd>
     </dl>
   </div>

@@ -13,26 +13,42 @@
           </div>
         <% end %>
       </dd>
-      <dt>Status <%= glyphicon_link_to new_project_status_report_path(@project), 'plus' %></dt>
+      <dt></dt>
       <dd>
-        <%= render partial: 'shared/status_reports_table', locals: {status_reports: @status_reports} %>
-        <%= will_paginate @status_reports,
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title">Status <span class="pull-right"><%= glyphicon_link_to new_project_status_report_path(@project), 'plus' %></span></h2>
+          </div>
+            <%= render partial: 'shared/status_reports_table', locals: {status_reports: @status_reports} %>
+            <%= will_paginate @status_reports,
                 param_name: 'status_reports_page',
                 renderer: BootstrapPagination::Rails %>
+        </div>
       </dd>
-      <dt>Voluntari <%= glyphicon_link_to new_volunteer_project_members_path(@project), 'plus'%></dt>
+      <dt></dt>
       <dd>
-        <%= render partial: 'shared/members_profile_table', locals: {members: @volunteers} %>
-        <%= will_paginate @volunteers,
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title">Voluntari 
+              <span class="pull-right"><%= glyphicon_link_to new_volunteer_project_members_path(@project), 'plus'%></span></h2>
+          </div>
+            <%= render partial: 'shared/members_profile_table', locals: {members: @volunteers} %>
+            <%= will_paginate @volunteers,
                 param_name: 'volunteers_page',
                 renderer: BootstrapPagination::Rails %>
+        </div>
       </dd>  
-      <dt>Bursieri <%= glyphicon_link_to new_fellow_project_members_path(@project), 'plus'%></dt>
+      <dt></dt>
       <dd>
-        <%= render partial: 'shared/members_profile_table', locals: {members: @fellows} %>
-        <%= will_paginate @fellows,
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title">Bursieri <span class="pull-right"><%= glyphicon_link_to new_fellow_project_members_path(@project), 'plus'%></span></h2>
+          </div>
+            <%= render partial: 'shared/members_profile_table', locals: {members: @fellows} %>
+            <%= will_paginate @fellows,
                 param_name: 'fellows_page',
                 renderer: BootstrapPagination::Rails %>
+        </div>
       </dd>
     <% end %>
   </div>

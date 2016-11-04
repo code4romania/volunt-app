@@ -12,8 +12,14 @@
   <% end %>
   <div class="row">
     <dl class="dl-horizontal">
-      <dt>Proiecte</dt>
-      <dd><%= render partial: 'shared/member_projects_table', locals: {members: @memberships} %></dd>
+      <dd>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title">Proiecte</h2>
+          </div>
+          <%= render partial: 'shared/member_projects_table', locals: {members: @memberships} %>
+        </div>
+      </dd>
     </dl>
   </div>
 </div>
