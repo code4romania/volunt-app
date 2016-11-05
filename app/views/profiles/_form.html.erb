@@ -15,7 +15,8 @@
                 disabled: is_new_user? %>
           <%= f.text_area  :contacts_string, label: 'Contacte', 
                   placeholder: "email2: other@example.com\rphone: 555-5555",
-                  help: "Separa pe linii si prefixeaza cu `phone1:`, `email2:` etc" %>
+                  help: "Separa pe linii si prefixeaza cu `phone1:`, `email2:` etc",
+                  label: 'Contact' %>
           <%= f.text_field :location, label: 'Locatie', placeholder: 'Timisoara, Romania' %>
           <%= f.text_field :title, label: 'Ocupatia', placeholder: 'Programator' %>
           <%= f.text_field :workplace, label: 'Locul de munca' %>
@@ -28,9 +29,9 @@
           <%= f.text_area :urls_string, label: 'Links',
               placeholder: "ro.wikipedia.org/wiki/ana_blandiana\rstackoverflow.com/users/105929",
               help: 'Link-uri relevante pentru profil' %>
-      </div>
-      <div class="row">
-          <%= f.text_area :description, placeholder: "Cover letter: 1-2 paragrafe depre #{profile_resource_name}" %>
+          <%= f.text_area :description,
+                placeholder: "Cover letter: 1-2 paragrafe depre #{profile_resource_name}",
+                label: 'Descriere' %>
       </div>
       <div class="row">
         <%= yield %>
@@ -38,3 +39,8 @@
     <% end %>
   </div>
 </div>
+<script>
+  $(function() {
+    $('#profile_description').summernote();
+  });
+</script>

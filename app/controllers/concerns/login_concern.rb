@@ -72,6 +72,7 @@ module LoginConcern
   end
 
   def layout_for_current_user
+    return 'new_user' if is_new_user?
     return 'application' if is_user_level_authorized? USER_LEVEL_FELLOW
     return 'volunteer' if is_user_level_authorized? USER_LEVEL_VOLUNTEER
     return 'community'

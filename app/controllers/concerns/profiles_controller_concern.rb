@@ -33,6 +33,11 @@ module ProfilesControllerConcern
       @profile.email = current_user_email
     end
     if @profile.save
+      # if is a new user, re-login to force his new level.
+      # Otherwise the user can create new profiles ad-nauseam
+      if is_new_user?
+        login_user(current_user)
+      end
       redirect_to profile_path(@profile), notice: "#{profile_resource_name} was succesfully created"
     else
       render 'profiles/new'
