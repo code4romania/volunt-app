@@ -1,0 +1,35 @@
+<%= bootstrap_form_for(opening,
+    layout: :horizontal,
+    url: form_submit_path,
+    label_col: 'col-sm-3',
+    control_col: 'col-sm-9',
+    role: :form) do |f| %>
+
+    <%= f.text_field :title, label: 'Titlu' %>
+    <% if opening.project.nil? %>
+     <%= f.collection_select(:project_id,
+          Project.all,
+          :id,
+          :name,
+          label: 'Proiect') %> 
+    <% else %>
+      <%= f.fields_for(:project, opening.project) do |ff| %>
+        <%=ff.text_field :name, label: 'Ref', disabled: true %>
+      <% end unless opening.nil? %>
+    <% end %>
+    <%= f.text_area :description %>
+    <%= f.date_field :deadline %>
+    <%= f.date_field :publish_date, label: 'Publish On' %>
+    <%= f.text_field :tags_string, 
+          placeholder: tags_placeholder %>
+    <%= f.text_field :skills_string,
+          placeholder: skills_placeholder %>
+    <%= f.text_area :experience %>
+    <%= yield f %>
+<% end %>
+<script>
+  $(function() {
+    $('#opening_description').summernote();
+    $('#opening_experience').summernote();
+  });
+</script>

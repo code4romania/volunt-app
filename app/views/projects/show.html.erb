@@ -50,6 +50,18 @@
                 renderer: BootstrapPagination::Rails %>
         </div>
       </dd>
+      <dt></dt>
+      <dd>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title">Openings <span class="pull-right"><%= glyphicon_link_to new_project_openings_path(@project), 'plus'%></span></h2>
+          </div>
+            <%= render partial: 'shared/openings_table', locals: {openings: @openings} %>
+            <%= will_paginate @openings,
+                param_name: 'openings_page',
+                renderer: BootstrapPagination::Rails %>
+        </div>
+      </dd>
     <% end %>
   </div>
 </div>

@@ -1,0 +1,16 @@
+<div class="container">  
+  <div class="btn-group" role="group">
+    <%= link_to new_opening_path, class: 'btn btn-default' do %>
+      Adauga Opening
+    <% end %>
+  </div>
+  <div class="row">
+    <span class="text-info notice"><%= notice %></span>
+  </div>
+  <div class="row">
+    <%= render partial: 'shared/openings_table', locals: {openings: @openings} %> 
+  </div>
+  <div class="row will-paginate">
+    <%= will_paginate @openings, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>

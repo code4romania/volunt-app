@@ -1,0 +1,21 @@
+<table class="table fixed_table openings_table">
+  <colgroup>
+    <col class="col-xs-1"/>
+    <col class="col-xs-1"/>
+    <col class="col-xs-5"/>
+    <col class="col-xs-4"/>
+    <col class="col-xs-1"/>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Publicat</th>
+      <th>Deadline</th>
+      <th>Titlu</th>
+      <th>Tags &amp; Skills</th>
+      <th/>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'shared/opening_row', collection: openings %>
+  </tbody>
+</table>

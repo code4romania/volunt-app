@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028145328) do
+ActiveRecord::Schema.define(version: 20161105085204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,27 @@ ActiveRecord::Schema.define(version: 20161028145328) do
     t.index ["tags"], name: "index_communications_on_tags", using: :gin
     t.index ["template_id"], name: "index_communications_on_template_id", using: :btree
     t.index ["user_id"], name: "index_communications_on_user_id", using: :btree
+  end
+
+  create_table "openings", force: :cascade do |t|
+    t.string   "title",                    null: false
+    t.datetime "deadline"
+    t.datetime "publish_date"
+    t.text     "description"
+    t.string   "skills",                                array: true
+    t.string   "tags",                                  array: true
+    t.integer  "project_id"
+    t.text     "experience"
+    t.integer  "status",       default: 0, null: false
+    t.integer  "flags",        default: 0, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["project_id", "publish_date"], name: "index_openings_on_project_id_and_publish_date", order: {"publish_date"=>:desc}, using: :btree
+    t.index ["project_id"], name: "index_openings_on_project_id", using: :btree
+    t.index ["publish_date"], name: "index_openings_on_publish_date", order: {"publish_date"=>:desc}, using: :btree
+    t.index ["skills"], name: "index_openings_on_skills", using: :gin
+    t.index ["tags"], name: "index_openings_on_tags", using: :gin
+    t.index ["title"], name: "index_openings_on_title", using: :btree
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -154,6 +175,7 @@ ActiveRecord::Schema.define(version: 20161028145328) do
 
   add_foreign_key "communications", "templates"
   add_foreign_key "communications", "users"
+  add_foreign_key "openings", "projects"
   add_foreign_key "project_members", "profiles"
   add_foreign_key "project_members", "projects"
   add_foreign_key "recipients", "communications"

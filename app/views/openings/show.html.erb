@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+   <span class="text-info notice"><%= notice %></span>
+  </div>
+  <div class="row">
+    <dl class="dl-horizontal">
+      <dt>Titlu<dt>
+      <dd><%= @opening.title %></dd>
+      <dt>Proiect<dt>
+      <dd><%= project_with_link(@opening.project) %>
+      <dt>Descriere<dt>
+      <dd><%= sanitize_html_area(@opening.description) %></dd>
+      <dt>Deadline<dt>
+      <dd><%= @opening.deadline.to_date unless @opening.deadline.nil? %></dd>
+      <dt>Publish<dt>
+      <dd><%= @opening.publish_date.to_date unless @opening.publish_date.nil? %></dd>
+      <dt>Tags<dt>
+      <dd><%= render partial: 'shared/tags', locals: {tags: @opening.tags} %></dd>
+      <dt>Skills<dt>
+      <dd><%= render partial: 'shared/skills', locals: {skills: @opening.skills} %></dd>
+      <dt>Experienta<dt>
+      <dd><%= sanitize_html_area(@opening.experience) %></dd>
+      <dd>
+        <%= form_for(@opening, method: :delete) do %>
+          <div class="btn-group" role='group'>
+            <%= link_to 'Edit', edit_opening_path(@opening), class: 'btn btn-default' %>
+            <input type='submit' value='Delete' class =  'btn btn-danger' />
+          </div>
+        <% end %>
+      </dd>
+    </dl>
+  </div>
+</div>

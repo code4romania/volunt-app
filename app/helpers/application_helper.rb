@@ -1,5 +1,13 @@
 module ApplicationHelper
 
+  def tags_placeholder
+    'Remote, Hackaton, On-Site'
+  end
+
+  def skills_placeholder
+    'Front-End, Java, ReactJS, UI, Adobe Illustrator, JIRA'
+  end
+
   def glyphicon_tag(glyph)
     content_tag(:span, "",  class: "glyphicon glyphicon-#{glyph}")
   end

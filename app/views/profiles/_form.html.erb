@@ -21,10 +21,10 @@
           <%= f.text_field :title, label: 'Ocupatia', placeholder: 'Programator' %>
           <%= f.text_field :workplace, label: 'Locul de munca' %>
           <%= f.text_field :skills_string, label: 'Skills',
-              placeholder: '.Net, Java, Angular, React Native, UI, Adobe Illustrator',
+              placeholder: skills_placeholder,
               help: 'Skill-uri tehnice, separate prin virgula' %>
           <%= f.text_field :tags_string, label: 'Tags',
-              placeholder: 'Remote, Hackaton',
+              placeholder: tags_placeholder,
               help: 'Orice tag-uri care permit ulterior filtrare si cautare' %>
           <%= f.text_area :urls_string, label: 'Links',
               placeholder: "ro.wikipedia.org/wiki/ana_blandiana\rstackoverflow.com/users/105929",

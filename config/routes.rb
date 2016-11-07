@@ -36,8 +36,10 @@ Rails.application.routes.draw do
         end
       end
       resources :status_reports, shallow: true
+      resource :openings, shallow: true
     end
 
+    resources :openings
     resources :status_reports, except: [:new, :create]
     resources :templates
   end

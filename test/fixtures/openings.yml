@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  deadline: 2016-11-05 08:52:04
+  description: MyText
+  skills: MyString
+  tags: MyString
+  project: 
+  experience: MyText
+  status: 1
+  flags: 1
+
+two:
+  title: MyString
+  deadline: 2016-11-05 08:52:04
+  description: MyText
+  skills: MyString
+  tags: MyString
+  project: 
+  experience: MyText
+  status: 1
+  flags: 1
