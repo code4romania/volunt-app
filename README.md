@@ -19,19 +19,26 @@ Cind aplicatia este folosita de un voluntar:
 
 ## Install
 
-Applicatia se conecteaza la o baza de PostgreSQL. 
+Applicatia se conecteaza la o baza de PostgreSQL.
+
+```
+psql
+CREATE ROLE voluntapp;
+ALTER ROLE voluntapp WITH LOGIN;
+```
+
+```
+createdb voluntari_development --host=localhost --port=5432 --owner=voluntapp
+createdb voluntari_test --host=localhost --port=5432 --owner=voluntapp
+```
+
 ```
 git clone https://github.com/gov-ithub/volunt-app.git
 cd volunt-app
-set VOLUNTARI_DATABASE_HOST=<host postgresql>
-set VOLUNTARI_DATABSE_PORT=<port postgresql>
-set VOLUNTARI_DATABASE_DEVELOPMENT_USER=<postgresql user>
-set VOLUNTARI_DATABASE_DEVELOPMENT_PASSWORD=<postgresql pwd>
-set VOLUNTARI_EMAIL_DEVELOPMENT_TO=<an email to receive all emails from dev env>
 bundle install
-rake db:migrate
+cp config/.env.sample .env
+rails db:setup
 rails server
 ```
-Evident, `set`-urile se pot muta in `~/.bash_profile`. Rails serveste aplicatia pe portul 3000. Mailurile trimise din aplicatie au host configurat din `config/domains.yml` si `config/email.yml`, daca vrei sa verifici link-urile din aplicatie trebuie sa ai control pe un domeniu DNS si sa modifici config ca link-urile sa fie valide.
 
 **Made with :heart: by [GovITHub](http://ithub.gov.ro)**
