@@ -1,5 +1,15 @@
 // Common styles used on all views
 
+// Google fonts
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&subset=latin-ext');
+
+// General styles
+body{
+	background: #f2f2f2;
+}
+body, input, select, textarea{
+	font-family: 'Open Sans', 'sans-serif';
+}
 a.navbar-brand {
   padding: 0px;
   img {
@@ -7,14 +17,101 @@ a.navbar-brand {
   }
 }
 
-.landing {
-  min-height: 70vh;
+.navbar{
+	padding: 10px 0;
+	background: #fff;
+	margin: 0;
+}
+.nav>li>a{
+	color: #404040;
+	font-weight: bold;
+	font-size: 16px;
+}
+.nav>li>a:hover, .nav>li>a:focus{
+	background-color: transparent;
+	color: #a31e60;
 }
 
-div.login-form {
-  padding: 25px;
-  max-width: 450px;
-  margin: auto;
+.navbar-toggle .icon-bar{
+	background: #fff;
+}
+.navbar-toggle{
+	background: #808080;
+}
+.login-form, .signup-form{
+	font-size: 16px;
+	background: #fff;
+	max-width: 560px;
+	padding: 50px;
+	margin: 0;
+}
+.login-form .help-block, .signup-form .help-block{
+	color: #bbb;
+	margin-top: 20px;
+}
+.login-form{
+	margin-top: 100px !important;
+	margin-bottom: 50px !important;
+	padding: 30px !important;
+}
+.login-form .help-block{
+	margin-bottom: 0;
+}
+.login-form .btn-primary{
+	margin-left: 27%;
+	font-size: 16px;
+	padding: 6px 20px;
+}
+
+.landing {
+	background-image: image-url("bg.jpg");
+	//background-image: url("bg.jpg");
+	background-size: cover;
+	position: relative;
+	margin: 0;
+}
+.signup-form{
+	color:#fff;
+	z-index: 2;
+	position: relative;
+	background: transparent;
+	margin: 0;
+}
+.jumbotron{
+	padding: 80px 0;
+}
+.jumbotron h2{
+	font-weight: bold;
+	font-size: 32px;
+}
+.jumbotron.landing:after{
+	content: " ";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.66);
+	top: 0;
+}
+
+footer{
+	margin: 10px 0;
+	a{
+		color:#171516;
+		opacity: .5;
+	}
+	a:hover{
+		color:#171516;
+		text-decoration: none;
+		opacity: 1;
+	}
+}
+
+.text-info{
+	padding: 10px;
+	text-align: center;
+	margin: 10px 0;
+	background: #fff;
+	border-radius: 4px;	
 }
 
 img.img-profile-png {
@@ -94,7 +191,7 @@ a.btn-glyph {
   text-align: center;
   height: 250px;
   position: relative;
-  
+
   .panel-body {
     .signup-panel-icon {
       font-size: 3em;
@@ -105,5 +202,3 @@ a.btn-glyph {
     }
   }
 }
-
-
