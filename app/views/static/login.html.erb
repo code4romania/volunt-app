@@ -1,19 +1,21 @@
 <div class="container">
   <div class="row">
-    <%= render partial: 'shared/notice' %>
-    <div class="login-form">
-      <%= bootstrap_form_for(@login_presenter,
-            method: :post,
-            url: login_path,
-            layout: :horizontal,
-            label_col: 'col-sm-3',
-            control_col: 'col-sm-9',
-            role: :form) do |f| %>
-          <%= f.email_field :email %>
-          <%= f.password_field :password, 
-            help: "Ai #{link_to 'uitat', request_reset_path} parola?".html_safe %>
-          <%= f.submit 'Login', class: 'col-sm-offset-3 btn btn-primary' %>
-      <% end %>
-    </div>
+		<div class="col-lg-6 col-lg-offset-3">
+	    <%= render partial: 'shared/notice' %>
+	    <div class="login-form">
+	      <%= bootstrap_form_for(@login_presenter,
+	            method: :post,
+	            url: login_path,
+	            layout: :horizontal,
+	            label_col: 'col-sm-3',
+	            control_col: 'col-sm-9',
+	            role: :form) do |f| %>
+	          <%= f.email_field :email %>
+	          <%= f.password_field :password,
+	            help: "#{link_to 'Ai uitat parola?', request_reset_path}".html_safe %>
+	          <%= f.submit 'Login', class: 'btn btn-primary' %>
+	      <% end %>
+	    </div>
+		</div>
   </div>
 </div>
