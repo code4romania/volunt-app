@@ -11,4 +11,10 @@ class Opening < ApplicationRecord
 
   default_scope {order(publish_date: :desc)}
 
+  scope :visible, -> {
+      where(
+        'publish_date <= :today and deadline >= :today',
+        today: Date.today).
+      order(publish_date: :desc) }
+
 end
