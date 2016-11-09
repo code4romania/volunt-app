@@ -48,14 +48,14 @@ a.navbar-brand {
 .login-form .help-block, .signup-form .help-block{
 	color: #bbb;
 	margin-top: 20px;
-	max-width: 500px;
 }
 .login-form{
-	margin-top: 100px !important;
-	margin-bottom: 50px !important;
-	padding: 30px !important;
+	margin-top: 100px;
+	margin-bottom: 50px;
+	padding: 30px;
 	margin-left: auto;
 	margin-right: auto;
+	max-width: 500px;
 }
 .login-form .help-block{
 	margin-bottom: 0;
@@ -147,10 +147,10 @@ table.profiles-table {
 
 div.main-content {
   min-height: 75vh;
-	padding-top: 50px;
 }
 
 .profile {
+	margin-top: 50px;
   dl.dl-horizontal {
     dt {
       padding-bottom: 5px;
