@@ -6,20 +6,31 @@
     <dl class="dl-horizontal">
       <dt>Titlu<dt>
       <dd><%= @opening.title %></dd>
-      <dt>Proiect<dt>
-      <dd><%= project_with_link(@opening.project) %>
-      <dt>Descriere<dt>
-      <dd><%= sanitize_html_area(@opening.description) %></dd>
       <dt>Deadline<dt>
       <dd><%= @opening.deadline.to_date unless @opening.deadline.nil? %></dd>
-      <dt>Publish<dt>
-      <dd><%= @opening.publish_date.to_date unless @opening.publish_date.nil? %></dd>
+      <% unless @opening.project.nil? %>
+        <dt>Denumire Proiect</dt>
+        <dd><%= @opening.project.name %></dd>
+        <dt>Descriere Proiect</dt>
+        <dd><%# @opening.project.description %></dd>
+        <dt>Obiectiv Proiect</dt>
+        <dd><%# @opening.project.objective %></dd>
+        <% unless @opening.project.owner.nil? %>
+          <dt>Owner Proiect</dt>
+          <dd><%= @opening.project.owner.full_name %></dd>
+        <% end %>
+      <% end %>
       <dt>Tags<dt>
       <dd><%= render partial: 'shared/tags', locals: {tags: @opening.tags} %></dd>
       <dt>Skills<dt>
       <dd><%= render partial: 'shared/skills', locals: {skills: @opening.skills} %></dd>
       <dt>Experienta<dt>
       <dd><%= sanitize_html_area(@opening.experience) %></dd>
+      <dt>Publicat<dt>
+      <dd><%= @opening.publish_date.to_date unless @opening.publish_date.nil? %></dd>
+      <dt></dt>
+      <dd>Esti interesat sa ajuti? Trimite-ne un email pe adresa 
+      <% if is_user_level_fellow? %>
       <dd>
         <%= form_for(@opening, method: :delete) do %>
           <div class="btn-group" role='group'>
@@ -28,6 +39,7 @@
           </div>
         <% end %>
       </dd>
+      <% end %>
     </dl>
   </div>
 </div>

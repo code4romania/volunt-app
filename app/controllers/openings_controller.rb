@@ -1,12 +1,16 @@
 class OpeningsController < ApplicationController
   include LoginConcern
-  authorization_required
+  authorization_required LoginConcern::USER_LEVEL_FELLOW,
+      except: [:index, :show]
+  authorization_required LoginConcern::USER_LEVEL_COMMUNITY,
+      only: [:index, :show]
+
   before_action :set_opening, only: [:show, :edit, :update, :destroy]
   before_action :set_project, only: [:new, :create]
 
   # GET /openings
   def index
-    @openings = Opening.all.paginate(page: params[:page])
+    @openings = openings.paginate(page: params[:page])
   end
 
   # GET /openings/1
@@ -64,12 +68,20 @@ class OpeningsController < ApplicationController
   end
 
   private
+    def openings
+      is_user_level_fellow? ? Opening.all : Opening.visible
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_opening
-      @opening = Opening.find(params[:id])
+      @opening = openings.find(params[:id])
     end
 
     def set_project
+      # Since set_project is called only on :new, :create 
+      # it does not expose projects existance via 404 do non-fellows
+      # because the authorization action that runs before
+      #
       @project = Project.find(params[:project_id]) if params.has_key? :project_id
     end
 
