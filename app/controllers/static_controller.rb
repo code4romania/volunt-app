@@ -1,6 +1,7 @@
 class StaticController < ApplicationController
   include LoginConcern
-  force_ssl only: [:home, :signup, :signup_post, :login, :login_post, :password_reset]
+  include SslConfig
+  force_ssl only: [:home, :signup, :signup_post, :login, :login_post, :password_reset], if: :ssl_configured?
   layout 'static'
 
   def home
