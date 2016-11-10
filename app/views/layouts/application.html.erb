@@ -47,7 +47,7 @@
               <span class=""><%= current_user_email %><span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to 'Profil', me_path %></li> 
+              <li><%= link_to 'Profil', me_path %></li>
               <li role="separator" class="divider"></li>
               <li><%= link_to 'Logout', logout_path %></li>
             </ul>
@@ -56,7 +56,7 @@
       </nav>
     </div>
   </div>
-  <div class="main-content">
+  <div class="main-content app-content">
     <%= yield %>
   </div>
   <%= render 'shared/footer' %>
