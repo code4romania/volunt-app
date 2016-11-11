@@ -114,7 +114,12 @@ footer{
 		opacity: 1;
 	}
 }
-
+.panel .alert{
+	margin-bottom: 0;
+}
+.alert{
+	font-size: 14px;
+}
 .text-info{
 	margin:20px auto;
 	text-align: center;
