@@ -4,13 +4,12 @@
     <dl class="dl-horizontal">
       <dt></dt>
       <dd>
-        <div class="btn-group col-sm-9" role="group">
           <%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-default' %>
-        </div>
       </dd>
     </dl>
   <% end %>
   <div class="row">
+		<div class="col-sm-12">
     <dl class="dl-horizontal">
       <% if @profile.is_fellow? %>
       <dd>
@@ -19,7 +18,7 @@
             <h2 class="panel-title">Status <span class="pull-right"><%= glyphicon_link_to new_fellow_status_report_path(@profile), 'plus' %></span></h2>
           </div>
           <%= render partial: 'shared/status_reports_table', locals: {status_reports: @status_reports} %>
-          <%= will_paginate @status_reports, 
+          <%= will_paginate @status_reports,
                 param_name: 'status_reports_page',
                 renderer: BootstrapPagination::Rails %>
         </div>
@@ -39,5 +38,6 @@
         </dd>
       <% end %>
     </dl>
+		</div>
   </div>
 </div>

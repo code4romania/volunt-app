@@ -16,7 +16,9 @@ a.navbar-brand {
     max-height: 100%;
   }
 }
-
+hr{
+	border-color: #ddd;
+}
 .navbar{
 	padding: 10px 0;
 	background: #fff;
@@ -31,7 +33,12 @@ a.navbar-brand {
 	background-color: transparent;
 	color: #a31e60;
 }
-
+.dropdown-menu{
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.175);
+}
+.navbar-nav>li>.dropdown-menu{
+	left: 0;
+}
 .navbar-toggle .icon-bar{
 	background: #fff;
 }
@@ -107,7 +114,16 @@ footer{
 		opacity: 1;
 	}
 }
-
+.panel .alert{
+	margin-bottom: 0;
+}
+.alert{
+	font-size: 14px;
+}
+.text-info{
+	margin:20px auto;
+	text-align: center;
+}
 // .text-info{
 // 	padding: 10px;
 // 	text-align: center;
@@ -148,9 +164,11 @@ table.profiles-table {
 div.main-content {
   min-height: 75vh;
 }
+div.app-content{
+	padding: 50px 20px 0;
+}
 
 .profile {
-	margin-top: 50px;
   dl.dl-horizontal {
     dt {
       padding-bottom: 5px;
@@ -186,7 +204,8 @@ dl.dl-horizontal {
 }
 
 span.key-value {
-  padding: 2px 5px;
+  padding: 2px 0px;
+	margin-right: 10px;
 }
 
 a.btn-glyph {
