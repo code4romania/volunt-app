@@ -24,7 +24,7 @@ a.navbar-brand {
 }
 .nav>li>a{
 	color: #404040;
-	font-weight: bold;
+	font-weight: 600;
 	font-size: 16px;
 }
 .nav>li>a:hover, .nav>li>a:focus{
@@ -50,15 +50,17 @@ a.navbar-brand {
 	margin-top: 20px;
 }
 .login-form{
-	margin-top: 100px !important;
-	margin-bottom: 50px !important;
-	padding: 30px !important;
+	margin-top: 100px;
+	margin-bottom: 50px;
+	padding: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 500px;
 }
 .login-form .help-block{
 	margin-bottom: 0;
 }
 .login-form .btn-primary{
-	margin-left: 27%;
 	font-size: 16px;
 	padding: 6px 20px;
 }
@@ -106,13 +108,13 @@ footer{
 	}
 }
 
-.text-info{
-	padding: 10px;
-	text-align: center;
-	margin: 10px 0;
-	background: #fff;
-	border-radius: 4px;	
-}
+// .text-info{
+// 	padding: 10px;
+// 	text-align: center;
+// 	margin: 10px 0;
+// 	background: #fff;
+// 	border-radius: 4px;
+// }
 
 img.img-profile-png {
   width: 150px;
@@ -148,6 +150,7 @@ div.main-content {
 }
 
 .profile {
+	margin-top: 50px;
   dl.dl-horizontal {
     dt {
       padding-bottom: 5px;
@@ -169,6 +172,9 @@ span.profile-attributes {
 
 img.img-profile {
   margin-bottom: 15px;
+}
+img.img-rounded{
+	border-radius: 100%;
 }
 dl.dl-horizontal {
   .btn-group {
@@ -201,4 +207,20 @@ a.btn-glyph {
       height: 50px;
     }
   }
+}
+@media (min-width: 768px) {
+	ul.nav li:hover > ul.dropdown-menu {
+		display: block;
+	}
+	.login-form .btn-primary{
+		margin-left: 27%;
+	}
+	.dropdown-menu{
+		left:0;
+		border:none;
+		border-radius: 0;
+	}
+	.dropdown-menu > li > a{
+		padding: 6px 20px;
+	}
 }

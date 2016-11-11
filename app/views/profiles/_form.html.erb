@@ -13,7 +13,7 @@
                 help: 'URL for a hot-linked photo' %>
           <%= f.email_field :email, placeholder: 'blandiana@example.com',
                 disabled: is_new_user? %>
-          <%= f.text_area  :contacts_string, label: 'Contacte', 
+          <%= f.text_area  :contacts_string, label: 'Contact',
                   placeholder: "email2: other@example.com\rphone: 555-5555",
                   help: "Separa pe linii si prefixeaza cu `phone1:`, `email2:` etc",
                   label: 'Contact' %>
@@ -21,16 +21,16 @@
           <%= f.text_field :title, label: 'Ocupatia', placeholder: 'Programator' %>
           <%= f.text_field :workplace, label: 'Locul de munca' %>
           <%= f.text_field :skills_string, label: 'Skills',
-              placeholder: skills_placeholder,
+              placeholder: 'Java, PHP, .Net, Ruby, Python, Angular, React Native, UI, UX, Adobe Illustrator',
               help: 'Skill-uri tehnice, separate prin virgula' %>
           <%= f.text_field :tags_string, label: 'Tags',
               placeholder: tags_placeholder,
-              help: 'Orice tag-uri care permit ulterior filtrare si cautare' %>
+              help: "Tag-uri care permit filtrare, cautare si identificarea\rdisponibl: remote, on-site\rparticipant la hackathon: hackathon\r" %>
           <%= f.text_area :urls_string, label: 'Links',
               placeholder: "ro.wikipedia.org/wiki/ana_blandiana\rstackoverflow.com/users/105929",
               help: 'Link-uri relevante pentru profil' %>
           <%= f.text_area :description,
-                placeholder: "Cover letter: 1-2 paragrafe depre #{profile_resource_name}",
+                help: "Cover letter: 1-2 paragrafe depre #{profile_resource_name}",
                 label: 'Descriere' %>
       </div>
       <div class="row">
