@@ -34,7 +34,7 @@ gem 'bootstrap_form', git: 'https://github.com/bootstrap-ruby/rails-bootstrap-fo
 
 # email model validator
 gem 'email_validator'
-  
+
 # gem 'sass-rails', git: 'https://github.com/rails/sass-rails.git'
 gem 'bootstrap-sass', '~> 3.2'
 
@@ -44,7 +44,7 @@ gem 'bootstrap-sass', '~> 3.2'
   gem 'sprockets' #, '=2.11.0'
   # Use SCSS for stylesheets
   gem 'sass-rails', '~> 5.0'
-  
+
   source 'https://rails-assets.org' do
     gem 'rails-assets-jquery', '~>1.9.1'
     gem 'rails-assets-jquery-ui'
@@ -62,6 +62,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'dotenv-rails'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
 group :development do
@@ -70,4 +72,3 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
-

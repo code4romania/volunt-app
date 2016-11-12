@@ -39,6 +39,7 @@ bundle install
 cp config/.env.sample .env
 rails db:setup
 rails server
+rspec # will run all tests in spec/
 ```
 
 **Made with :heart: by [GovITHub](http://ithub.gov.ro)**
