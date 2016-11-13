@@ -9,6 +9,7 @@ class CreateOpenings < ActiveRecord::Migration[5.0]
       t.string :tags, array: true
       t.references :project, null: true, foreign_key: true
       t.text :experience
+      t.string :contact
       t.integer :status, null: false, default: 0
       t.integer :flags, null: false, default: 0
 

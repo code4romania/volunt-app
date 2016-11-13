@@ -87,6 +87,6 @@ class OpeningsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def opening_params
-      params.require(:opening).permit(:title, :description, :deadline, :publish_date, :tags_string, :skills_string, :experience, :project_id)
+      params.require(:opening).permit(:title, :description, :deadline, :publish_date, :tags_string, :skills_string, :experience, :project_id, :contact)
     end
 end

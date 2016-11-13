@@ -13,4 +13,6 @@ test:
 
 production:
   from: <%= ENV['VOLUNTARI_EMAIL_PROD_FROM'] %>
+  openings_contact: <%= ENV['VOLUNTARI_EMAIL_PROD_FROM'] %>
+    
 

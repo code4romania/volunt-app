@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20161105085204) do
     t.string   "tags",                                  array: true
     t.integer  "project_id"
     t.text     "experience"
+    t.string   "contact"
     t.integer  "status",       default: 0, null: false
     t.integer  "flags",        default: 0, null: false
     t.datetime "created_at",               null: false

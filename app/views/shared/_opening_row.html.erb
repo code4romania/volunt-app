@@ -1,6 +1,6 @@
 <tr>
-  <td><%= opening_row.publish_date.to_date unless opening_row.publish_date.nil? %></td>
-  <td><%= opening_row.deadline.to_date unless opening_row.deadline.nil? %></td>
+  <td><%= opening_visibility_dates(opening_row) %></td>
+  <td><%= opening_row.project.name unless opening_row.project.nil? %> </td>
   <td><%= opening_row.title %></td>
   <td><%= render partial: 'shared/tags', locals: {tags: opening_row.tags} %>
       <%= render partial: 'shared/skills', locals: {skills: opening_row.skills} %></td>

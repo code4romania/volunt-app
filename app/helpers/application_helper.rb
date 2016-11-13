@@ -24,6 +24,27 @@ module ApplicationHelper
     end
   end
 
+  def opening_visibility_dates(opening)
+    from = to = '?'
+    from_style = to_style = 'label label-warning'
+
+    if !opening.publish_date.nil?
+      from = opening.publish_date.to_date
+      from_style = 'label label-default' if opening.publish_date <= Date.today
+    end
+  
+    if !opening.deadline.nil?
+      to = opening.deadline.to_date
+      to_style = 'label label-default' if opening.deadline >= Date.today
+    end
+
+    capture do
+      concat content_tag(:span, from, class: from_style)
+      concat glyphicon_tag('minus')
+      concat content_tag(:span, to, class: to_style)
+    end
+  end
+
   def project_with_link(project)
     capture do
       concat content_tag(:span, project.name, class: 'project-name')
