@@ -1,5 +1,6 @@
 class RequestResetsController < ApplicationController
-  force_ssl only: [:show, :create]
+  include SslConfig
+  force_ssl only: [:show, :create], if: :ssl_configured?
   layout 'static'
 
   def show

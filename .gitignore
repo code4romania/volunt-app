@@ -9,9 +9,7 @@
 *.ppt
 *.pptx
 TODO.md
-.env.development
-.env.test
-.env.production
+.env*
 .sass-cache
 .byebug_history
 capybara-*.html
