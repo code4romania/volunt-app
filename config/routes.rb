@@ -40,7 +40,13 @@ Rails.application.routes.draw do
     end
 
     resources :openings
-    resources :status_reports, except: [:new, :create]
+    resources :status_reports, except: [:new, :create] do
+      collection do
+        get 'my'
+        get 'my/edit', to: 'status_reports#my_edit'
+        post 'my/edit', to: 'status_reports#my_edit_post'
+      end
+    end
     resources :templates
   end
 

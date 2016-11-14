@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161105085204) do
+ActiveRecord::Schema.define(version: 20161114081834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,8 @@ ActiveRecord::Schema.define(version: 20161105085204) do
     t.datetime "updated_at",              null: false
     t.jsonb    "urls"
     t.integer  "owner_id"
+    t.string   "beneficiary"
+    t.text     "objective"
     t.index ["name"], name: "index_projects_on_name", unique: true, using: :btree
     t.index ["owner_id"], name: "index_projects_on_owner_id", using: :btree
     t.index ["tags"], name: "index_projects_on_tags", using: :gin

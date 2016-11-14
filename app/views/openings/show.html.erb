@@ -14,9 +14,9 @@
         <dt>Denumire Proiect</dt>
         <dd><%= project_with_link(@opening.project) %></dd>
         <dt>Descriere Proiect</dt>
-        <dd><%# @opening.project.description %></dd>
+        <dd><%# sanitize_html_area(@opening.project.description) %></dd>
         <dt>Obiectiv Proiect</dt>
-        <dd><%# @opening.project.objective %></dd>
+        <dd><%# anitize_html_area(opening.project.objective) %></dd>
         <% unless @opening.project.owner.nil? %>
           <dt>Lider Proiect</dt>
           <dd><%= @opening.project.owner.full_name %></dd>

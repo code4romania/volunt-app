@@ -1,12 +1,16 @@
 <dl class="dl-horizontal project">
-  <dt>Name<dt>
+  <dt>Nume<dt>
   <dd><%= project.name %></dd>
+  <dt>Beneficiar<dt>
+  <dd><%= project.beneficiary %></dd>
   <dt>Status</dt>
   <dd><%= project_status_badge(project) %></dd>
-  <dt>Leader</dt>
+  <dt>Lider</dt>
   <dd><%= profile_with_link(project.owner) %></dd>
-  <dt>Description<dt>
+  <dt>Descriere<dt>
   <dd><%= sanitize_html_area(project.description) %></dd>
+  <dt>Obiectiv<dt>
+  <dd><%= sanitize_html_area(project.objective) %></dd>
   <dt>Links</dt>
   <dd><%= render partial: 'shared/key_values', locals: {key_values: project.urls } %>
   <dt>Tags</dt>

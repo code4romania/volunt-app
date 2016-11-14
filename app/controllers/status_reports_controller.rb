@@ -4,6 +4,19 @@ class StatusReportsController < ApplicationController
   before_action :set_status_report, only: [:show, :edit, :update, :destroy]
   before_action :set_profile_or_project, only: [:new, :create, :index]
 
+  # GET /status_reports/my
+  def my
+    @my_status_report = MystatusReportPresenter.get_current
+  end
+
+  # GET /status_reports/my/edit
+  def my_edit
+  end
+
+  # POST /status_reports/my_edit
+  def my_edit_post
+  end
+
   # GET /status_reports
   def index
     if not @project.nil?

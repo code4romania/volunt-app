@@ -28,6 +28,7 @@ class Profile < ApplicationRecord
 
   has_many :memberships, class_name: 'ProjectMember', dependent: :delete_all
   has_many :projects, through: :memberships
+  has_many :lead_projects, foreign_key: 'owner', class_name: 'Project'
 
   has_many :status_reports, dependent: :delete_all
 

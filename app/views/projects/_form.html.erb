@@ -5,6 +5,7 @@
     role: :form) do |f| %>
 
     <%= f.text_field :name, label: 'Nume' %>
+    <%= f.text_field :beneficiary, label: 'Beneficiar', placeholder: 'Ministerul Sanatatii' %>
     <%= f.select(:status,
           options_for_project_status,
           label: 'Status') %>
@@ -15,6 +16,8 @@
           label: 'Leader',
           include_blank: true) %>
     <%= f.text_area :description, label: 'Descriere' %>
+    <%= f.text_area :objective, label: 'Obiectiv' %>
+    <%= f.text_area :urls_string, label: 'Links' %>
     <%= f.text_area :urls_string, label: 'Links' %>
     <%= f.text_field :tags_string %>
     <%= yield f %>
@@ -22,5 +25,6 @@
 <script>
   $(function() {
     $('#project_description').summernote();
+    $('#project_objective').summernote();
   });
 </script>

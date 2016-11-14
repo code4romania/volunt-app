@@ -2,6 +2,9 @@ class StatusReport < ApplicationRecord
   include TagsConcern
   include FlagBitsConcern
 
+  STATUS_REPORT_STATUS_DRAFT = 0
+  STATUS_REPORT_STATUS_PUBLISHED = 1
+
   array_field :tags
 
   belongs_to :project, optional: true
@@ -13,10 +16,26 @@ class StatusReport < ApplicationRecord
 
   default_scope -> { order(report_date: :desc) }
 
+  def is_published?
+    self.status == STATUS_REPORT_STATUS_PUBLISHED
+  end
+
+  def is_draft?
+    self.status == STATUS_REPORT_STATUS_DRAFT
+  end
+
   def ref
     return self.project.name unless self.project.nil?
     return self.profile.full_name unless self.profile.nil?
     return ''
+  end
+
+  def self.last_for_profile(profile)
+    where(profile: profile).order(report_date: :desc).first
+  end
+
+  def self.last_for_project(project)
+    where(project: project).order(report_date: :desc).first
   end
 
   private

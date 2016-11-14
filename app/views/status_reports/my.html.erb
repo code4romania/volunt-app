@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+   <span class="text-info notice"><%= notice %></span>
+  </div>
+  <div class="row">
+    <dl class="dl-horizontal">
+      <dt>Data</dt>
+      <dd><%= @my_status_report.status_report.report_date.to_date %></dd>
+      <dt>Sumar</dt>
+      <dd><%= @my_status_report.status_report.summary %></dd>
+      <dt>Detaliat</dt>
+      <dd><%= sanitize_html_area(@my_status_report.status_report.details) %></dd>
+      <% @my_status_report.project_status_reports.each do |psr| %>
+        <dt class="project-status-delimiter">Proiect</dt>
+        <dd><%= project_with_link psr.project %></dd>
+        <dt>Sumar</dt>
+        <dd><%= psr.status_report.summary %></dd>
+        <dt>Detaliat</dt>
+        <dd><%= sanitize_html_area(psr.status_report.details) %></dd>
+      <% end %>
+      <dd>
+        <div class="btn-group" role='group'>
+          <%= link_to 'Edit', my_edit_status_reports_path, class: 'btn btn-default' %>
+        </div>
+      </dd>
+    </dl>
+  </div>
+</div>

@@ -34,7 +34,16 @@
           </li>
           <li><%= link_to 'Proiecte', projects_path %></li>
           <li><%= link_to 'Openings', openings_path %></li>
-          <li><%= link_to 'Status', status_reports_path %></li>
+          <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              Status<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'My', my_status_reports_path %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to 'Status Reports', status_reports_path %></li>
+            </ul>
+          </li>
           <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               <span class=""><%= current_user_email %><span class="caret"></span>
