@@ -1,8 +1,25 @@
+require 'net/http'
+
 class StaticController < ApplicationController
   include LoginConcern
   include SslConfig
-  force_ssl only: [:home, :signup, :signup_post, :login, :login_post, :password_reset], if: :ssl_configured?
+  force_ssl only: [:home,
+      :signup,
+      :signup_post,
+      :login,
+      :login_post,
+      :password_reset,
+      :httpsify], if: :ssl_configured?
   layout 'static'
+
+  def httpsify
+    begin
+      url = URI.parse(params[:url])
+      render text: Net::HTTP.get(url)
+    rescue Exception => e
+      redirect_to params[:url]
+    end
+  end
 
   def home
     if is_user_logged_in?

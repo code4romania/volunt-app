@@ -24,6 +24,18 @@ module ApplicationHelper
     end
   end
 
+  def httpsify(url)
+    ret = url
+    begin
+      p =  URI.parse(url)
+      if (p.scheme == 'http')
+        ret = httpsify_path(url: url)
+      end
+    rescue Exception => e
+    end
+    return ret
+  end
+
   def opening_visibility_dates(opening)
     from = to = '?'
     from_style = to_style = 'label label-warning'
