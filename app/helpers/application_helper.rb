@@ -74,9 +74,13 @@ module ApplicationHelper
   end
 
   def ensure_http_scheme(url)
-    uri = URI.parse(url)
-    if (!uri.scheme)
-      url = 'http://' + url
+    begin
+      uri = URI.parse(url)
+      if (!uri.scheme)
+        url = 'http://' + url
+      end
+    rescue Exception => ex
+      Rails.logger.error("ensure_http_scheme: #{ex.class.name}: #{ex.message}")
     end
     return url
   end

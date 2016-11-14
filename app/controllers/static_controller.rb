@@ -16,7 +16,8 @@ class StaticController < ApplicationController
     begin
       url = URI.parse(params[:url])
       render text: Net::HTTP.get(url)
-    rescue Exception => e
+    rescue Exception => ex
+      Rails.logger.error("httpsify: #{ex.class.name}: #{ex.message}")
       redirect_to params[:url]
     end
   end
