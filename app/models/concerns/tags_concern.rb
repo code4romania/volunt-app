@@ -29,9 +29,9 @@ module  TagsConcern
             k,v = val.split(':', 2)
             k = k.strip unless k.nil?
             if !k.nil? and 
-                  (k.casecmp('http') == 0 or k.casecmp('https') == 0)
-                  and !v.blank?
-                  and v.start_with? '//'
+                  (k.casecmp('http') == 0 or k.casecmp('https') == 0) and
+                  !v.blank? and
+                  v.start_with? '//'
               # we've split an URL
               v = "#{k}:#{v}"
               k = nil
