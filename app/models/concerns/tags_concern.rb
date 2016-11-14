@@ -70,7 +70,7 @@ module  TagsConcern
             
             h[:accum][k.parameterize.underscore.to_sym] = v
           rescue Exception => e
-            Rails.logger.error("hash_attribute assign parsing: #{e.class.name}: #{e.message}")
+            Rails.logger.error("hash_attribute assign parsing: #{e.class.name}: #{e.message}: k:#{k} v:#{v} value:#{value}")
           end
           
           h
