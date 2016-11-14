@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get '/login', to: 'static#login'
     post '/login', to: 'static#login_post'
     post '/signup', to: 'static#signup'
+    get 'httpsify', to: 'static#httpsify'
 
     resource :request_reset, only: [:show, :create],  path: '/request-reset'
     resources :validation_tokens, only: [:show, :update]

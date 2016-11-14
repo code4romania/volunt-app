@@ -28,7 +28,10 @@ module  TagsConcern
           begin
             k,v = val.split(':', 2)
             k = k.strip unless k.nil?
-            if (k.casecmp('http') == 0 or k.casecmp('https') == 0) and !v.blank? and v.start_with? '//'
+            if !k.nil? and 
+                  (k.casecmp('http') == 0 or k.casecmp('https') == 0) and
+                  !v.blank? and
+                  v.start_with? '//'
               # we've split an URL
               v = "#{k}:#{v}"
               k = nil
@@ -67,8 +70,8 @@ module  TagsConcern
             
             h[:accum][k.parameterize.underscore.to_sym] = v
           rescue Exception => e
-            Rails.logger.error("hash_attribute assign parsing: #{e.class.name}: #{e.message}")
-          end
+            Rails.logger.error("hash_attribute assign parsing: #{e.class.name}: #{e.message}: k:#{k} v:#{v} val:#{val} value:#{value}")
+          end unless val.blank?
           
           h
         end

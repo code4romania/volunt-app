@@ -24,6 +24,18 @@ module ApplicationHelper
     end
   end
 
+  def httpsify(url)
+    ret = url
+    begin
+      p =  URI.parse(url)
+      if (p.scheme == 'http')
+        ret = httpsify_path(url: url)
+      end
+    rescue Exception => e
+    end
+    return ret
+  end
+
   def opening_visibility_dates(opening)
     from = to = '?'
     from_style = to_style = 'label label-warning'
@@ -62,9 +74,13 @@ module ApplicationHelper
   end
 
   def ensure_http_scheme(url)
-    uri = URI.parse(url)
-    if (!uri.scheme)
-      url = 'http://' + url
+    begin
+      uri = URI.parse(url)
+      if (!uri.scheme)
+        url = 'http://' + url
+      end
+    rescue Exception => ex
+      Rails.logger.error("ensure_http_scheme: #{ex.class.name}: #{ex.message}")
     end
     return url
   end

@@ -84,6 +84,15 @@ module LoginConcern
         :is_user_level_fellow?
 
     layout :layout_for_current_user
+
+    rescue_from ActionController::InvalidAuthenticityToken do |ex|
+      begin
+        Rails.logger.error("CSRF: #{ex.class.name}: #{ex.message} ip:#{request.remote_ip} #{request.method}:#{request.original_url}")
+      ensure
+        logout_user
+        redirect_to root_path, notice: 'CSRF exception. Are cookies disabled?'
+      end
+    end
   end
 
   module ClassMethods
