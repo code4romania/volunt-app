@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include ProfilePathConcern
 
   def tags_placeholder
     'Remote, Hackaton, On-Site'
@@ -85,12 +86,6 @@ module ApplicationHelper
     return url
   end
 
-  def detect_profile_path(profile)
-    return coordinator_path(profile) if profile.is_coordinator?
-    return fellow_path(profile) if profile.is_fellow?
-    return volunteer_path(profile) if profile.is_volunteer?
-    return applicant_path(profile) if profile.is_applicant?
-  end
 
   def sanitize_html_area(html)
     # TODO: actually sanitize the html

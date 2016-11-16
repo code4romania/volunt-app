@@ -32,6 +32,14 @@
           <%= f.text_area :description,
               help: "Cover letter: 1-2 paragrafe depre #{profile_resource_name}",
               label: 'Descriere' %>
+          <% if is_user_level_fellow? and (profile.is_applicant? or profile.is_volunteer?) %>
+            <%= f.select :flags, options_for_select([
+                      ['Comunitate', Profile::PROFILE_FLAG_APPLICANT],
+                      ['Voluntar', Profile::PROFILE_FLAG_VOLUNTEER]
+                    ],
+                    selected: profile.flags),
+                  label: 'Rol' %>
+          <% end %>
       </div>
       <div class="row">
         <%= yield %>
