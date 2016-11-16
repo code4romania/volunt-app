@@ -18,13 +18,25 @@ Rails.application.routes.draw do
     resource :request_reset, only: [:show, :create],  path: '/request-reset'
     resources :validation_tokens, only: [:show, :update]
     
+    # top level status-reports must precede the nested routes
+    # otherwise the nested routes hijack the collection methods
+    resources :status_reports,
+        except: [:new, :create],
+        path: 'status-reports' do
+      collection do
+        get 'my', to: 'status_reports#my'
+        get 'my/edit', to: 'status_reports#my_edit'
+        post 'my/edit', to: 'status_reports#my_edit_post'
+      end
+    end
+    
     [:volunteers, :fellows, :applicants, :coordinators].each do |p|
       resources p do
         collection do
           match 'search', via: [:get, :post]
         end
         if p == :fellows
-          resources :status_reports, shallow: true if p == :fellows
+          resources :status_reports, shallow: true, path: 'status-reports' if p == :fellows
         end
       end
     end
@@ -36,19 +48,13 @@ Rails.application.routes.draw do
           get 'new_fellow'
         end
       end
-      resources :status_reports, shallow: true
+      resources :status_reports, shallow: true, path: 'status-reports'
       resource :openings, shallow: true
     end
 
     resources :openings
-    resources :status_reports, except: [:new, :create] do
-      collection do
-        get 'my'
-        get 'my/edit', to: 'status_reports#my_edit'
-        post 'my/edit', to: 'status_reports#my_edit_post'
-      end
-    end
-    resources :templates
+    # resources :templates
+
   end
 
 end

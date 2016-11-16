@@ -15,13 +15,8 @@
 
     <%= f.date_field :report_date, label: 'Data raportului' %>
     <%= f.text_field :summary, label: 'Sumar', placeholder: 'tl;dr' %>
-    <%= f.text_area :details, label: 'Status', placeholder: 'Am terminat tot ce aveam de facut' %>
+    <%= f.text_area :details, label: 'Status', placeholder: 'Am terminat tot ce aveam de facut', data: html_text_area %>
     <%= f.text_field :tags_string, label: 'Tags' %>
     
     <%= yield f %>
 <% end %>
-<script>
-  $(function() {
-    $('#status_report_details').summernote();
-  });
-</script>

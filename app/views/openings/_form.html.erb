@@ -12,7 +12,7 @@
         :name,
         label: 'Proiect',
         include_blank: true) %> 
-    <%= f.text_area :description %>
+    <%= f.text_area :description, label: 'Descriere', data: html_text_area %>
     <%= f.date_field :deadline,
         label: 'Data limita de aplicare',
         placeholder: 1.week.from_now.to_date,
@@ -25,13 +25,7 @@
           placeholder: tags_placeholder %>
     <%= f.text_field :skills_string,
           placeholder: skills_placeholder %>
-    <%= f.text_area :experience %>
+    <%= f.text_area :experience, label: 'Experienta', data: html_text_area %>
     <%= f.text_field :contact, help: 'Contact (daca este diferit de liderul proiectului)' %>
     <%= yield f %>
 <% end %>
-<script>
-  $(function() {
-    $('#opening_description').summernote();
-    $('#opening_experience').summernote();
-  });
-</script>

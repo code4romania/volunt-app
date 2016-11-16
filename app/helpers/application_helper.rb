@@ -130,4 +130,8 @@ module ApplicationHelper
     content_tag(:span, text, class: "label", style: "color: #{textcolor}; background-color: #{bgcolor}")
   end
 
+  def html_text_area
+    {"html-text-area" => true}
+  end
+
 end

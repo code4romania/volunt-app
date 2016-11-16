@@ -6,15 +6,25 @@ class StatusReportsController < ApplicationController
 
   # GET /status_reports/my
   def my
-    @my_status_report = MystatusReportPresenter.get_current
+    @my_status_report = MyStatusReportPresenter.get_current(current_user_email)
   end
 
   # GET /status_reports/my/edit
   def my_edit
+    @my_status_report = MyStatusReportPresenter.get_current(current_user_email)
   end
 
   # POST /status_reports/my_edit
   def my_edit_post
+    @my_status_report = MyStatusReportPresenter.from_params(params.require(:my_status_report_presenter))
+    if params.has_key?(:save) and  @my_status_report.valid? and @my_status_report.save
+      redirect_to my_status_reports_path, notice: 'Status was saved'
+    elsif params.has_key?(:add_project)
+      @my_status_report.add_project
+      render :my_edit
+    else
+      render :my_edit
+    end
   end
 
   # GET /status_reports

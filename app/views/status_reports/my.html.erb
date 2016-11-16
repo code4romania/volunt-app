@@ -4,19 +4,23 @@
   </div>
   <div class="row">
     <dl class="dl-horizontal">
-      <dt>Data</dt>
+      <dt>Data Raport</dt>
       <dd><%= @my_status_report.status_report.report_date.to_date %></dd>
+      <dd><h4><%= profile_with_link(@my_status_report.status_report.profile) %></h4></dd>
       <dt>Sumar</dt>
       <dd><%= @my_status_report.status_report.summary %></dd>
       <dt>Detaliat</dt>
       <dd><%= sanitize_html_area(@my_status_report.status_report.details) %></dd>
+      <dt>Tags</dt>
+      <dd><%= render partial: 'shared/tags', locals: {tags: @my_status_report.status_report.tags} %></dd>
       <% @my_status_report.project_status_reports.each do |psr| %>
-        <dt class="project-status-delimiter">Proiect</dt>
-        <dd><%= project_with_link psr.project %></dd>
+        <dd><h4><%= project_with_link(psr.status_report.project) %></h4></dd>
         <dt>Sumar</dt>
         <dd><%= psr.status_report.summary %></dd>
         <dt>Detaliat</dt>
         <dd><%= sanitize_html_area(psr.status_report.details) %></dd>
+        <dt>Tags</dt>
+        <dd><%= render partial: 'shared/tags', locals: {tags: psr.status_report.tags} %></dd>
       <% end %>
       <dd>
         <div class="btn-group" role='group'>

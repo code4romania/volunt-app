@@ -7,11 +7,6 @@
     <%= f.text_field :name, placeholder: 'Template  name' %>
     <%= f.text_field :tags_string, label: 'Tags', placeholder: 'Tags, separated by , or ;' %>
     <%= f.text_field :subject, placeholder: 'Email subject' %>
-    <%= f.text_area :body, help: 'Foloseste %NICKNAME% pentru nume' %>
+    <%= f.text_area :body, help: 'Foloseste %NICKNAME% pentru nume', data: html_text_area %>
     <%= yield f %>
 <% end %>
-<script>
-  $(function() {
-    $('#template_body').summernote();
-  });
-</script>

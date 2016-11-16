@@ -31,7 +31,8 @@
               help: 'Link-uri relevante pentru profil' %>
           <%= f.text_area :description,
               help: "Cover letter: 1-2 paragrafe depre #{profile_resource_name}",
-              label: 'Descriere' %>
+              label: 'Descriere',
+              data: html_text_area %>
       </div>
       <div class="row">
         <%= yield %>
@@ -39,8 +40,3 @@
     <% end %>
   </div>
 </div>
-<script>
-  $(function() {
-    $('#profile_description').summernote();
-  });
-</script>
