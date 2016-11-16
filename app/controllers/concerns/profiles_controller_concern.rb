@@ -1,5 +1,6 @@
 module ProfilesControllerConcern
   extend ActiveSupport::Concern
+  include ProfilePathConcern
   include SearchConcern
   include LoginConcern
   
@@ -46,7 +47,7 @@ module ProfilesControllerConcern
 
   def update
     if @profile.update(profile_params)
-      redirect_to profile_path(@profile), notice: "#{profile_resource_name} was succesfully updated"
+      redirect_to detect_profile_path(@profile), notice: "#{profile_resource_name} was succesfully updated"
     else
       render 'profiles/edit'
     end
@@ -130,19 +131,24 @@ module ProfilesControllerConcern
   end
 
   def profile_params
-    params.fetch(:profile, {}).permit(
-      :full_name,
-      :nick_name,
-      :photo,
-      :tags_string,
-      :skills_string,
-      :contacts_string,
-      :location,
-      :title,
-      :workplace,
-      :email,
-      :description,
-      :urls_string)
+    permitted = [
+        :full_name,
+        :nick_name,
+        :photo,
+        :tags_string,
+        :skills_string,
+        :contacts_string,
+        :location,
+        :title,
+        :workplace,
+        :email,
+        :description,
+        :urls_string]
+    if is_user_level_fellow? 
+      permitted << :flags
+      permitted << :status
+    end
+    params.fetch(:profile, {}).permit permitted
   end
 
   def authorization_required_or_self
