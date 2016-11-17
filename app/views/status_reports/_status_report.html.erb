@@ -16,5 +16,7 @@
   <dd><%= sanitize_html_area(status_report.details) %></dd>
   <dt>Tags</dt>
   <dd><%= render partial: 'shared/tags', locals: {tags: status_report.tags} %></dd>
+  <dt>Publicare</dt>
+  <dd><%= status_report_publish_tag(status_report) %></dd>
   <%= yield %>
 </dl>

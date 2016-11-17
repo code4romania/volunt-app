@@ -20,7 +20,7 @@ class MyStatusReportPresenter
     date = Date.today + ((1-Date.today.wday) % 7) # Next monday
 
     # First get the personal status report
-    status = StatusReport.last_for_profile(profile)
+    status = StatusReport.last_draft_for_profile(profile)
     if status.nil? or status.is_published?
       status = StatusReport.new(profile: profile, author: profile, report_date: date)
     end
@@ -30,7 +30,7 @@ class MyStatusReportPresenter
     project_ids = []
     profile.lead_projects.each do |project|
       project_ids << project.id
-      project_status = StatusReport.last_for_project(project)
+      project_status = StatusReport.last_draft_for_project(project)
       if project_status.nil? or project_status.is_published?
         project_status = StatusReport.new(project: project, author: profile, report_date: date)
       end
@@ -95,9 +95,26 @@ class MyStatusReportPresenter
     StatusReport.transaction do
       if !self.status_report.save
         raise ActiveRecord::Rollback
+      end unless self.status_report.new_record? and self.status_report.blank?
+      self.project_status_reports.each do |ps|
+        next if ps.status_report.new_record? and ps.status_report.blank?
+        if !ps.status_report.save
+          raise ActiveRecord::Rollback
+        end
+      end
+      ret = true
+    end
+    return ret
+  end
+
+  def publish
+    ret = false
+    StatusReport.transaction do
+      if !self.status_report.publish
+        raise ActiveRecord::Rollback
       end
       self.project_status_reports.each do |ps|
-        if !ps.status_report.save
+        if !ps.status_report.publish
           raise ActiveRecord::Rollback
         end
       end

@@ -26,8 +26,8 @@
         <%= form_for(@my_status_report, url: my_edit_status_reports_path, method: :post) do |f| %>
           <div class="btn-group" role='group'>
             <%= link_to 'Edit', my_edit_status_reports_path, class: 'btn btn-default' %>
-            <%= f.submit 'Publica', class: 'btn btn-primary', name: 'publish-report',
-                data: {confirm: 'Confirmi publicarea raportului saptaminal?'} %>
+            <%= f.submit 'Publica', class: 'btn btn-primary', name: 'publish_report',
+                data: {confirm: 'Publicarea trimite un email cu raportul tau la coordinatori. Dupa publicare, aceasta pagina va afisa <i>urmatorul</i> raport. Confirmi publicarea?'.html_safe} %>
           </div>
         <% end %>
       </dd>

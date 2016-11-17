@@ -25,6 +25,18 @@ class StatusReport < ApplicationRecord
     self.status == STATUS_REPORT_STATUS_DRAFT
   end
 
+  def is_due?
+    (self.is_draft?) and (self.report_date < Date.today)
+  end
+
+  def publish
+    self.update(status: STATUS_REPORT_STATUS_PUBLISHED)
+  end
+
+  def blank?
+    self.summary.blank? and self.details.blank? and self.tags.blank?
+  end
+
   scope :drafts, -> { where(status: STATUS_REPORT_STATUS_DRAFT) }
   scope :published, -> { where(status: STATUS_REPORT_STATUS_PUBLISHED) }
 
@@ -34,12 +46,12 @@ class StatusReport < ApplicationRecord
     return ''
   end
 
-  def self.last_for_profile(profile)
-    where(profile: profile).order(report_date: :desc).first
+  def self.last_draft_for_profile(profile)
+    drafts.where(profile: profile).order(report_date: :desc).first
   end
 
-  def self.last_for_project(project)
-    where(project: project).order(report_date: :desc).first
+  def self.last_draft_for_project(project)
+    drafts.where(project: project).order(report_date: :desc).first
   end
 
   private

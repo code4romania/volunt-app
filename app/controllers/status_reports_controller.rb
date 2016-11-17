@@ -14,8 +14,22 @@ class StatusReportsController < ApplicationController
     @my_status_report = MyStatusReportPresenter.get_current(current_user_profile)
   end
 
+  def my_publish
+    @my_status_report = MyStatusReportPresenter.get_current(current_user_profile)
+    if @my_status_report.publish
+      redirect_to my_status_reports_path, notice: 'Raportul a fost publicat. Acesta este raportul pentru perioada urmatoare.'
+    else
+      flash.now[:notice]='Raportul nu a putut fi publicat'
+      render :my_edit
+    end
+  end
+
   # POST /status_reports/my_edit
   def my_edit_post
+    if params.has_key?(:publish_report)
+      self.my_publish
+      return
+    end
     @my_status_report = MyStatusReportPresenter.from_params(params.require(:my_status_report_presenter))
     if params.has_key?(:save) and  @my_status_report.valid? and @my_status_report.save
       redirect_to my_status_reports_path, notice: 'Status was saved'
@@ -77,10 +91,29 @@ class StatusReportsController < ApplicationController
   end
 
   # PATCH/PUT /status_reports/1
+  # because of the btn group layout in show, :delete is posted as a :post with submit named 'delete_report'
   def update
+    if params.has_key? 'delete_report'
+      self.destroy
+      return
+    end
+
+    if params.has_key? 'publish_report'
+      if @status_report.publish
+        redirect_to @status_report, notice: 'Raportul a fost publicat'
+        return
+      else
+        flash.now[:notice] = 'Raportul nu a putut fi publicat'
+        render :edit
+        return
+      end
+    end
+    
     if @status_report.update(status_report_params)
       redirect_to @status_report, notice: 'Status report was successfully updated.'
+      return
     else
+      flash.now[:notice] = 'Raportul nu a putut fi salvat'
       render :edit
     end
   end
