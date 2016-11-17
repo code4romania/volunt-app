@@ -34,10 +34,10 @@
       <dd>Esti interesat sa ajuti? Contacteaza <%= @opening.contact_info %>.</dd>
       <% if is_user_level_fellow? %>
       <dd>
-        <%= form_for(@opening, method: :delete) do %>
+        <%= form_for(@opening, method: :delete) do |f| %>
           <div class="btn-group" role='group'>
             <%= link_to 'Edit', edit_opening_path(@opening), class: 'btn btn-default' %>
-            <input type='submit' value='Delete' class =  'btn btn-danger' />
+            <%= f.submit 'Delete', class: 'btn btn-danger', data: {confirm: 'Sterge pozitia?'} %>
           </div>
         <% end %>
       </dd>

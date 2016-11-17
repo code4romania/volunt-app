@@ -48,6 +48,7 @@ gem 'bootstrap-sass', '~> 3.2'
   source 'https://rails-assets.org' do
     gem 'rails-assets-jquery', '~>1.9.1'
     gem 'rails-assets-jquery-ui'
+    gem 'rails-assets-jquery-ujs'
     gem 'rails-assets-jquery.inview'
     gem 'rails-assets-moment'
     gem 'rails-assets-d3'

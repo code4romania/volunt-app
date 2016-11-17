@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
+//= require jquery-ujs
 //= require bootstrap
 //= require summernote
 //= require_self
