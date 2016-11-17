@@ -14,10 +14,10 @@
       <dd><div class="email-body"><%= sanitize_email_body(@template.body).html_safe %></div></dd>
       <dt></dt>
       <dd>
-        <%= form_for(@template, method: :delete) do %>
+        <%= form_for(@template, method: :delete) do |f| %>
           <div class="btn-group" role='group'>
             <%= link_to 'Edit', edit_template_path(@template), class: 'btn btn-default' %>
-            <input type='submit' value='Delete' class =  'btn btn-danger' />
+            <%= f.submit 'Delete', class: 'btn btn-danger', data: {confirm: 'Sterge tempalte-ul?'} %>
           </div>
         <% end %>
       </dd>

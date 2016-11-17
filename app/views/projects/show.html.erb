@@ -6,10 +6,10 @@
     <%= render @project do %>
     <dt></dt>
      <dd>
-        <%= form_for(@project, method: :delete) do %>
+        <%= form_for(@project, method: :delete) do |f| %>
           <div class="btn-group" role='group'>
             <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-default' %>
-            <input type='submit' value='Delete' class =  'btn btn-danger' />
+            <%= f.submit 'Delete', class: 'btn btn-danger', data: {confirm: 'Sterge proiectul?'}  %>
           </div>
         <% end %>
       </dd>

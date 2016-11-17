@@ -1,0 +1,60 @@
+<div id="confirmation-dialog" class="hidden" title="Confirma">
+    <p><!-- message --></p>
+</div>
+
+<script>
+  $(function() {    
+    var dialog = $('#confirmation-dialog').dialog({
+      resizable: false,
+      height: "auto",
+      width: 400,
+      modal: true,
+      closeOnEscape: true
+    });
+    dialog.dialog('close');
+    $('#confirmation-dialog').removeClass('hidden');
+
+    // http://stackoverflow.com/questions/4421072/jquery-ui-dialog-instead-of-alert-for-rails-3-data-confirm-attribute
+    $.rails.allowAction = function(element) {
+        var message = element.data('confirm'),
+        answer = false, callback;
+        if (!message) { return true; }
+
+        if ($.rails.fire(element, 'confirm')) {
+                myCustomConfirmBox(message, function() {
+                        console.log('dialog callback');
+                        callback = $.rails.fire(element,
+                                'confirm:complete', [answer]);
+                        if(callback) {
+                                var oldAllowAction = $.rails.allowAction;
+                                $.rails.allowAction = function() { 
+                                    console.log('allow action: true');
+                                    return true;
+                                };
+                                // important! jQuery click does not trigger navigation (a href).
+                                // Must use native DOM click
+                                element[0].click();
+                                $.rails.allowAction = oldAllowAction;
+                        }
+                });
+        }
+        return false;
+    }
+
+    var myCustomConfirmBox = function(message, callback) {
+      $("#confirmation-dialog p").html(message);
+      dialog.dialog("option", "buttons",{
+          "OK": function() {
+            $( this ).dialog( "close" );
+            callback();
+          },
+          Cancel: function() {
+            $( this ).dialog( "close" );
+          }
+        });
+      dialog.dialog("open");
+    };
+});
+
+</script>
+
