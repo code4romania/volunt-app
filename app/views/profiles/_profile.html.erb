@@ -9,8 +9,12 @@
       <dt>Ocupatie</dt><dd><%= profile.title %></dd>
       <dt>Locul de munca</dt><dd><%= profile.workplace %></dd>
       <dt>Skills</dt><dd><%= render partial: 'shared/skills', locals: {skills: profile.skills} %></dd>
-      <dt>Tags</dt><dd><%= render partial: 'shared/tags', locals: {tags: profile.tags} %></dd>
       <dt>Links</dt><dd><%= render partial: 'shared/urls', locals: {urls: profile.urls} %></dd>
+      <dt>Tags</dt><dd><%= render partial: 'shared/tags', locals: {tags: profile.tags} %></dd>
+      <% if is_user_level_fellow? %>
+        <dt>Hidden Tags</dt>
+        <dd><span class="profile-attributes"><%= render partial: 'shared/tags', locals: {tags: profile.hidden_tags, hidden: true } %></span></dd>
+      <% end %>
     </dl>
   </div>
   <div class="col-sm-3 text-center">

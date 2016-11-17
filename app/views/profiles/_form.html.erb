@@ -23,9 +23,6 @@
           <%= f.text_field :skills_string, label: 'Skills',
               placeholder: 'Java, PHP, .Net, Ruby, Python, Angular, React Native, UI, UX, Adobe Illustrator',
               help: 'Skill-uri tehnice, separate prin virgula' %>
-          <%= f.text_field :tags_string, label: 'Tags',
-              placeholder: tags_placeholder,
-              help: "Tag-uri care permit filtrare, cautare si identificarea;\ndisponibil: remote, on-site;\nparticipant la hackathon: hackathon" %>
           <%= f.text_area :urls_string, label: 'Links',
               placeholder: "ro.wikipedia.org/wiki/ana_blandiana<br>stackoverflow.com/users/105929",
               help: 'Link-uri relevante pentru profil' %>
@@ -33,6 +30,14 @@
               help: "Cover letter: 1-2 paragrafe depre #{profile_resource_name}",
               label: 'Descriere',
               data: html_text_area %>
+          <%= f.text_field :tags_string, label: 'Tags',
+              placeholder: tags_placeholder,
+              help: "Tag-uri care permit filtrare, cautare si identificarea;\ndisponibil: remote, on-site;\nparticipant la hackathon: hackathon" %>
+          <% if is_user_level_fellow? %>
+            <%= f.text_field :hidden_tags_string, label: 'Hidden Tags',
+                placeholder: 'SEMNAT NDA, PENDING REVIEW',
+                help: 'Tag-uri care pot fi vazute sau editate doar de catre bursieri' %>
+          <% end %>
           <% if is_user_level_fellow? and (profile.is_applicant? or profile.is_volunteer?) %>
             <%= f.select :flags, options_for_select([
                       ['Comunitate', Profile::PROFILE_FLAG_APPLICANT],

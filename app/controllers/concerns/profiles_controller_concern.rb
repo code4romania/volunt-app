@@ -33,6 +33,7 @@ module ProfilesControllerConcern
     if is_new_user?
       @profile.email = current_user_email
     end
+    @profile.hidden_tags = ['NEW PROFILE', 'FOR REVIEW', Date.today.to_s]
     if @profile.save
       # if is a new user, re-login to force his new level.
       # Otherwise the user can create new profiles ad-nauseam
@@ -46,7 +47,13 @@ module ProfilesControllerConcern
   end
 
   def update
-    if @profile.update(profile_params)
+    @profile.assign_attributes(profile_params)
+    @profile.hidden_tags << 'SELF UPDATED' if !is_user_level_fellow?\
+        and !@profile.hidden_tags.include? 'SELF UPDATED'
+    @profile.hidden_tags << 'PROMOTED' if @profile.flags_changed?\
+        and @profile.is_volunteer? \
+        and !@profile.hidden_tags.include? 'PROMOTED'
+    if @profile.save
       redirect_to detect_profile_path(@profile), notice: "#{profile_resource_name} was succesfully updated"
     else
       render 'profiles/edit'
@@ -97,19 +104,17 @@ module ProfilesControllerConcern
       pos_tags, neg_tags = split_tags_pos_neg(tags)
 
       tags_sql, tags_opts = define_where_fragment_array_pos_neg("tags", pos_tags, neg_tags)
+      hidden_tags_sql, hidden_tags_opts = define_where_fragment_array_pos_neg("hidden_tags", pos_tags, neg_tags)
       skills_sql, skills_opts = define_where_fragment_array_pos_neg("skills", pos_tags, neg_tags)     
       # for title we not consider negative tags as it would qualify everything
       title_sql, title_opts = define_where_fragment_like_pos_neg('title', pos_tags, [])
 
-      sql = "(#{tags_sql}) OR (#{skills_sql})"
-      opts = tags_opts.concat(skills_opts)
+      sql = "(#{tags_sql}) OR (#{hidden_tags_sql}) OR (#{skills_sql})"
+      opts = tags_opts.concat(hidden_tags_opts).concat(skills_opts)
       unless title_opts.blank?
         sql += " OR (#{title_sql})"
         opts = opts.concat(title_opts)
       end
-
-      puts sql
-      puts opts.inspect
 
       profiles = profiles.where(sql, *opts)
     end
@@ -147,6 +152,7 @@ module ProfilesControllerConcern
     if is_user_level_fellow? 
       permitted << :flags
       permitted << :status
+      permitted << :hidden_tags_string
     end
     params.fetch(:profile, {}).permit permitted
   end
