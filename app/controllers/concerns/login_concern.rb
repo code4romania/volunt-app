@@ -7,22 +7,23 @@ module LoginConcern
   USER_LEVEL_FELLOW    = 100
 
   def login_user(user)
-    level = USER_LEVEL_NEWUSER
+    session_data= {
+      id: user.id,
+      email: user.email, 
+      level: USER_LEVEL_NEWUSER
+    }
     profile = Profile.for_email(user.email)
     if profile
+      session_data[:profile_id] = profile.id
       if profile.is_fellow? or profile.is_coordinator?
-        level = USER_LEVEL_FELLOW
+        session_data[:level] = USER_LEVEL_FELLOW
       elsif profile && profile.is_volunteer?
-        level = USER_LEVEL_VOLUNTEER
+        session_data[:level] = USER_LEVEL_VOLUNTEER
       else
-        level = USER_LEVEL_COMMUNITY
+        session_data[:level] = USER_LEVEL_COMMUNITY
       end
     end
-    session[:user_id] = {
-      id: user.id,
-      email: user.email,
-      level: level
-    }
+    session[:user_id] = session_data
   end
 
   def current_user
@@ -35,6 +36,18 @@ module LoginConcern
   def current_user_email
     ensure_user_is_logged_in
     session[:user_id]["email"]
+  end
+
+  def current_user_profile
+    ensure_user_is_logged_in
+    profile = nil
+    if session[:user_id].has_key? "profile_id"
+      profile = Profile.find session[:user_id]["profile_id"]
+    end
+    if profile.nil? or !profile.has_email(current_user_email)
+      profile = Profile.for_email current_user_email
+    end
+    return profile
   end
 
   def logout_user

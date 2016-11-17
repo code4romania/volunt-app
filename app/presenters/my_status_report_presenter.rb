@@ -14,25 +14,36 @@ class MyStatusReportPresenter
     raise "should not be called"
   end
 
-  def self.get_current(email)
-    profile = Profile.for_email(email)
+  def self.get_current(profile)
     raise ActiveRecord::RecordNotFound.new('Profile not found for logged in user', 'Profile') if profile.nil?
     
     date = Date.today + ((1-Date.today.wday) % 7) # Next monday
+
+    # First get the personal status report
     status = StatusReport.last_for_profile(profile)
     if status.nil? or status.is_published?
-      status = StatusReport.new(profile: profile, report_date: date)
+      status = StatusReport.new(profile: profile, author: profile, report_date: date)
     end
 
+    # Next find status reports for all projects lead by profile
     project_statuses = []
+    project_ids = []
     profile.lead_projects.each do |project|
+      project_ids << project.id
       project_status = StatusReport.last_for_project(project)
       if project_status.nil? or project_status.is_published?
-        project_status = StatusReport.new(project: project, report_date: date)
+        project_status = StatusReport.new(project: project, author: profile, report_date: date)
       end
       project_statuses << MyStatusReportProjectPresenter.new(
         project: project,
         status_report: project_status)
+    end
+
+    # Finally all other status reports added by profile
+    StatusReport.drafts.where(author: profile).where.not(project_id: project_ids).includes(:project).each do |s|
+      project_statuses << MyStatusReportProjectPresenter.new(
+        project: s.project,
+        status_report: s)
     end
 
     MyStatusReportPresenter.new(
@@ -57,7 +68,7 @@ class MyStatusReportPresenter
     profile_params = values.require(:status_report).permit(:report_date, :summary, :details, :tags_string, :id, :profile_id)
     
     profile = Profile.find profile_params[:profile_id]
-    status = StatusReport.where(id: profile_params[:id]).first_or_initialize(profile: profile)
+    status = StatusReport.where(id: profile_params[:id]).first_or_initialize(profile: profile, author: profile)
     status.assign_attributes(profile_params.except(:id, :profile_id))
 
     project_statuses = []
@@ -65,7 +76,7 @@ class MyStatusReportPresenter
     values.require(:project_status_reports_attributes).each do |k,v|
       project_params = v.require(:status_report).permit(:summary, :details, :tags_string, :id, :project_id)
       project = Project.find project_params[:project_id]
-      project_status = StatusReport.where(id: project_params[:id]).first_or_initialize(project: project)
+      project_status = StatusReport.where(id: project_params[:id]).first_or_initialize(project: project, author: profile)
       project_status.assign_attributes(project_params.except(:id, :project_id))
       project_status.report_date = status.report_date
       project_statuses << MyStatusReportProjectPresenter.new(

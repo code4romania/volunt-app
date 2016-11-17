@@ -27,7 +27,7 @@
         <%= p.fields_for :status_report, p.object.status_report do |ps| %>
           <% if p.object.project.nil? %>
             <%= ps.collection_select(:project_id,
-                Project.all,
+                @projects_for_select,
                 :id,
                 :name,
                 label: 'Proiect') %>

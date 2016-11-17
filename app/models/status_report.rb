@@ -9,6 +9,7 @@ class StatusReport < ApplicationRecord
 
   belongs_to :project, optional: true
   belongs_to :profile, optional: true
+  belongs_to :author, optional: true, class_name: 'Profile'
 
   validates :summary, presence: true
   validates :report_date, presence: true
@@ -23,6 +24,9 @@ class StatusReport < ApplicationRecord
   def is_draft?
     self.status == STATUS_REPORT_STATUS_DRAFT
   end
+
+  scope :drafts, -> { where(status: STATUS_REPORT_STATUS_DRAFT) }
+  scope :published, -> { where(status: STATUS_REPORT_STATUS_PUBLISHED) }
 
   def ref
     return self.project.name unless self.project.nil?

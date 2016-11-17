@@ -23,9 +23,13 @@
         <dd><%= render partial: 'shared/tags', locals: {tags: psr.status_report.tags} %></dd>
       <% end %>
       <dd>
-        <div class="btn-group" role='group'>
-          <%= link_to 'Edit', my_edit_status_reports_path, class: 'btn btn-default' %>
-        </div>
+        <%= form_for(@my_status_report, url: my_edit_status_reports_path, method: :post) do |f| %>
+          <div class="btn-group" role='group'>
+            <%= link_to 'Edit', my_edit_status_reports_path, class: 'btn btn-default' %>
+            <%= f.submit 'Publica', class: 'btn btn-primary', name: 'publish-report',
+                data: {confirm: 'Confirmi publicarea raportului saptaminal?'} %>
+          </div>
+        <% end %>
       </dd>
     </dl>
   </div>

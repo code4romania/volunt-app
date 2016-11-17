@@ -6,12 +6,12 @@ class StatusReportsController < ApplicationController
 
   # GET /status_reports/my
   def my
-    @my_status_report = MyStatusReportPresenter.get_current(current_user_email)
+    @my_status_report = MyStatusReportPresenter.get_current(current_user_profile)
   end
 
   # GET /status_reports/my/edit
   def my_edit
-    @my_status_report = MyStatusReportPresenter.get_current(current_user_email)
+    @my_status_report = MyStatusReportPresenter.get_current(current_user_profile)
   end
 
   # POST /status_reports/my_edit
@@ -21,6 +21,11 @@ class StatusReportsController < ApplicationController
       redirect_to my_status_reports_path, notice: 'Status was saved'
     elsif params.has_key?(:add_project)
       @my_status_report.add_project
+      project_ids = @my_status_report.project_status_reports.inject([]) do |arr, psr|
+          arr << psr.project.id unless psr.project.nil?
+          arr
+        end
+      @projects_for_select = Project.where.not(id: project_ids)
       render :my_edit
     else
       render :my_edit
@@ -46,7 +51,7 @@ class StatusReportsController < ApplicationController
   # GET /projects/1/status_reports/new
   # GET /fellows/1/status_reports/new
   def new
-    @status_report = StatusReport.new(report_date: Date.today)
+    @status_report = StatusReport.new(report_date: Date.today, author: current_user_profile)
     @status_report.profile = @profile unless @profile.nil?
     @status_report.project = @project unless @project.nil? 
   end
@@ -59,6 +64,7 @@ class StatusReportsController < ApplicationController
   # POST /fellows/1/status_reports
   def create
     @status_report = StatusReport.new(status_report_params)
+    @status_report.author = current_user_profile
     @status_report.profile = @profile unless @profile.nil?
     @status_report.project = @project unless @project.nil? 
 

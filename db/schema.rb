@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114081834) do
+ActiveRecord::Schema.define(version: 20161116153240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,8 @@ ActiveRecord::Schema.define(version: 20161114081834) do
     t.integer  "flags",       default: 0, null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "author_id"
+    t.index ["author_id"], name: "index_status_reports_on_author_id", using: :btree
     t.index ["profile_id"], name: "index_status_reports_on_profile_id", using: :btree
     t.index ["project_id"], name: "index_status_reports_on_project_id", using: :btree
     t.index ["tags"], name: "index_status_reports_on_tags", using: :gin
@@ -184,5 +186,6 @@ ActiveRecord::Schema.define(version: 20161114081834) do
   add_foreign_key "recipients", "communications"
   add_foreign_key "recipients", "profiles"
   add_foreign_key "status_reports", "profiles"
+  add_foreign_key "status_reports", "profiles", column: "author_id"
   add_foreign_key "status_reports", "projects"
 end
