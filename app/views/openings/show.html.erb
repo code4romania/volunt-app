@@ -10,27 +10,15 @@
       <dd><%= @opening.deadline.to_date unless @opening.deadline.nil? %></dd>
       <dt>Data Publicat<dt>
       <dd><%= @opening.publish_date.to_date unless @opening.publish_date.nil? %></dd>
-      <% unless @opening.project.nil? %>
-        <dt>Denumire Proiect</dt>
-        <dd><%= project_with_link(@opening.project) %></dd>
-        <dt>Descriere Proiect</dt>
-        <dd><%# sanitize_html_area(@opening.project.description) %></dd>
-        <dt>Obiectiv Proiect</dt>
-        <dd><%# anitize_html_area(opening.project.objective) %></dd>
-        <% unless @opening.project.owner.nil? %>
-          <dt>Lider Proiect</dt>
-          <dd><%= @opening.project.owner.full_name %></dd>
-        <% end %>
-      <% end %>
       <dt>Descriere<dt>
       <dd><%= sanitize_html_area(@opening.description) %></dd>
-      <dt>Tags<dt>
-      <dd><%= render partial: 'shared/tags', locals: {tags: @opening.tags} %></dd>
       <dt>Skills<dt>
       <dd><%= render partial: 'shared/skills', locals: {skills: @opening.skills} %></dd>
       <dt>Experienta<dt>
       <dd><%= sanitize_html_area(@opening.experience) %></dd>
       <dt></dt>
+      <dt>Tags<dt>
+      <dd><%= render partial: 'shared/tags', locals: {tags: @opening.tags} %></dd>
       <dd>Esti interesat sa ajuti? Contacteaza <%= @opening.contact_info %>.</dd>
       <% if is_user_level_fellow? %>
       <dd>
@@ -41,6 +29,18 @@
           </div>
         <% end %>
       </dd>
+      <% end %>
+      <% unless @opening.project.nil? %>
+        <dt></dt>
+        <dd><h4><%= is_user_level_fellow? ? project_with_link(@opening.project) : @opening.project.name %></h4></dd>
+        <dt>Descriere Proiect</dt>
+        <dd><%= sanitize_html_area(@opening.project.description) %></dd>
+        <dt>Obiectiv Proiect</dt>
+        <dd><%= sanitize_html_area(@opening.project.objective) %></dd>
+        <% unless @opening.project.owner.nil? %>
+          <dt>Lider Proiect</dt>
+          <dd><%= @opening.project.owner.full_name %></dd>
+        <% end %>
       <% end %>
     </dl>
   </div>
