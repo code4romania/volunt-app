@@ -178,6 +178,14 @@ dl.dl-horizontal {
   .panel {
     margin-top: 20px;
   }
+
+  dd {
+    h4 {
+      margin-top: 35px;
+      margin-bottom: 0px;
+      border-bottom: 1px solid #ddd;
+    }
+  }
 }
 
 .email-body {
