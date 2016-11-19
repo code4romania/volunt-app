@@ -44,7 +44,7 @@ module LoginConcern
     if session[:user_id].has_key? "profile_id"
       profile = Profile.find session[:user_id]["profile_id"]
     end
-    if profile.nil? or !profile.has_email(current_user_email)
+    if profile.nil? or !profile.has_email?(current_user_email)
       profile = Profile.for_email current_user_email
     end
     return profile
