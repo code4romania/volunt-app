@@ -33,6 +33,8 @@ class Profile < ApplicationRecord
 
   has_many :status_reports, dependent: :delete_all
 
+  default_scope { order('full_name ASC') }
+
   def select_name
     "%-20s: %s" % [full_name, email]
   end
