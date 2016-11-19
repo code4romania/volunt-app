@@ -5,6 +5,8 @@ module  TagsConcern
 
   module ClassMethods
     def hash_field(field, opts={})
+      
+
       define_method("#{field}_string") do
         val = send(field)
         return '' if val.nil?
@@ -85,6 +87,15 @@ module  TagsConcern
         strip: true,
         delimiters: /,|;|\/|\n|\r/
         })
+
+      define_method("append_#{field}_value") do |tag|
+        val = send(field)
+        if val.nil?
+          self.send("#{field}=", [tag])
+        else
+          val << tag unless val.include? tag
+        end
+      end
 
       define_method("#{field}_string") do
         return send(field).nil? ? '': send(field).join(',')

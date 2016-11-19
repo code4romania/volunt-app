@@ -48,11 +48,8 @@ module ProfilesControllerConcern
 
   def update
     @profile.assign_attributes(profile_params)
-    @profile.hidden_tags << 'SELF UPDATED' if !is_user_level_fellow?\
-        and !@profile.hidden_tags.include? 'SELF UPDATED'
-    @profile.hidden_tags << 'PROMOTED' if @profile.flags_changed?\
-        and @profile.is_volunteer? \
-        and !@profile.hidden_tags.include? 'PROMOTED'
+    @profile.append_hidden_tags_value 'SELF UPDATED' if !is_user_level_fellow?
+    @profile.append_hidden_tags_value 'PROMOTED' if @profile.flags_changed? and @profile.is_volunteer?
     if @profile.save
       redirect_to detect_profile_path(@profile), notice: "#{profile_resource_name} was succesfully updated"
     else
