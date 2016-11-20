@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117144931) do
+ActiveRecord::Schema.define(version: 20161120120317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,24 @@ ActiveRecord::Schema.define(version: 20161117144931) do
     t.index ["tags"], name: "index_communications_on_tags", using: :gin
     t.index ["template_id"], name: "index_communications_on_template_id", using: :btree
     t.index ["user_id"], name: "index_communications_on_user_id", using: :btree
+  end
+
+  create_table "meetings", force: :cascade do |t|
+    t.string   "location",          null: false
+    t.datetime "date",              null: false
+    t.string   "duration"
+    t.string   "atendees",                       array: true
+    t.text     "notes"
+    t.text     "attn_coordinators"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "meetings_profiles", id: false, force: :cascade do |t|
+    t.integer "meeting_id", null: false
+    t.integer "profile_id", null: false
+    t.index ["meeting_id"], name: "index_meetings_profiles_on_meeting_id", using: :btree
+    t.index ["profile_id"], name: "index_meetings_profiles_on_profile_id", using: :btree
   end
 
   create_table "openings", force: :cascade do |t|
@@ -182,6 +200,8 @@ ActiveRecord::Schema.define(version: 20161117144931) do
 
   add_foreign_key "communications", "templates"
   add_foreign_key "communications", "users"
+  add_foreign_key "meetings_profiles", "meetings"
+  add_foreign_key "meetings_profiles", "profiles"
   add_foreign_key "openings", "projects"
   add_foreign_key "project_members", "profiles"
   add_foreign_key "project_members", "projects"
