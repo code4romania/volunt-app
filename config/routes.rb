@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
     resource :request_reset, only: [:show, :create],  path: '/request-reset'
     resources :validation_tokens, only: [:show, :update]
+
     
     # top level status-reports must precede the nested routes
     # otherwise the nested routes hijack the collection methods
@@ -53,6 +54,7 @@ Rails.application.routes.draw do
     end
 
     resources :openings
+    resources :meetings
     # resources :templates
 
   end

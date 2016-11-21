@@ -85,7 +85,8 @@ module  TagsConcern
       opts = opts.reverse_merge({
         upcase: true,
         strip: true,
-        delimiters: /,|;|\/|\n|\r/
+        delimiters: /,|;|\/|\n|\r/,
+        join: ','
         })
 
       define_method("append_#{field}_value") do |tag|
@@ -98,7 +99,7 @@ module  TagsConcern
       end
 
       define_method("#{field}_string") do
-        return send(field).nil? ? '': send(field).join(',')
+        return send(field).nil? ? '': send(field).join(opts[:join])
       end
 
       define_method("#{field}_string=") do |value|

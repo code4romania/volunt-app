@@ -40,6 +40,17 @@ module ApplicationHelper
     content_tag(:span, text, class: clasz)
   end
 
+  def meeting_attendees(meeting)
+    capture do
+      meeting.attendees.each do |a|
+        concat content_tag(:span, a, class: 'meeting-attendee')
+      end unless meeting.attendees.nil?
+      meeting.profiles.each do |p|
+        concat content_tag(:span, p.full_name, class: 'meeting-attendee profile-atendee')
+      end
+    end
+  end
+
   def httpsify(url)
     ret = url
     begin

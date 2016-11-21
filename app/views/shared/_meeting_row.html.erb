@@ -1,0 +1,7 @@
+<tr>
+  <td><%= meeting_row.date.to_date %></td>
+  <td><%= meeting_row.location %></td>
+  <td><%= meeting_row.summary %></td>
+  <td><%= meeting_attendees meeting_row %></td>
+  <td><%= glyphicon_link_to meeting_path(meeting_row) %></td>
+</tr>

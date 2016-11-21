@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+   <span class="text-info notice"><%= notice %></span>
+  </div>
+  <div class="row">
+    <dl class="dl-horizontal">
+      <%= render @meeting %>
+      <dd>
+        <%= form_for(@meeting, method: :delete) do |f| %>
+          <div class="btn-group" role='group'>
+            <%= link_to 'Edit', edit_meeting_path(@meeting), class: 'btn btn-default' %>
+            <%= f.submit 'Delete', class: 'btn btn-danger', data: {confirm: 'Sterge intilnirea?'} %>
+          </div>
+        <% end %>
+      </dd>
+    </dl>
+  </div>
+</div>

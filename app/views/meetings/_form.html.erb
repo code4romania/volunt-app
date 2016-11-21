@@ -1,0 +1,31 @@
+<%= bootstrap_form_for(meeting,
+    layout: :horizontal,
+    label_col: 'col-sm-3',
+    control_col: 'col-sm-9',
+    role: :form) do |f| %>
+
+    <%= f.date_field :date, label: 'Data' %>
+    <%= f.text_field :agency, label: 'Beneficiar', placeholder: 'Ministerul Muncii' %>
+    <%= f.text_field :location, label: 'Locatia', placeholder: 'Sediul D.A.R.P.A' %>
+    <%= f.text_area :attendees_string, label: 'Participanti',
+        placeholder: "Niels Bohr, Josef Alexander Schrödinger",
+        help: 'Participanti din afara GovITHub' %>
+    <%= f.fields_for :profiles, meeting.profiles, include_id: false do |p| %>
+      <%= p.collection_select :id, 
+              Profile.fellows.all,
+              :id,
+              :full_name,
+              label: 'Participant GovITHub',
+              include_blank: true %>
+      <%= p.hidden_field :profile_id, value: p.object.id %>
+    <% end %>
+    <div class="btn-group col-sm-offset-3 col-sm-9">
+      <%= f.submit 'Adauga bursier', class: 'btn btn-default', name: 'add_fellow' %>
+    </div>
+    <%= f.text_field :summary, label: 'Sumar' %>
+    <%= f.text_area :notes, label: 'Detalii', data: html_text_area %>
+    <%= f.text_area :attn_coordinators, label: 'Attn. Coordinatori', data: html_text_area %>
+    <%= f.text_field :tags_string, label: 'Tags' %>
+
+    <%= yield f %>
+<% end %>

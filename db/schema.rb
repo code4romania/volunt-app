@@ -35,13 +35,16 @@ ActiveRecord::Schema.define(version: 20161120120317) do
 
   create_table "meetings", force: :cascade do |t|
     t.string   "location",          null: false
+    t.string   "agency",            null: false
     t.datetime "date",              null: false
-    t.string   "duration"
-    t.string   "atendees",                       array: true
+    t.string   "attendees",                      array: true
+    t.string   "summary"
     t.text     "notes"
     t.text     "attn_coordinators"
+    t.string   "tags",                           array: true
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.index ["date"], name: "index_meetings_on_date", order: {"date"=>:desc}, using: :btree
   end
 
   create_table "meetings_profiles", id: false, force: :cascade do |t|

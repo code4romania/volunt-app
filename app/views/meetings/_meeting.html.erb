@@ -1,0 +1,18 @@
+<dt>Data</dt>
+<dd><%= meeting.date.to_date %></dd>
+<dt>Beneficiar</dt>
+<dd><%= meeting.agency %></dd>
+<dt>Locatie</dt>
+<dd><%= meeting.location %></dd>
+<dt>Participanti</dt>
+<dd><%= meeting_attendees meeting %></dd>
+<dt>Sumar</dt>
+<dd><%= meeting.summary %></dd>
+<dt>Detalii</dt>
+<dd><%= sanitize_html_area meeting.notes %></dd>
+<dt>Attn. Coordinatori</dt>
+<dd><%= sanitize_html_area meeting.attn_coordinators %></dd>
+<dt>Tags</dt>
+<dd><%= render partial: 'shared/tags', locals: {tags: meeting.tags} %></dd>
+
+
