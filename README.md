@@ -1,4 +1,5 @@
 [![Travis build](https://travis-ci.org/gov-ithub/volunt-app.svg?branch=master)](https://travis-ci.org/gov-ithub/volunt-app)
+[![Code Climate](https://codeclimate.com/github/gov-ithub/volunt-app/badges/gpa.svg)](https://codeclimate.com/github/gov-ithub/volunt-app)
 
 # Gestiunea voluntarilor si proiectelor Gov IT Hub
 Un sistem de gestiune a voluntarilor si proiectelor Gov IT Hub.
