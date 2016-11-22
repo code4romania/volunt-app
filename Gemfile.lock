@@ -4,6 +4,19 @@ GIT
   specs:
     bootstrap_form (2.5.2)
 
+GIT
+  remote: https://github.com/rspec/rspec-rails.git
+  revision: 26472c975dd7197130291b203186ae4e29e5b7ec
+  specs:
+    rspec-rails (3.6.0.beta1)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (= 3.6.0.beta1)
+      rspec-expectations (= 3.6.0.beta1)
+      rspec-mocks (= 3.6.0.beta1)
+      rspec-support (= 3.6.0.beta1)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -136,6 +149,10 @@ GEM
     rails-assets-moment (2.14.1)
     rails-assets-spin (1.1.6)
       rails-assets-jquery
+    rails-controller-testing (0.1.0)
+      actionpack (~> 5.x)
+      actionview (~> 5.x)
+      activesupport (~> 5.x)
     rails-dom-testing (2.0.1)
       activesupport (>= 4.2.0, < 6.0)
       nokogiri (~> 1.6.0)
@@ -152,23 +169,15 @@ GEM
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     ref (2.0.0)
-    rspec-core (3.5.1)
-      rspec-support (~> 3.5.0)
-    rspec-expectations (3.5.0)
+    rspec-core (3.6.0.beta1)
+      rspec-support (= 3.6.0.beta1)
+    rspec-expectations (3.6.0.beta1)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.5.0)
-    rspec-mocks (3.5.0)
+      rspec-support (= 3.6.0.beta1)
+    rspec-mocks (3.6.0.beta1)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.5.0)
-    rspec-rails (3.5.0)
-      actionpack (>= 3.0)
-      activesupport (>= 3.0)
-      railties (>= 3.0)
-      rspec-core (~> 3.5.0)
-      rspec-expectations (~> 3.5.0)
-      rspec-mocks (~> 3.5.0)
-      rspec-support (~> 3.5.0)
-    rspec-support (3.5.0)
+      rspec-support (= 3.6.0.beta1)
+    rspec-support (3.6.0.beta1)
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -236,7 +245,8 @@ DEPENDENCIES
   rails-assets-jquery.inview!
   rails-assets-moment!
   rails-assets-spin!
-  rspec-rails
+  rails-controller-testing
+  rspec-rails!
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)
