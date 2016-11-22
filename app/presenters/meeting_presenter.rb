@@ -16,7 +16,7 @@ class MeetingPresenter
 
   def self.create_new(current_user_profile = nil)
     fellows = []
-    fellows << MeetingFellowPresenter.new(current_user_profile.id) unless current_user_profile.nil?
+    fellows << MeetingFellowPresenter.new(profile_id: current_user_profile.id) unless current_user_profile.nil?
     MeetingPresenter.new(
         meeting: Meeting.new,
         fellows: fellows)
@@ -32,12 +32,13 @@ class MeetingPresenter
   end
 
   def assign_params(params)
-    self.meeting.assign_attributes(MeetingPresenter.meeting_params(params))
+    mp = MeetingPresenter.meeting_params(params)
+    fp = MeetingPresenter.fellows_params(params)
+    self.meeting.assign_attributes(mp)
     fellows = []
-    Rails.logger.debug(params.inspect)
-    MeetingPresenter.fellows_params(params).each do |p|
-      next if p[:profile_id].blank?
-      fellows << MeetingFellowPresenter.new(profile_id: p[:profile_id])
+    fp.each do |k,v|
+      next if v[:profile_id].blank?
+      fellows << MeetingFellowPresenter.new(profile_id: v[:profile_id])
     end
     self.fellows = fellows
   end
@@ -56,9 +57,10 @@ class MeetingPresenter
   def save
     # Deffered association save, since ActiveRecord lacks
     self.meeting.updated_at_will_change!
+    fellow_ids = self.fellow_ids
     self.meeting.singleton_class.before_save do
-      profile_ids = self.fellow_ids
-      self.meeting.profile_ids = profile_ids
+      # NB. in this block 'self' refers to the meeting being saved
+      self.profile_ids = fellow_ids
     end
     self.meeting.save
   end
@@ -77,7 +79,7 @@ class MeetingPresenter
   private
 
   def self.fellows_params(params)
-    params.require(:meeting_presenter).fetch(:fellows, [])
+    params.require(:meeting_presenter).fetch(:fellows_attributes, {})
   end
 
   def self.meeting_params(params)
