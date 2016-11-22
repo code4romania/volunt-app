@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       resources p do
         collection do
           match 'search', via: [:get, :post]
+          get 'assignments' if p == :volunteers
         end
         if p == :fellows
           resources :status_reports, shallow: true, path: 'status-reports' if p == :fellows
