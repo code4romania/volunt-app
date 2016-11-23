@@ -59,7 +59,7 @@ class ProjectsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def project_params
-      params.require(:project).permit(
+      permitted = [
           :name,
           :beneficiary,
           :description,
@@ -68,6 +68,10 @@ class ProjectsController < ApplicationController
           :owner_id,
           :urls_string,
           :status,
-          :flags)
+          :flags]
+      Rails.configuration.x.project_urls.each do |k,v|
+        permitted << "urls_#{k}".to_sym
+      end
+      params.require(:project).permit(*permitted)
     end
 end

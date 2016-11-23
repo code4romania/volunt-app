@@ -5,8 +5,20 @@ module  TagsConcern
 
   module ClassMethods
     def hash_field(field, opts={})
-      
 
+      props = opts.fetch(:properties, [])
+      props.each do |p|
+        define_method("#{field}_#{p}") do
+          hash = self.send(field)
+          hash[p]
+        end
+
+        define_method("#{field}_#{p}=") do |value|
+          hash = self.send(field)
+          hash[p] = value
+        end
+      end
+      
       define_method("#{field}_string") do
         val = send(field)
         return '' if val.nil?

@@ -12,7 +12,7 @@
   <dt>Obiectiv<dt>
   <dd><%= sanitize_html_area(project.objective) %></dd>
   <dt>Links</dt>
-  <dd><%= render partial: 'shared/urls', locals: {urls: project.urls } %>
+  <dd><%= render partial: 'shared/project_urls', locals: {project: project } %>
   <dt>Tags</dt>
   <dd><%= render partial: 'shared/tags', locals: {tags: project.tags} %></dd>
   <%= yield %>

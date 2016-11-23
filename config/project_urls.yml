@@ -1,0 +1,32 @@
+# This file defines the project Links 
+# The YAML item record name is the hash key, so keep it as a correct symbol (smallcase, no spaces, no dashes)
+github:
+  label: GitHub
+  helptext: Link la proiect in GitHub
+  placeholder: https://github.com/gov-ithub/volunt-app
+
+slack:
+  label: Slack
+  helptext: Link la canalul de Slack
+  placeholder: https://govithub.slack.com/messages/volunt_app/
+
+jira:
+  label: JIRA
+  helptext: Link la proiect in JIRA
+  placeholder: https://contribute.gov.ro/jira/secure/RapidBoard.jspa?projectKey=VOLUNT-APP
+
+confluence:
+  label: Confluence
+  helptext: Link la proiect in Confluence
+  placeholder: https://contribute.gov.ro/confluence/display/VOLUNT-APP
+
+ithub:
+  label: Gov IT Hub
+  helptext: Link la proiect pe ithub.gov.ro
+  placeholder: http://ithub.gov.ro/2016/11/10/volunt-app/
+
+site:
+  label: Site
+  helptext: Link la proiectul live, daca e cazul
+  placeholder: http://voluntari.ithub.gov.ro
+

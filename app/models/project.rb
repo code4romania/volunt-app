@@ -3,7 +3,7 @@ class Project < ApplicationRecord
   include FlagBitsConcern
 
   array_field :tags
-  hash_field :urls, urls: true
+  hash_field :urls, urls: true, properties: Rails.configuration.x.project_urls.keys
 
   has_many :members, class_name: 'ProjectMember', dependent: :delete_all
   has_many :profiles, through: :members
