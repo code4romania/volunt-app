@@ -8,6 +8,7 @@
       <dt>Locatie</dt><dd><%= profile.location %></dd>
       <dt>Ocupatie</dt><dd><%= profile.title %></dd>
       <dt>Locul de munca</dt><dd><%= profile.workplace %></dd>
+      <dt>Creat la</dt><dd><%= profile.created_at %></dd>
       <dt>Skills</dt><dd><%= render partial: 'shared/skills', locals: {skills: profile.skills} %></dd>
       <dt>Links</dt><dd><%= render partial: 'shared/urls', locals: {urls: profile.urls} %></dd>
       <dt>Tags</dt><dd><%= render partial: 'shared/tags', locals: {tags: profile.tags} %></dd>
