@@ -64,6 +64,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'dotenv-rails'
   gem 'rspec-rails', git: 'https://github.com/rspec/rspec-rails.git'
+  gem 'shoulda-matchers', '~> 3.1'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'rails-controller-testing'
 end

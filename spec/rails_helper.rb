@@ -9,6 +9,7 @@ require 'rspec/rails'
 require 'support/factory_girl'
 require 'support/request_login_concern'
 require 'support/response_assertions'
+require 'support/shoulda_matchers'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
