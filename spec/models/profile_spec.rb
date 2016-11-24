@@ -9,6 +9,9 @@ describe Profile, type: :model do
 
   it { is_expected.to validate_uniqueness_of(:email) }
 
+  it { is_expected.to validate_length_of(:full_name).is_at_most(Profile::MAX_LENGTH_FULL_NAME) }
+  it { is_expected.to validate_length_of(:nick_name).is_at_most(Profile::MAX_LENGTH_NICK_NAME) }
+
   it { is_expected.to have_many :memberships }
   it { is_expected.to have_many :projects }
   it { is_expected.to have_many(:lead_projects).class_name('Project')
