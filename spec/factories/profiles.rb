@@ -1,5 +1,7 @@
 FactoryGirl.define do
   factory :profile do
-    email 'test@test.com'
+    email
+    full_name
+    nick_name
   end
 end

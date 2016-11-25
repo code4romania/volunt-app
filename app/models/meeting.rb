@@ -7,7 +7,7 @@ class Meeting < ApplicationRecord
   validates :location, presence: true
   validates :agency, presence: true
   validates :date, presence: true
-  
+
   default_scope {order(date: :desc)}
 
 end

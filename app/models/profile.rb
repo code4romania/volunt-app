@@ -1,7 +1,7 @@
 class Profile < ApplicationRecord
   include FlagBitsConcern
   include TagsConcern
-  
+
   array_field :tags
   array_field :skills
   array_field :hidden_tags
@@ -13,6 +13,9 @@ class Profile < ApplicationRecord
   PROFILE_FLAG_FELLOW       = 0x00000004
   PROFILE_FLAG_COORDINATOR  = 0x00000008
 
+  MAX_LENGTH_FULL_NAME = 128
+  MAX_LENGTH_NICK_NAME = 50
+
   flag_bit :applicant
   flag_bit :volunteer
   flag_bit :fellow
@@ -23,8 +26,8 @@ class Profile < ApplicationRecord
   scope :fellows, -> { where('profiles.flags & ? > 0', PROFILE_FLAG_FELLOW) }
   scope :coordinators, -> { where('profiles.flags & ? > 0', PROFILE_FLAG_COORDINATOR) }
 
-  validates :full_name, presence: true
-  validates :nick_name, presence: true
+  validates :full_name, presence: true, length: { maximum: MAX_LENGTH_FULL_NAME }
+  validates :nick_name, presence: true, length: { maximum: MAX_LENGTH_NICK_NAME }
   validates :email, presence: true, uniqueness: true, email: true
 
   has_many :memberships, class_name: 'ProjectMember', dependent: :delete_all
