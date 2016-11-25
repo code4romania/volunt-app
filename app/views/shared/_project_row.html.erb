@@ -5,5 +5,9 @@
   <td><%= project_row.owner.full_name unless project_row.owner.nil? %></td>
   <td><%= project_row.beneficiary %></td>
   <td><%= render partial: 'shared/tags', locals: {tags: project_row.tags} %></td>
-  <td><%= glyphicon_link_to project_path(project_row) %></td>
+  <td>
+    <% if is_user_level_fellow? %>
+      <%= glyphicon_link_to project_path(project_row) %>
+    <% end %>
+  </td>
 <% end %>

@@ -7,7 +7,7 @@ Este necesar ca volunt-app sa poata sa fie folosit si de catre voluntari si comu
  - [x] a-si vedea si modifica profilul. Acesta contine datele personale ale voluntarului (nume, email, telefon, poza, URL-uri relevante pentru profil)
  - [x] editeaza skill-urile declarate in profil
  - [ ] sa vada profilurile bursierilor Gov IT Hub, dara fara date personale (Eg. fara email-uri in afara celor @ithub.gov.ro)
- - [ ] vede lista de proiecte Gov IT Hub
+ - [x] vede lista de proiecte Gov IT Hub
  - [ ] sa vada datele public despre progresul proiectelor (status reports)
  - [ ] vede lista de nevoi a proiectelor
  - [ ] cauta proiecte dupa skill-urile cerute

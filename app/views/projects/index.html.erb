@@ -1,9 +1,11 @@
 <div class="container">  
-  <div class="btn-group" role="group">
-    <%= link_to new_project_path, class: 'btn btn-default' do %>
-      Creeaza Proiect
-    <% end %>
-  </div>
+  <% if is_user_level_fellow? %>
+    <div class="btn-group" role="group">
+      <%= link_to new_project_path, class: 'btn btn-default' do %>
+        Creeaza Proiect
+      <% end %>
+    </div>
+  <% end %>
   <div class="row">
     <span class="text-info notice"><%= notice %></span>
   </div>

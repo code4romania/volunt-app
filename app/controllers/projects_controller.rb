@@ -1,6 +1,10 @@
 class ProjectsController < ApplicationController
   include LoginConcern
-  authorization_required
+  authorization_required LoginConcern::USER_LEVEL_FELLOW,
+    except: [:index]
+  authorization_required LoginConcern::USER_LEVEL_COMMUNITY,
+    only: [:index]
+
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
