@@ -22,6 +22,7 @@
       <nav class="navbar-collapse bs-navbar-collapse collapse" role="navigation" id="site-navigation">
         <ul id="menu-nou" class="nav navbar-nav navbar-right responsive-nav main-nav-list">
           <li><%= link_to 'Openings', openings_path %></li>
+          <%= render 'shared/documents_menu' %>
           <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               <span class=""><%= current_user_email %><span class="caret"></span>
