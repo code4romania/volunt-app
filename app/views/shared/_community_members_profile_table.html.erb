@@ -1,0 +1,21 @@
+<table class="table fixed-table member-profiles-table-community">
+  <colgroup>
+    <col class="col-xs-8"/>
+    <col class="col-xs-4"/>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Nume</th>
+      <th>Rol</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% members.each do |m| %>
+      <tr>
+        <td><%= m.profile.full_name %></td>
+        <td><%= m.role %></td>
+      <tr>
+    <% end %>
+  </tbody>
+</table>
+

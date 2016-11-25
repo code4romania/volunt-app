@@ -1,9 +1,9 @@
 class ProjectsController < ApplicationController
   include LoginConcern
   authorization_required LoginConcern::USER_LEVEL_FELLOW,
-    except: [:index]
+    except: [:index, :show]
   authorization_required LoginConcern::USER_LEVEL_COMMUNITY,
-    only: [:index]
+    only: [:index, :show]
 
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
@@ -17,7 +17,13 @@ class ProjectsController < ApplicationController
     @status_reports = @project.status_reports.paginate(page: params[:status_reports_page])
     @volunteers = @project.members.volunteers.includes(:profile).paginate(page: params[:volunteers_page])
     @fellows = @project.members.fellows.includes(:profile).paginate(page: params[:fellows_page])
-    @openings = @project.openings.paginate(page: params[:openings_page])
+    openings = is_user_level_fellow? ? @project.openings : @project.openings.visible
+    @openings = openings.paginate(page: params[:openings_page])
+    if is_user_level_fellow?
+      render 'show'
+    else
+      render 'community_show'
+    end
   end
 
   # GET /projects/new
