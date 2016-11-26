@@ -13,6 +13,15 @@ class RequestResetsController < ApplicationController
       render action: :show, status: :conflict
     else
       user = User.where(email: @request_reset_presenter.email).first
+      if user.nil?
+        # if the user doesn't exist but a profile claims this email, 
+        # create an user on-the-fly. The email cannot login yet until
+        # it prooves email ownership via the link
+        profile = Profile.for_email @request_reset_presenter.email
+        if profile
+          user = User.create(email: @request_reset_presenter.email)
+        end
+      end
       unless user.nil?
         # rescue all exception to prevent leakage of account existance
         begin
