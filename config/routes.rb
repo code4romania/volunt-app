@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get '/login', to: 'static#login'
     post '/login', to: 'static#login_post'
     post '/signup', to: 'static#signup'
+    get '/signup', to: 'static#home'
     get 'httpsify', to: 'static#httpsify'
 
     resource :request_reset, only: [:show, :create],  path: '/request-reset'
