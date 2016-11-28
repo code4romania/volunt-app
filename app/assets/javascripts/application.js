@@ -15,4 +15,5 @@
 //= require jquery-ujs
 //= require bootstrap
 //= require summernote
+//= require export_csv
 //= require_self
