@@ -13,7 +13,19 @@ $(function() {
     table.find('tbody > tr').each(function(ids, tr) {
       
       $(tr).find('td:not(:last-child)').each(function(idx, td) {
-        csvFile += '"' + $(td).text().replace(/\s+/g,',') + '",';
+        jtd = $(td)
+        if (jtd.find('span.label').length > 0) {
+          csvFile += '"';
+          var comma = '';
+          jtd.find('span.label').each(function(idx, sp) {
+            csvFile += comma + $(sp).text().replace(/s+/g, ' ');
+            comma = ',';
+            });
+          csvFile += '",';
+        }
+        else {
+          csvFile += '"' + jtd.text().replace(/[\n\r]/g,'').replace(/\s+/g,' ') + '",';
+        }
       });
       csvFile += '\n';
     });
