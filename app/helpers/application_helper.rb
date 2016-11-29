@@ -118,10 +118,10 @@ module ApplicationHelper
     (html || '').html_safe
   end
 
-  def options_for_project_status
+  def options_for_project_status(selected)
     capture do 
       Rails.configuration.x.project_status.each do |(k,v)|
-        concat content_tag(:option, v["status"], value: k)
+        concat content_tag(:option, v["status"], value: k, selected: option_value_selected?(k, selected))
       end
     end
   end
