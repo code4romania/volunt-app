@@ -9,12 +9,16 @@ module  TagsConcern
       props = opts.fetch(:properties, [])
       props.each do |p|
         define_method("#{field}_#{p}") do
-          hash = self.send(field)
+          hash = self.send(field) || {}
           hash[p]
         end
 
         define_method("#{field}_#{p}=") do |value|
           hash = self.send(field)
+          if hash.nil?
+            hash = {}
+            self.send("#{field}=", hash)
+          end
           hash[p] = value
         end
       end
