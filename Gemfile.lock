@@ -70,6 +70,7 @@ GEM
     concurrent-ruby (1.0.2)
     css_parser (1.4.5)
       addressable
+    database_cleaner (1.5.3)
     diff-lcs (1.2.5)
     dotenv (2.1.1)
     dotenv-rails (2.1.1)
@@ -228,6 +229,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.2)
   bootstrap_form!
   byebug
+  database_cleaner
   dotenv-rails
   email_validator
   factory_girl_rails (~> 4.0)
