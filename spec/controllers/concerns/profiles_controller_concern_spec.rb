@@ -11,10 +11,9 @@ describe VolunteersController, type: :controller do
 
   before           { sign_in volunteer }
   let!(:volunteer) { create(:volunteer) }
+  let!(:profile)   { Profile.find_by_email(volunteer.email) }
 
   describe 'GET #new' do
-    let(:profile)    { Profile.find_by_email(volunteer.email) }
-
     it 'sets profile flag and assigns profile with current email' do
       get :new, { params: { protocol: 'https' } }
       expect(profile.flags).to eq(volunteer.flags)
@@ -26,7 +25,6 @@ describe VolunteersController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:profile)         { Profile.find_by_email(volunteer.email) }
     let(:project)         { create(:project) }
     let!(:memberships)    { profile.memberships = [create(:project_member, profile: profile, project: project)] }
     let!(:status_reports) { profile.status_reports = [create(:status_report, profile: profile, project: project)] }
@@ -37,6 +35,38 @@ describe VolunteersController, type: :controller do
       expect(assigns(:memberships)).to eq(memberships)
       expect(assigns(:status_reports)).to eq(status_reports)
       expect(response).to render_template('profiles/me')
+    end
+  end
+
+  describe 'PUT #update' do
+    let(:full_name) { 'Nume plin' }
+
+    it 'updates the profile' do
+      put :update, { params: {
+        'id'      => volunteer.id,
+        'profile' => {
+          'full_name'          => full_name,
+          'nick_name'          => 'Porecla',
+          'photo'              => '',
+          'email'              => 'imeil@igzemple.com',
+          'contacts_string'    => '',
+          'location'           => 'Romania',
+          'title'              => 'Manager',
+          'workplace'          => 'Guvernul României',
+          'skills_string'      => 'Ruby',
+          'urls_string'        => '',
+          'description'        => 'descriere',
+          'tags_string'        => 'remote',
+          'hidden_tags_string' => 'nda'
+        },
+        'protocol' => 'https'
+      }
+    }
+
+      expect(assigns(:profile)).to eq(profile)
+      expect(assigns(:profile).full_name).to eq(full_name)
+      expect(assigns(:profile).hidden_tags).to eq(['SELF UPDATED'])
+      expect(response).to redirect_to("/volunteers/#{volunteer.id}")
     end
   end
 end
