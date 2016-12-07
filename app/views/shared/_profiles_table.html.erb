@@ -1,15 +1,24 @@
 <table class="table fixed-table profiles-table">
   <colgroup>
-    <col class="col-xs-3" />
-    <col class="col-xs-2" />
-    <col class="col-xs-2" />
-    <col class="col-xs-4" />
-    <col class="col-xs-1" />
+    <% if is_user_level_fellow? %>
+      <col class="col-xs-3" />
+      <col class="col-xs-2" />
+      <col class="col-xs-2" />
+      <col class="col-xs-4" />
+      <col class="col-xs-1" />
+    <% else %>
+      <col class="col-xs-4" />
+      <col class="col-xs-3" />
+      <col class="col-xs-4" />
+      <col class="col-xs-1" />
+    <% end %>
   </colgroup>
   <thead>
     <tr>
       <th>Nume</th>
-      <th>Email</th>
+      <% if is_user_level_fellow? %>
+        <th>Email</th>
+      <% end %>
       <th>Locatie</th>
       <th>Atribute</th>
       <th />
@@ -23,10 +32,12 @@
               hide_label: true,
               placeholder: 'Alex',
               append: glyphicon_submit_helper('search') %></td>
-      <td><%= f.text_field :email,
-              hide_label: true,
-              placeholder: 'NOT @gmail',
-              append: glyphicon_submit_helper('search') %></td>
+      <% if is_user_level_fellow? %>
+        <td><%= f.text_field :email,
+                hide_label: true,
+                placeholder: 'NOT @gmail',
+                append: glyphicon_submit_helper('search') %></td>
+      <% end %>
       <td><%= f.text_field :location,
               hide_label: true,
               placeholder: 'Bucuresti',

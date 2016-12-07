@@ -1,5 +1,6 @@
 class VolunteersController < ApplicationController
   include ProfilesControllerConcern
+  include ProfileDefaultAuthorization
 
   profile_controller :volunteer, 'Voluntar'
 

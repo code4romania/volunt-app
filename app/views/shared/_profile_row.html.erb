@@ -1,8 +1,14 @@
 <tr>
   <td><%= profile_row.full_name %></td>
-  <td><%= profile_row.email %></td>
+  <% if is_user_level_fellow? %>
+    <td><%= profile_row.email %></td>
+  <% end %>
   <td><%= profile_row.location %></td>
   <td><%= render partial: 'shared/profile_attributes', locals: {profile: profile_row} %></td>
-  <td><%= glyphicon_link_to profile_path(profile_row) %></td>
+  <td>
+    <% if is_user_level_fellow? %>
+      <%= glyphicon_link_to profile_path(profile_row) %>
+    <% end %>
+  </td>
 </tr>
 

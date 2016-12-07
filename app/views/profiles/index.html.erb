@@ -1,9 +1,11 @@
 <div class="container">
   <div class="row">
     <%= render partial: 'shared/notice' %>
-    <div class="btn-group" role="group">
-      <%= link_to "Adauga #{profile_resource_name}", new_profile_path, class: 'btn btn-default' %>
-    </div>
+    <% if is_user_level_fellow? %>
+      <div class="btn-group" role="group">
+        <%= link_to "Adauga #{profile_resource_name}", new_profile_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
   </div>
   <div class="row">
     <%= render partial: 'shared/profiles_table', locals: {profiles: @profiles} %>
