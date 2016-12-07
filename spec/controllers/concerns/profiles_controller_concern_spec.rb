@@ -69,4 +69,34 @@ describe VolunteersController, type: :controller do
       expect(response).to redirect_to("/volunteers/#{volunteer.id}")
     end
   end
+
+  describe 'POST #create' do
+    let(:new_profile) { build_stubbed(:profile, email: 'new@volunteers.org') }
+
+    before { profile.destroy! }
+
+    it 'updates the profile' do
+      expect do
+        post :create, { params: {
+          'profile' => {
+            'full_name'          => new_profile.full_name,
+            'nick_name'          => new_profile.nick_name,
+            'photo'              => new_profile.photo,
+            'email'              => new_profile.email,
+            'contacts_string'    => new_profile.contacts_string,
+            'location'           => new_profile.location,
+            'title'              => new_profile.title,
+            'workplace'          => new_profile.workplace,
+            'skills_string'      => new_profile.skills_string,
+            'urls_string'        => new_profile.urls_string,
+            'description'        => new_profile.description,
+            'tags_string'        => new_profile.tags_string,
+            'hidden_tags_string' => new_profile.hidden_tags_string
+          },
+          'protocol' => 'https'
+        }
+      }
+      end.to change { Profile.count }.from(0).to(1)
+    end
+  end
 end
