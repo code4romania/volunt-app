@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
   include LoginConcern
+  include SearchConcern
+
   authorization_required LoginConcern::USER_LEVEL_FELLOW,
     except: [:index, :show]
   authorization_required LoginConcern::USER_LEVEL_COMMUNITY,
@@ -9,6 +11,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
+    @project_search_presenter = ProjectSearchPresenter.new
     @projects = Project.all.includes(:owner).paginate(page: params[:page])
   end
 
@@ -24,6 +27,21 @@ class ProjectsController < ApplicationController
     else
       render 'community_show'
     end
+  end
+
+  # POST /projects/search
+  def search
+    @project_search_presenter = ProjectSearchPresenter.new search_params
+    if @project_search_presenter.blank?
+      redirect_to projects_path
+      return
+    end
+
+    projects = Project
+    projects = chain_where_like(projects, 'name', @project_search_presenter.name)
+
+    @projects = projects
+    render 'projects/search'
   end
 
   # GET /projects/new
@@ -65,6 +83,11 @@ class ProjectsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:id])
+    end
+
+    def search_params
+      params.fetch(:project_search_presenter, {}).permit(
+        :name)
     end
 
     # Only allow a trusted parameter "white list" through.

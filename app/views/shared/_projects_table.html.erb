@@ -18,6 +18,23 @@
       <th>Tags</th>
       <th></th>
     </tr>
+    <tr>
+    <%= bootstrap_form_for(@project_search_presenter,
+          url: search_projects_path,
+          class: 'form-inline',
+          method: 'POST') do |f| %>
+      <td />
+      <td><%= f.text_field :name,
+              hide_label: true,
+              placeholder: 'volunt-app',
+              append: glyphicon_submit_helper('search') %></td>
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+    <% end %>
+    </tr>
   </thead>
   <tbody>
     <%= render partial: 'shared/project_row', collection: projects %>
