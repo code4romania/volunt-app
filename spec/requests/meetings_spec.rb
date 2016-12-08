@@ -11,7 +11,8 @@ RSpec.describe "Meetings", type: :request do
     end
   end
 
-    meeting = FactoryGirl.create(:meeting)
+  let!(:meeting) { FactoryGirl.create(:meeting) }
+
     context 'fellow' do
       before do
         login :fellow
