@@ -3,9 +3,9 @@ class ProjectsController < ApplicationController
   include SearchConcern
 
   authorization_required LoginConcern::USER_LEVEL_FELLOW,
-    except: [:index, :show]
+    except: [:index, :show, :search]
   authorization_required LoginConcern::USER_LEVEL_COMMUNITY,
-    only: [:index, :show]
+    only: [:index, :show, :search]
 
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
