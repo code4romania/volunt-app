@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       end
     end
 
+    post 'projects/search', to: 'projects#search', as: :search_projects
     resources :projects do
       resources :members, except: [:new] do
         collection do
