@@ -3,7 +3,7 @@ module ProfilesControllerConcern
   include ProfilePathConcern
   include SearchConcern
   include LoginConcern
-  
+
   included do
     before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
@@ -22,7 +22,7 @@ module ProfilesControllerConcern
     end
     render 'profiles/new'
   end
-  
+
   def edit
     render 'profiles/edit'
   end
@@ -77,14 +77,14 @@ module ProfilesControllerConcern
       render  'profiles/show'
     end
   end
-  
+
   def search
     @profile_search_presenter = ProfileSearchPresenter.new search_params
     if @profile_search_presenter.blank?
       redirect_to profiles_path
       return
     end
-    
+
     profiles = profiles_scope
     profiles = chain_where_like(profiles, 'full_name', @profile_search_presenter.full_name);
     profiles = chain_where_like(profiles, 'email', @profile_search_presenter.email);
@@ -93,7 +93,7 @@ module ProfilesControllerConcern
     unless @profile_search_presenter.attrs.blank?
       # attrs is a mixed value: tags, skills and title
       # two of them are arrays, one is string. Enjoy
-      
+
       # transform attrs into tags (split, upercase, no spaces)
       tags = @profile_search_presenter.attrs.split(/\,|;/).map {|x| x.strip.upcase}
 
@@ -102,7 +102,7 @@ module ProfilesControllerConcern
 
       tags_sql, tags_opts = define_where_fragment_array_pos_neg("tags", pos_tags, neg_tags)
       hidden_tags_sql, hidden_tags_opts = define_where_fragment_array_pos_neg("hidden_tags", pos_tags, neg_tags)
-      skills_sql, skills_opts = define_where_fragment_array_pos_neg("skills", pos_tags, neg_tags)     
+      skills_sql, skills_opts = define_where_fragment_array_pos_neg("skills", pos_tags, neg_tags)
       # for title we not consider negative tags as it would qualify everything
       title_sql, title_opts = define_where_fragment_like_pos_neg('title', pos_tags, [])
 
@@ -146,7 +146,7 @@ module ProfilesControllerConcern
         :email,
         :description,
         :urls_string]
-    if is_user_level_fellow? 
+    if is_user_level_fellow?
       permitted << :flags
       permitted << :status
       permitted << :hidden_tags_string
@@ -156,13 +156,13 @@ module ProfilesControllerConcern
 
   def authorization_required_or_self
     redirect_to login_path if !is_user_logged_in? or (
-      !is_user_level_authorized?(LoginConcern::USER_LEVEL_FELLOW) and 
+      !is_user_level_authorized?(LoginConcern::USER_LEVEL_FELLOW) and
       !@profile.has_email?(current_user_email))
   end
-  
+
   def authorization_required_or_new_user
     redirect_to login_path if !is_user_logged_in? or (
-      !is_user_level_authorized?(LoginConcern::USER_LEVEL_FELLOW) and 
+      !is_user_level_authorized?(LoginConcern::USER_LEVEL_FELLOW) and
       !is_new_user?)
   end
 
@@ -176,18 +176,18 @@ module ProfilesControllerConcern
       controllers_path = "#{controller}s_path"
       controller_scope = "#{controller}s"
       profile_flag = "Profile::PROFILE_FLAG_#{controller.upcase}".constantize
-      
+
       # Define the route helpers as aliases of the current type
       helper_method :profile_path,
         :profiles_path,
         :edit_profile_path,
         :new_profile_path,
         :search_profiles_path
-      
+
       define_method 'profile_path' do |profile|
         send(controller_path, profile)
       end
-      
+
       define_method 'profiles_path' do
         send(controllers_path)
       end
@@ -218,7 +218,7 @@ module ProfilesControllerConcern
       end
 
     end
-    
+
   end
 
 end
