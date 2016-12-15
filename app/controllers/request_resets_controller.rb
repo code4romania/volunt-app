@@ -36,7 +36,7 @@ class RequestResetsController < ApplicationController
         end
       end
     end
-    flash[:notice] = notice
+    flash.now[:notice] = notice
     render action: :show, status: :conflict unless redirected
   end
 
