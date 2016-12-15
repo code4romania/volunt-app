@@ -9,7 +9,6 @@ development:
 test:
   <<: *common
   from: someone@example.com
-  to: none@example.com
 
 production:
   from: <%= ENV['VOLUNTARI_EMAIL_PROD_FROM'] %>

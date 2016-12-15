@@ -9,29 +9,35 @@ class RequestResetsController < ApplicationController
 
   def create
     @request_reset_presenter = RequestResetPresenter.new params_permit
-    if @request_reset_presenter.invalid?
-      render action: :show, status: :conflict
-    else
-      user = User.where(email: @request_reset_presenter.email).first
+    redirected = false
+    unless @request_reset_presenter.invalid?
+      email = @request_reset_presenter.email
+      notice = "Nu exista un profil pentru adresa de email #{email}"
+      user = User.where(email: email).first
       if user.nil?
         # if the user doesn't exist but a profile claims this email, 
         # create an user on-the-fly. The email cannot login yet until
         # it prooves email ownership via the link
-        profile = Profile.for_email @request_reset_presenter.email
+        profile = Profile.for_email email
         if profile
-          user = User.create(email: @request_reset_presenter.email)
+          user = User.create(email: email)
         end
       end
       unless user.nil?
         # rescue all exception to prevent leakage of account existance
         begin
-          UserMailer.reset_password(user).deliver_now
+          UserMailer.reset_password(user, email).deliver_now
+          notice = 'Am trimis un email cu instructiuni de resetare a parolei'
+          redirect_to login_path, notice: notice
+          redirected = true
         rescue Exception => e
           Rails.logger.error "Exception in RequestResetsController::create: #{e.class.name}:  #{e.message}"
+          notice = "Eroare la resetarea parolei pentru #{email}: #{e.message}"
         end
       end
-      redirect_to login_path, notice: 'Am trimis un email cu instructiuni de resetare a parolei'
     end
+    flash.now[:notice] = notice
+    render action: :show, status: :conflict unless redirected
   end
 
   private

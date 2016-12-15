@@ -5,12 +5,12 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.reset_password.subject
   #
-  def reset_password(user)
+  def reset_password(user, email = nil)
     validation = ValidationToken.reset_password user
     @url = validation_token_url(validation)
     @user = user
-    @to = @user.email
-    mail(to: @user.email, subject: 'Reseteaza parola Voluntari Gov IT Hub')
+    @to = email || @user.email
+    mail(to: @to, subject: 'Reseteaza parola Voluntari Gov IT Hub')
   end
 
   def welcome(user)

@@ -8,9 +8,9 @@ Rails.configuration.x.email = OpenStruct.new(Rails.application.config_for(:email
 #
 class VoluntariEmailInterceptor
   def self.delivering_email(message)
-    message.from = Rails.configuration.x.email.from unless Rails.configuration.x.email.from.nil?
-    message.to = Rails.configuration.x.email.to unless Rails.configuration.x.email.to.nil?
-    message.bcc = Rails.configuration.x.email.bcc unless Rails.configuration.x.email.bcc.nil?
+    message.from = Rails.configuration.x.email.from unless Rails.configuration.x.email.from.blank?
+    message.to = Rails.configuration.x.email.to unless Rails.configuration.x.email.to.blank?
+    message.bcc = Rails.configuration.x.email.bcc unless Rails.configuration.x.email.bcc.blank?
   end
 end
 

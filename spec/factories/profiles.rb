@@ -3,5 +3,6 @@ FactoryGirl.define do
     full_name
     nick_name
     email
+    contacts_string {"email1: #{generate :email}"}
   end
 end
