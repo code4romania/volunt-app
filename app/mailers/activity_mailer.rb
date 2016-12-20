@@ -1,7 +1,7 @@
 class ActivityMailer < ApplicationMailer
   include ProfilePathConcern
   add_template_helper(ApplicationHelper)
-  helper_method :profile_path
+  helper_method :profile_url
 
   def daily(from_time, to_time)
     @from_time = from_time
@@ -11,7 +11,7 @@ class ActivityMailer < ApplicationMailer
   end
 
   private
-  def profile_path(profile)
-    detect_profile_path(profile)
+  def profile_url(profile)
+    detect_profile_url(profile)
   end
 end
