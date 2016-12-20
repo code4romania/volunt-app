@@ -7,7 +7,7 @@ RSpec.describe ActivityMailer, type: :mailer do
   let!(:date)       { profile.created_at.to_date }
 
   def send_report
-    described_class.daily(date).deliver_now
+    described_class.daily(12.hours.ago, Time.now).deliver_now
   end
   
   describe 'Daily activity' do

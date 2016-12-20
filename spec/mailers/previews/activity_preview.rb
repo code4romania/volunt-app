@@ -2,7 +2,7 @@
 class ActivityPreview < ActionMailer::Preview
 
   def daily
-    ActivityMailer.daily(Date.today)
+    ActivityMailer.daily(24.hours.ago, Time.now)
   end
 
 end
