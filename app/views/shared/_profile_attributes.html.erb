@@ -1,6 +1,6 @@
   <span class="profile-attributes"><%= profile.title %></span>
   <span class="profile-attributes"><%= render partial: 'shared/tags', locals: {tags: profile.tags } %></span>
   <span class="profile-attributes"><%= render partial: 'shared/skills', locals: {skills: profile.skills} %></span>
-  <% if is_user_level_fellow? %>
+  <% if respond_to?(:is_user_level_fellow?) and is_user_level_fellow? %>
     <span class="profile-attributes"><%= render partial: 'shared/tags', locals: {tags: profile.hidden_tags, hidden: true } %></span>
   <% end %>
