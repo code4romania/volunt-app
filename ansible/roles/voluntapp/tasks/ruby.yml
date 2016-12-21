@@ -1,0 +1,37 @@
+---
+- name: add ruby ppa
+  apt_repository:
+    repo: "ppa:brightbox/ruby-ng"
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: install ruby and related packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - ruby2.3
+    - ruby2.3-dev
+    - make
+    - g++
+    - git
+    - zlib1g-dev
+  become: yes
+
+- name: install bundler
+  gem:
+    name: bundler
+    user_install: no
+    state: present
+  become: yes
+
+- name: install app gems
+  bundler:
+    state: present
+    chdir: "{{ app_path }}"
+
+- name: setup the db
+  command: rails db:setup
+  args:
+    chdir: "{{ app_path }}"

@@ -1,0 +1,5 @@
+---
+app_path: /vagrant
+postgres_db: voluntari_development
+postgres_user: vagrant
+postgres_version: 9.6

@@ -1,0 +1,5 @@
+- hosts: development
+  gather_facts: no
+  remote_user: vagrant
+  roles:
+    - voluntapp
