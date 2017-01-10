@@ -1,16 +1,4 @@
 ---
-- name: install general packages
-  apt:
-    name: "{{ item }}"
-    update_cache: yes
-    state: present
-  with_items:
-    - python-dev
-    - python-psycopg2
-  become: yes
-
-- include: postgres.yml
-
 - name: install .env file
   template:
     src: .env
