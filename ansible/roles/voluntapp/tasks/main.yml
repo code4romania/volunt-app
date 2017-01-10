@@ -16,5 +16,4 @@
     src: .env
     dest: "{{ app_path }}/.env"
 
-- include: ruby.yml
 
