@@ -5,7 +5,7 @@
     home: "{{ site_deployment_path }}"
     createhome: no
     state: present
-  sudo: yes
+  become: yes
 
 - name: add group of app_user to groups of www-data
   user:
@@ -14,7 +14,7 @@
     append: yes
   notify:
     - restart nginx
-  sudo: yes
+  become: yes
 
 - name: clone project
   git:
@@ -29,4 +29,4 @@
     group: "{{ site_app_group }}"
     recurse: yes
     state: directory
-sudo: yes
+  become: yes
