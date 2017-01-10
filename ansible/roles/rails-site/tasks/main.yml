@@ -26,10 +26,13 @@
     state: present
   become: yes
 
+- include: prod.yml
+  when: site_prod_env
+
 - name: install app gems
   bundler:
     state: present
-    chdir: "{{ app_path }}"
+    chdir: "{{ site_deployment_path }}"
 
 - name: setup the db
   command: rails db:setup
