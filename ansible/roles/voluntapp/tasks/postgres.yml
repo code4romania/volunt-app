@@ -24,6 +24,7 @@
 - name: create database role
   postgresql_user:
     name: "{{ postgres_user }}"
+    password: "{{ postgres_password }}"
     role_attr_flags: SUPERUSER
     state: present
   become: yes
