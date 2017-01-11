@@ -1,5 +1,11 @@
 ---
-app_path: /vagrant
+ENV: development
+
+site_deployment_path: /vagrant
+site_app_user: vagrant
+
+nginx_server_name: colab.code4.ro
+
 postgres_db: voluntari_development
-postgres_user: vagrant
-postgres_version: 9.6
+postgres_user: "{{ site_app_user }}"
+postgres_password: mydevpostgresdbpass
