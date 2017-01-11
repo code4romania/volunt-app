@@ -37,4 +37,4 @@
 - name: setup the db
   command: rails db:setup
   args:
-    chdir: "{{ app_path }}"
+    chdir: "{{ site_deployment_path }}"
