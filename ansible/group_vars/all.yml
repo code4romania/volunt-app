@@ -1,0 +1,4 @@
+---
+postgres_version: 9.6
+
+site_repo_url: "git@github.com:code4romania/volunt-app.git"

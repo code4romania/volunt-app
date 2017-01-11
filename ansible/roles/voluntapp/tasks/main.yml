@@ -2,6 +2,8 @@
 - name: install .env file
   template:
     src: .env
-    dest: "{{ app_path }}/.env"
+    dest: "{{ site_deployment_path }}/.env"
 
+- include: postgres.yml
 
+- include: nginx.yml
