@@ -1,9 +1,4 @@
 ---
-- name: install .env file
-  template:
-    src: .env
-    dest: "{{ site_deployment_path }}/.env"
-
 - include: postgres.yml
 
 - include: nginx.yml
