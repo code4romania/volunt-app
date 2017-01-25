@@ -44,6 +44,18 @@
     group: "{{ site_app_group }}"
   become: yes
 
+- name: create dirs for puma
+  file:
+    path: "{{ site_deployment_path }}/{{ item }}"
+    state: directory
+    owner: "{{ site_app_user }}"
+    group: "{{ site_app_group }}"
+    recurse: yes
+  with_items:
+    - tmp/log/
+    - tmp/pids/
+  become: yes
+
 - name: install app gems
   bundler:
     state: present
