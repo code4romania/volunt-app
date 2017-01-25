@@ -64,6 +64,6 @@ exec /bin/bash <<'EOT'
   cd $app
   logger -t puma "Starting server: $app"
 
-  exec bundle exec puma -C config/puma.rb
+  exec bundle exec puma -C config/{{ puma_config }}.rb
 EOT
 end script

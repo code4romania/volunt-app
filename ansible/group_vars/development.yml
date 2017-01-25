@@ -9,3 +9,5 @@ nginx_server_name: colab.code4.ro
 postgres_db: voluntari_development
 postgres_user: "{{ site_app_user }}"
 postgres_password: mydevpostgresdbpass
+
+puma_config: puma
