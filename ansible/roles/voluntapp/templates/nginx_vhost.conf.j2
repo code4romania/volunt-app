@@ -1,11 +1,11 @@
 upstream app {
     # Path to Puma SOCK file, as defined previously
-    server unix:{{ site_deployment_path }}/sockets/puma.sock fail_timeout=0;
+    server unix:{{ site_deployment_path }}/tmp/sockets/puma.sock fail_timeout=0;
 }
 
 server {
     listen 80;
-    server_name localhost;
+    server_name {{ nginx_server_name }};
 
     root {{ site_deployment_path }}/public;
 

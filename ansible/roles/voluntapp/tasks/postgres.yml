@@ -42,7 +42,7 @@
 
 - name: create database
   postgresql_db:
-    db: "{{ postgres_db}}"
+    db: "{{ postgres_db }}"
     owner: "{{ postgres_user }}"
     state: present
   become: yes
