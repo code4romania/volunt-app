@@ -1,4 +1,14 @@
 ---
+- name: install packages needed by Ansible for postgres
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - python-dev
+    - python-psycopg2
+  become: yes
+
 - name: add postgres server key
   apt_key:
     url: "https://www.postgresql.org/media/keys/ACCC4CF8.asc"
