@@ -36,12 +36,26 @@
     owner: "{{ site_app_user }}"
   become: yes
 
+- name: create a dir for bundler
+  file:
+    path: "{{ site_deployment_path }}/vendor/bundle"
+    state: directory
+    owner: "{{ site_app_user }}"
+    group: "{{ site_app_group }}"
+  become: yes
+
 - name: install app gems
   bundler:
     state: present
+    deployment_mode: "{{ ENV == 'production' }}"
+    clean: yes
     chdir: "{{ site_deployment_path }}"
+  become: yes
+  become_user: "{{ site_app_user }}"
 
 - name: setup the db
-  command: rails db:setup
+  command: bundle exec rails db:setup
   args:
     chdir: "{{ site_deployment_path }}"
+  become: yes
+  become_user: "{{ site_app_user }}"

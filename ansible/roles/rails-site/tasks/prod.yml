@@ -19,14 +19,24 @@
 - name: clone project
   git:
     repo: "{{ site_repo_url }}"
-    dest: "{{ site_deployment_path }}"
+    dest: /tmp/colabapp
     accept_hostkey: yes
 
-- name: set the app user as the owner
+- name: copy project to deployment location
+  command: rsync -avz --delete /tmp/colabapp/ {{ site_deployment_path }}
+  become: yes
+
+- name: set permissions
   file:
     path: "{{ site_deployment_path }}"
     owner: "{{ site_app_user }}"
     group: "{{ site_app_group }}"
+    mode: 0755
     recurse: yes
-    state: directory
   become: yes
+
+- name: delete cloned project
+  file:
+    path: /tmp/colabapp
+    state: absent
+
