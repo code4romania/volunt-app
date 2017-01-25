@@ -29,6 +29,13 @@
 - include: prod.yml
   when: site_prod_env
 
+- name: install .env file
+  template:
+    src: .env.j2
+    dest: "{{ site_deployment_path }}/.env"
+    owner: "{{ site_app_user }}"
+  become: yes
+
 - name: install app gems
   bundler:
     state: present
