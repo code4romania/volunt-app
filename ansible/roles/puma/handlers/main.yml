@@ -1,6 +1,6 @@
 ---
 - name: restart puma
   service:
-    name: puma
+    name: puma-manager
     state: restarted
   become: yes
