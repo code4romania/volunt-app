@@ -54,6 +54,7 @@
   with_items:
     - tmp/log/
     - tmp/pids/
+    - tmp/sockets/
   become: yes
 
 - name: install app gems
