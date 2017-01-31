@@ -9,6 +9,12 @@ server {
 
     root {{ site_deployment_path }}/public;
 
+    location ^~ /assets/ {
+        gzip_static on;
+        expires max;
+        add_header Cache-Control public;
+    }
+
     try_files $uri/index.html $uri @app;
 
     location @app {
