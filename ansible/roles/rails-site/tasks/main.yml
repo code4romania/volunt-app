@@ -72,3 +72,11 @@
     chdir: "{{ site_deployment_path }}"
   become: yes
   become_user: "{{ site_app_user }}"
+
+- name: precompile assets
+  command: bundler exec rails assets:precompile
+  args:
+    chdir: "{{ site_deployment_path }}"
+  when: ENV == "production"
+  become: yes
+  become_user: "{{ site_app_user }}"
