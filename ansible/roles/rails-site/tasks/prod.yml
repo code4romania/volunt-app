@@ -24,6 +24,8 @@
 
 - name: copy project to deployment location
   command: rsync -avz --delete /tmp/colabapp/ {{ site_deployment_path }}
+  notify:
+    - restart puma
   become: yes
 
 - name: set permissions
