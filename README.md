@@ -20,6 +20,29 @@ Cind aplicatia este folosita de un voluntar:
 - Acces lista de pozitii, cautare dupa skills/atribute
 - Aplicare la pozitii (disponibilitate de a lucra la un proiect)
 
+
+## Development
+
+- Instalează Vagrant și VirtualBox
+- Clonează proiectul:
+```bash
+git clone https://github.com/code4romania/volunt-app ~/dev/volunt-app
+```
+- Creează setup-ul:
+```bash
+cd ~/dev/volunt-app
+vagrant up
+```
+- Ca să accesezi aplicația, intră în VM și pornește serverul:
+```bash
+vagrant ssh
+cd /vagrant
+rails s -b 0.0.0.0
+```
+- Poți accesa aplicația în browser la adresa `http://localhost:8000` (Vagrant
+se ocupă de port forwarding de la 8000 la 3000)
+
+
 ## Install
 
 Applicatia se conecteaza la o baza de PostgreSQL.
