@@ -11,3 +11,5 @@ postgres_user: "{{ site_app_user }}"
 postgres_password: mydevpostgresdbpass
 
 puma_config: puma
+
+rails_secret_key_base: ""
