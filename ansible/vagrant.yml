@@ -2,7 +2,7 @@
   gather_facts: no
   remote_user: vagrant
   roles:
-    - ansible-locale
+    - external/ansible-locale
     - voluntapp
     - rails-site
     - puma
