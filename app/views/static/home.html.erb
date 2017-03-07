@@ -1,7 +1,7 @@
 <div class="jumbotron landing">
     <div class="col-lg-offset-6">
       <div class="signup-form">
-				<h2>Inscrie-te in comunitate</h2>
+				<h2>Înscrie-te în comunitate</h2>
         <%= render partial: 'shared/notice' %>
         <%= bootstrap_form_for(@signup_presenter,
               method: :post,
@@ -12,7 +12,9 @@
                 hide_label: true,
                 input_group_class: 'input-group-lg',
                 append: f.submit('Sign up', class: 'btn btn-primary', id: 'signup-submit'),
-                help: 'Introdu o adresa de email prin care programul GovITHub te poate contacta. Pentru a accesa resursele programului vei primi un email automat prin care vei putea accesa contul tau.'  %>
+                help: 'Avem nevoie de skillurile tale: programare, comunicare, design, organizare evenimente, cercetare, analiză de date și altele la care poate nici nu ne-am gândit.
+
+                Introdu adresa ta de email și te vom contacta noi apoi pentru pașii următori.'  %>
         <% end %>
       </div>
     </div>

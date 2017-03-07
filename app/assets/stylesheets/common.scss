@@ -1,14 +1,14 @@
 // Common styles used on all views
 
 // Google fonts
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600,700&subset=latin-ext');
 
 // General styles
 body{
   background: #f2f2f2;
 }
 body, input, select, textarea{
-  font-family: 'Open Sans', 'sans-serif';
+  font-family: 'Titillium Web', 'sans-serif';
 }
 a.navbar-brand {
   padding: 0px;
@@ -25,13 +25,13 @@ hr{
   margin: 0;
 }
 .nav>li>a{
-  color: #404040;
+  color: #0000FF;
   font-weight: 600;
   font-size: 16px;
 }
 .nav>li>a:hover, .nav>li>a:focus{
   background-color: transparent;
-  color: #a31e60;
+  color: #0000DE;
 }
 .dropdown-menu{
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.175);

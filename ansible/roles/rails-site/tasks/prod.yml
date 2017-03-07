@@ -1,0 +1,44 @@
+---
+- name: create app user
+  user:
+    name: "{{ site_app_user }}"
+    home: "{{ site_deployment_path }}"
+    createhome: no
+    state: present
+  become: yes
+
+- name: add group of app_user to groups of www-data
+  user:
+    name: www-data
+    groups: "{{ site_app_group }}"
+    append: yes
+  notify:
+    - restart nginx
+  become: yes
+
+- name: clone project
+  git:
+    repo: "{{ site_repo_url }}"
+    dest: /tmp/colabapp
+    accept_hostkey: yes
+
+- name: copy project to deployment location
+  command: rsync -avz --delete /tmp/colabapp/ {{ site_deployment_path }}
+  notify:
+    - restart puma
+  become: yes
+
+- name: set permissions
+  file:
+    path: "{{ site_deployment_path }}"
+    owner: "{{ site_app_user }}"
+    group: "{{ site_app_group }}"
+    mode: 0755
+    recurse: yes
+  become: yes
+
+- name: delete cloned project
+  file:
+    path: /tmp/colabapp
+    state: absent
+

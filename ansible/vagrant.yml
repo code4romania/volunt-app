@@ -1,0 +1,8 @@
+- hosts: development
+  gather_facts: no
+  remote_user: vagrant
+  roles:
+    - external/ansible-locale
+    - voluntapp
+    - rails-site
+    - puma

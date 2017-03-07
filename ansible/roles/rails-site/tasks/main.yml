@@ -1,0 +1,82 @@
+---
+- name: add ruby ppa
+  apt_repository:
+    repo: "ppa:brightbox/ruby-ng"
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: install ruby and related packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - ruby2.3
+    - ruby2.3-dev
+    - make
+    - g++
+    - git
+    - zlib1g-dev
+  become: yes
+
+- name: install bundler
+  gem:
+    name: bundler
+    user_install: no
+    state: present
+  become: yes
+
+- include: prod.yml
+  when: site_prod_env
+
+- name: install .env file
+  template:
+    src: .env.j2
+    dest: "{{ site_deployment_path }}/.env"
+    owner: "{{ site_app_user }}"
+  become: yes
+
+- name: create a dir for bundler
+  file:
+    path: "{{ site_deployment_path }}/vendor/bundle"
+    state: directory
+    owner: "{{ site_app_user }}"
+    group: "{{ site_app_group }}"
+  become: yes
+
+- name: create dirs for puma
+  file:
+    path: "{{ site_deployment_path }}/{{ item }}"
+    state: directory
+    owner: "{{ site_app_user }}"
+    group: "{{ site_app_group }}"
+    recurse: yes
+  with_items:
+    - tmp/log/
+    - tmp/pids/
+    - tmp/sockets/
+  become: yes
+
+- name: install app gems
+  bundler:
+    state: present
+    deployment_mode: "{{ ENV == 'production' }}"
+    clean: yes
+    chdir: "{{ site_deployment_path }}"
+  become: yes
+  become_user: "{{ site_app_user }}"
+
+- name: setup the db
+  command: bundle exec rails db:setup
+  args:
+    chdir: "{{ site_deployment_path }}"
+  become: yes
+  become_user: "{{ site_app_user }}"
+
+- name: precompile assets
+  command: bundler exec rails assets:precompile
+  args:
+    chdir: "{{ site_deployment_path }}"
+  when: ENV == "production"
+  become: yes
+  become_user: "{{ site_app_user }}"

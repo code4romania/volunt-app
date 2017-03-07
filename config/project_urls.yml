@@ -3,30 +3,15 @@
 github:
   label: GitHub
   helptext: Link la proiect in GitHub
-  placeholder: https://github.com/gov-ithub/volunt-app
+  placeholder: https://github.com/code4romania/volunt-app
 
 slack:
   label: Slack
   helptext: Link la canalul de Slack
-  placeholder: https://govithub.slack.com/messages/volunt_app/
-
-jira:
-  label: JIRA
-  helptext: Link la proiect in JIRA
-  placeholder: https://contribute.gov.ro/jira/secure/RapidBoard.jspa?projectKey=VOLUNT-APP
-
-confluence:
-  label: Confluence
-  helptext: Link la proiect in Confluence
-  placeholder: https://contribute.gov.ro/confluence/display/VOLUNT-APP
-
-ithub:
-  label: Gov IT Hub
-  helptext: Link la proiect pe ithub.gov.ro
-  placeholder: http://ithub.gov.ro/2016/11/10/volunt-app/
+  placeholder: https://code4romania.slack.com/messages/project_colabapp/
 
 site:
   label: Site
   helptext: Link la proiectul live, daca e cazul
-  placeholder: http://voluntari.ithub.gov.ro
+  placeholder: http://colab.code4.ro
 

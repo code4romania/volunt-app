@@ -9,7 +9,7 @@
 *.ppt
 *.pptx
 TODO.md
-.env*
+.env
 .sass-cache
 .byebug_history
 capybara-*.html
@@ -32,3 +32,6 @@ tags
 pickle-email-*.html
 .project
 config/initializers/secret_token.rb
+.vagrant
+ansible/roles/ansible-*
+ansible/roles/external/*

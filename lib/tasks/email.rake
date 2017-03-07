@@ -11,4 +11,13 @@ namespace :email do
 
     TemplatesMailer.send_template_to_profile(template, profile).deliver_now
   end
+
+  desc 'Send activity'
+  task :send_daily_activity, [:hours] => :environment do |t, args|
+    # use 25h not 24 to ensure overlap (no missing gaps)
+    hours = (args[:hours] || 25).to_i
+    Rails.logger.info(":send_daily_activity #{hours}: #{args.inspect}")
+    ActivityMailer.daily(hours.hours.ago, Time.now).deliver_now
+  end
+  
 end

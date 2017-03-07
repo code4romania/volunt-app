@@ -7,8 +7,8 @@ development:
 
 test:
   <<: *common
-  mail_url_host: example.com
+  mail_url_host: www.example.com
 
 production:
   <<: *common
-  mail_url_host: voluntari.gov.ro
+  mail_url_host: voluntari.ithub.gov.ro

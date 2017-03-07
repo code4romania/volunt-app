@@ -1,0 +1,9 @@
+<h3>Profile noi create: <%= @profiles.count %></h3>
+<% @profiles.each do |p| %>
+<p>
+<%= link_to p.full_name, profile_url(p) %><br>
+<%= p.location %><br>
+<%= render partial: 'shared/profile_attributes', locals: {profile: p} %>
+</p>
+<hr>
+<% end %>

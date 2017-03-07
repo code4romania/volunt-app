@@ -1,13 +1,13 @@
 [![Travis build](https://travis-ci.org/gov-ithub/volunt-app.svg?branch=master)](https://travis-ci.org/gov-ithub/volunt-app)
 [![Code Climate](https://codeclimate.com/github/gov-ithub/volunt-app/badges/gpa.svg)](https://codeclimate.com/github/gov-ithub/volunt-app)
 
-# Gestiunea voluntarilor si proiectelor Gov IT Hub
-Un sistem de gestiune a voluntarilor si proiectelor Gov IT Hub disponibil la http://voluntari.ithub.gov.ro/
+# Gestiunea voluntarilor si proiectelor Code4Romania
+Un sistem de gestiune a voluntarilor si proiectelor Code4Romania disponibil la http://colab.code4.ro/
 
 Cind aplicatia este folosita de un bursier sau coordinator:
 - Inregistrarea voluntarilor, completarea de profil (locatie, contact, skills, tags)
 - Cautare voluntari dupa locatie, skils, taguri
-- Inregistrarea proiectelor Gov IT Hub
+- Inregistrarea proiectelor Code4Romania
 - Managementul alocarii de voluntari per proiect, incarcare etc
 - Inregistrera progresului pe proiecte, integrare cu GitHub/JIRA
 - Pozitii disponibile in proiect (openings, jobs)
@@ -19,6 +19,29 @@ Cind aplicatia este folosita de un voluntar:
 - Acces lista de proiecte, informatii publice in proiect
 - Acces lista de pozitii, cautare dupa skills/atribute
 - Aplicare la pozitii (disponibilitate de a lucra la un proiect)
+
+
+## Development
+
+- Instalează Vagrant și VirtualBox
+- Clonează proiectul:
+```bash
+git clone https://github.com/code4romania/volunt-app ~/dev/volunt-app
+```
+- Creează setup-ul:
+```bash
+cd ~/dev/volunt-app
+vagrant up
+```
+- Ca să accesezi aplicația, intră în VM și pornește serverul:
+```bash
+vagrant ssh
+cd /vagrant
+rails s -b 0.0.0.0
+```
+- Poți accesa aplicația în browser la adresa `http://localhost:8000` (Vagrant
+se ocupă de port forwarding de la 8000 la 3000)
+
 
 ## Install
 
