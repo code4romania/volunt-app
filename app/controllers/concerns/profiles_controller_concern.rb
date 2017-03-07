@@ -90,7 +90,7 @@ module ProfilesControllerConcern
       # two of them are arrays, one is string. Enjoy
 
       # transform attrs into tags (split, upercase, no spaces)
-      tags = @profile_search_presenter.attrs.split(/\,|;/).map {|x| x.strip.upcase}
+      tags = @profile_search_presenter.attrs_tags
 
       # positive vs. negative
       pos_tags, neg_tags = split_tags_pos_neg(tags)
@@ -111,6 +111,12 @@ module ProfilesControllerConcern
       profiles = profiles.where(sql, *opts)
     end
 
+    unless @profile_search_presenter.skill_wish_list.blank?
+      w_tags = @profile_search_presenter.skill_wish_list_tags
+      w_sql, w_opts = define_where_fragment_array_pos_neg(:skill_wish_list, w_tags, [])
+      profiles = profiles.where(w_sql, *w_opts)
+    end
+
     @profiles = profiles.order(:full_name)
     render 'profiles/search'
   end
@@ -120,7 +126,7 @@ module ProfilesControllerConcern
 
   def search_params
     params.fetch(:profile_search_presenter, {}).permit(
-      :full_name, :email, :location, :attrs)
+      :full_name, :email, :location, :attrs, :skill_wish_list)
   end
 
   def set_profile
@@ -134,6 +140,7 @@ module ProfilesControllerConcern
         :photo,
         :tags_string,
         :skills_string,
+        :skill_wish_list_string,
         :contacts_string,
         :location,
         :title,
@@ -145,6 +152,7 @@ module ProfilesControllerConcern
       permitted << :flags
       permitted << :status
       permitted << :hidden_tags_string
+      permitted << :notes
     end
     params.fetch(:profile, {}).permit permitted
   end

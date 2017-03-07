@@ -34,3 +34,4 @@ pickle-email-*.html
 config/initializers/secret_token.rb
 .vagrant
 ansible/roles/ansible-*
+ansible/roles/external/*

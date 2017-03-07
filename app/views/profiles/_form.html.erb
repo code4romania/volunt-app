@@ -21,12 +21,15 @@
           <%= f.text_field :workplace, label: 'Locul de munca' %>
           <%= f.text_field :skills_string, label: 'Skills',
               placeholder: 'Java, PHP, .Net, Ruby, Python, Angular, React Native, UI, UX, Adobe Illustrator',
-              help: 'Skill-uri tehnice, separate prin virgula' %>
+              help: 'Skill-uri, separate prin virgulă' %>
+          <%= f.text_field :skill_wish_list_string, label: 'Skill wish list',
+              placeholder: 'Android, iOs, Go',
+              help: 'Skill-uri, separate prin virgulă pe care ai dori să le înveți sau perfecționezi' %>
           <%= f.text_area :urls_string, label: 'Links',
               placeholder: "ro.wikipedia.org/wiki/ana_blandiana<br>stackoverflow.com/users/105929",
               help: 'Link-uri relevante pentru profil' %>
           <%= f.text_area :description,
-              help: "Cover letter: 1-2 paragrafe depre #{profile_resource_name}",
+              help: "Cover letter: 1-2 paragrafe despre #{profile_resource_name}",
               label: 'Descriere',
               data: html_text_area %>
           <%= f.text_field :tags_string, label: 'Tags',
@@ -36,11 +39,17 @@
             <%= f.text_field :hidden_tags_string, label: 'Hidden Tags',
                 placeholder: 'SEMNAT NDA, PENDING REVIEW',
                 help: 'Tag-uri care pot fi vazute sau editate doar de catre bursieri' %>
+            <%= f.text_area :notes,
+                          help: "Note administrative referitoare la #{profile_resource_name}",
+                          label: 'Notițe',
+                          data: html_text_area %>
           <% end %>
-          <% if is_user_level_fellow? and (profile.is_applicant? or profile.is_volunteer?) %>
+          <% if is_user_level_fellow? %>
             <%= f.select :flags, options_for_select([
                       ['Comunitate', Profile::PROFILE_FLAG_APPLICANT],
-                      ['Voluntar', Profile::PROFILE_FLAG_VOLUNTEER]
+                      ['Voluntar', Profile::PROFILE_FLAG_VOLUNTEER],
+                      ['Bursier', Profile::PROFILE_FLAG_FELLOW],
+                      ['Coordonator', Profile::PROFILE_FLAG_COORDINATOR]
                     ],
                     profile.flags),
                   label: 'Rol' %>
