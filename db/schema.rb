@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170306181003) do
+ActiveRecord::Schema.define(version: 20170307141335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20170306181003) do
     t.datetime "updated_at",                  null: false
     t.string   "hidden_tags",                              array: true
     t.string   "skill_wish_list",                          array: true
+    t.text     "notes"
     t.index ["email"], name: "index_profiles_on_email", unique: true, using: :btree
     t.index ["full_name"], name: "index_profiles_on_full_name", using: :btree
     t.index ["hidden_tags"], name: "index_profiles_on_hidden_tags", using: :gin
