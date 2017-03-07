@@ -145,6 +145,7 @@ module ProfilesControllerConcern
       permitted << :flags
       permitted << :status
       permitted << :hidden_tags_string
+      permitted << :notes
     end
     params.fetch(:profile, {}).permit permitted
   end
