@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <%= render partial: 'shared/notice' %>
-    <% if is_user_level_fellow? %>
+    <% if is_coordinator? %>
       <div class="btn-group" role="group">
         <%= link_to "Adauga #{profile_resource_name}", new_profile_path, class: 'btn btn-default' %>
       </div>

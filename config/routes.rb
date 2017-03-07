@@ -32,14 +32,11 @@ Rails.application.routes.draw do
       end
     end
     
-    [:volunteers, :fellows, :applicants, :coordinators].each do |p|
+    [:volunteers, :applicants, :coordinators].each do |p|
       resources p do
         collection do
           match 'search', via: [:get, :post]
           get 'assignments' if p == :volunteers
-        end
-        if p == :fellows
-          resources :status_reports, shallow: true, path: 'status-reports' if p == :fellows
         end
       end
     end
@@ -49,7 +46,6 @@ Rails.application.routes.draw do
       resources :members, except: [:new] do
         collection do
           get 'new_volunteer'
-          get 'new_fellow'
         end
       end
       resources :status_reports, shallow: true, path: 'status-reports'
@@ -58,7 +54,5 @@ Rails.application.routes.draw do
 
     resources :openings
     resources :meetings
-    # resources :templates
-
   end
 end

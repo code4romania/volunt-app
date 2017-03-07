@@ -19,10 +19,9 @@ class ProjectsController < ApplicationController
   def show
     @status_reports = @project.status_reports.paginate(page: params[:status_reports_page])
     @volunteers = @project.members.volunteers.includes(:profile).paginate(page: params[:volunteers_page])
-    @fellows = @project.members.fellows.includes(:profile).paginate(page: params[:fellows_page])
-    openings = is_user_level_fellow? ? @project.openings : @project.openings.visible
+    openings = is_coordinator? ? @project.openings : @project.openings.visible
     @openings = openings.paginate(page: params[:openings_page])
-    if is_user_level_fellow?
+    if is_coordinator?
       render 'show'
     else
       render 'community_show'

@@ -35,18 +35,6 @@
       <dd>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h2 class="panel-title">Bursieri</h2>
-          </div>
-            <%= render partial: 'shared/community_members_profile_table', locals: {members: @fellows} %>
-            <%= will_paginate @fellows,
-                param_name: 'fellows_page',
-                renderer: BootstrapPagination::Rails %>
-        </div>
-      </dd>
-      <dt></dt>
-      <dd>
-        <div class="panel panel-default">
-          <div class="panel-heading">
             <h2 class="panel-title">Openings</h2>
           </div>
             <%= render partial: 'shared/openings_table', locals: {openings: @openings} %>

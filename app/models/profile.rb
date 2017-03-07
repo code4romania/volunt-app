@@ -24,7 +24,6 @@ class Profile < ApplicationRecord
 
   scope :volunteers, -> { where('profiles.flags & ? > 0', PROFILE_FLAG_VOLUNTEER) }
   scope :applicants, -> { where('profiles.flags & ? > 0', PROFILE_FLAG_APPLICANT) }
-  scope :fellows, -> { where('profiles.flags & ? > 0', PROFILE_FLAG_FELLOW) }
   scope :coordinators, -> { where('profiles.flags & ? > 0', PROFILE_FLAG_COORDINATOR) }
 
   validates :full_name, presence: true, length: { maximum: MAX_LENGTH_FULL_NAME }

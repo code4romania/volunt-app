@@ -69,7 +69,7 @@ class OpeningsController < ApplicationController
 
   private
     def openings
-      is_user_level_fellow? ? Opening.all : Opening.visible
+      is_coordinator? ? Opening.all : Opening.visible
     end
 
     # Use callbacks to share common setup or constraints between actions.
