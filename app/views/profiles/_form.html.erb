@@ -37,10 +37,12 @@
                 placeholder: 'SEMNAT NDA, PENDING REVIEW',
                 help: 'Tag-uri care pot fi vazute sau editate doar de catre bursieri' %>
           <% end %>
-          <% if is_user_level_fellow? and (profile.is_applicant? or profile.is_volunteer?) %>
+          <% if is_user_level_fellow? %>
             <%= f.select :flags, options_for_select([
                       ['Comunitate', Profile::PROFILE_FLAG_APPLICANT],
-                      ['Voluntar', Profile::PROFILE_FLAG_VOLUNTEER]
+                      ['Voluntar', Profile::PROFILE_FLAG_VOLUNTEER],
+                      ['Bursier', Profile::PROFILE_FLAG_FELLOW],
+                      ['Coordonator', Profile::PROFILE_FLAG_COORDINATOR]
                     ],
                     profile.flags),
                   label: 'Rol' %>
