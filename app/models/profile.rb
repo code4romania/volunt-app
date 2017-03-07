@@ -4,6 +4,7 @@ class Profile < ApplicationRecord
 
   array_field :tags
   array_field :skills
+  array_field :skill_wish_list
   array_field :hidden_tags
   hash_field :urls, urls: true
   hash_field :contacts

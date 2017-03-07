@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205203552) do
+ActiveRecord::Schema.define(version: 20170306181003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,16 +71,18 @@ ActiveRecord::Schema.define(version: 20161205203552) do
     t.jsonb    "urls"
     t.string   "title"
     t.string   "workplace"
-    t.string   "tags",                                 array: true
-    t.string   "skills",                               array: true
-    t.integer  "status",      default: 0, null: false
-    t.integer  "flags",       default: 0, null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.string   "hidden_tags",                          array: true
+    t.string   "tags",                                     array: true
+    t.string   "skills",                                   array: true
+    t.integer  "status",          default: 0, null: false
+    t.integer  "flags",           default: 0, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "hidden_tags",                              array: true
+    t.string   "skill_wish_list",                          array: true
     t.index ["email"], name: "index_profiles_on_email", unique: true, using: :btree
     t.index ["full_name"], name: "index_profiles_on_full_name", using: :btree
     t.index ["hidden_tags"], name: "index_profiles_on_hidden_tags", using: :gin
+    t.index ["skill_wish_list"], name: "index_profiles_on_skill_wish_list", using: :gin
     t.index ["skills"], name: "index_profiles_on_skills", using: :gin
     t.index ["tags"], name: "index_profiles_on_tags", using: :gin
   end

@@ -4,7 +4,8 @@
       <col class="col-xs-3" />
       <col class="col-xs-2" />
       <col class="col-xs-2" />
-      <col class="col-xs-4" />
+      <col class="col-xs-2" />
+      <col class="col-xs-2" />
       <col class="col-xs-1" />
     <% else %>
       <col class="col-xs-4" />
@@ -21,6 +22,7 @@
       <% end %>
       <th>Locatie</th>
       <th>Atribute</th>
+      <th>Skill wish list</th>
       <th />
     </tr>
     <tr>
@@ -45,6 +47,10 @@
       <td><%= f.text_field :attrs,
               hide_label: true,
               placeholder: 'Java, NOT remote',
+              append: glyphicon_submit_helper('search') %></td>
+      <td><%= f.text_field :skill_wish_list,
+              hide_label: true,
+              placeholder: 'Android',
               append: glyphicon_submit_helper('search') %></td>
       <td></td>
     <% end %>
