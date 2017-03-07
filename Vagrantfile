@@ -1,5 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+system('ansible-galaxy install -p ansible/roles/external -r ansible/roles/external.yml')
 
 VAGRANTFILE_API_VERSION = "2"
 

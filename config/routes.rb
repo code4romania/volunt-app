@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # This route is for develoment only, allows to impersonate random site user
   get 'impersonate/:email', to: 'static#impersonate', constraints: {email: /[^\/]+/} if Rails.env.development?
 
-  scope protocol: 'https' do
+  scope do
     get 'me', to: 'redirect#me'
     get '/login', to: 'static#login'
     post '/login', to: 'static#login_post'
@@ -61,5 +61,4 @@ Rails.application.routes.draw do
     # resources :templates
 
   end
-
 end

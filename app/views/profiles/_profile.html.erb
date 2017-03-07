@@ -5,11 +5,12 @@
       <dt>Nume Scurt</dt><dd><%= profile.nick_name %></dd>
       <dt>Email</dt><dd><%= profile.email %></dd>
       <dt>Contact</dt><dd><%= render partial: 'shared/key_values',  locals: {key_values: profile.contacts} %></dd>
-      <dt>Locatie</dt><dd><%= profile.location %></dd>
-      <dt>Ocupatie</dt><dd><%= profile.title %></dd>
-      <dt>Locul de munca</dt><dd><%= profile.workplace %></dd>
+      <dt>Locație</dt><dd><%= profile.location %></dd>
+      <dt>Ocupație</dt><dd><%= profile.title %></dd>
+      <dt>Locul de muncă</dt><dd><%= profile.workplace %></dd>
       <dt>Creat la</dt><dd><%= profile.created_at %></dd>
       <dt>Skills</dt><dd><%= render partial: 'shared/skills', locals: {skills: profile.skills} %></dd>
+      <dt>Skill wish list</dt><dd><%= render partial: 'shared/skills', locals: {skills: profile.skill_wish_list} %></dd>
       <dt>Links</dt><dd><%= render partial: 'shared/urls', locals: {urls: profile.urls} %></dd>
       <dt>Tags</dt><dd><%= render partial: 'shared/tags', locals: {tags: profile.tags} %></dd>
       <% if is_user_level_fellow? %>

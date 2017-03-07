@@ -5,6 +5,7 @@
   <% end %>
   <td><%= profile_row.location %></td>
   <td><%= render partial: 'shared/profile_attributes', locals: {profile: profile_row} %></td>
+  <td><%= render partial: 'shared/skills', locals: {skills: profile_row.skill_wish_list} %></td>
   <td>
     <% if is_user_level_fellow? %>
       <%= glyphicon_link_to profile_path(profile_row) %>
