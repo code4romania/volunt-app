@@ -1,5 +1,5 @@
 <div class="container">
-  <% if is_coordinator? %>
+  <% if is_user_level_fellow? %>
     <div class="btn-group" role="group">
       <%= link_to new_project_path, class: 'btn btn-default' do %>
         Creeaza Proiect

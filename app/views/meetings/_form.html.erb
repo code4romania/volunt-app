@@ -12,6 +12,19 @@
       <%= m.text_area :attendees_string, label: 'Participanti',
           placeholder: "Niels Bohr, Josef Alexander Schrödinger",
           help: 'Participanti din afara GovITHub' %>
+      <%= f.fields_for :fellows, meeting_presenter.fellows do |p| %>
+        <%= p.collection_select :profile_id, 
+                @fellows,
+                :id,
+                :full_name,
+                label: 'Participant GovITHub',
+                include_blank: true %>
+      <% end %>
+      <div class="form-group">
+        <div class="btn-group col-sm-offset-3 col-sm-9">
+          <%= f.submit 'Adauga bursier', class: 'btn btn-default', name: 'add_fellow' %>
+        </div>
+      </div>
       <%= m.text_field :summary, label: 'Sumar' %>
       <%= m.text_area :notes, label: 'Detalii', data: html_text_area %>
       <%= m.text_area :attn_coordinators, label: 'Attn. Coordinatori', data: html_text_area %>

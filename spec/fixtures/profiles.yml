@@ -1,0 +1,18 @@
+community:
+  full_name: Community
+  nick_name: C
+  email: community@example.com
+  flags: 1
+
+volunteer:
+  full_name: Volunteer
+  nick_name: V
+  email: volunteer@example.com
+  flags: 2
+
+
+fellow:
+  full_name: Fellow
+  nick_name: F
+  email: fellow@example.com
+  flags: 4

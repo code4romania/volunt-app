@@ -10,7 +10,7 @@
           options_for_project_status(project.status),
           label: 'Status') %>
     <%= f.collection_select(:owner_id,
-          Profile.coordinators,
+          Profile.fellows,
           :id,
           :select_name,
           label: 'Leader',

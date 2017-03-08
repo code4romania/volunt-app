@@ -42,6 +42,18 @@
       <dd>
         <div class="panel panel-default">
           <div class="panel-heading">
+            <h2 class="panel-title">Bursieri <span class="pull-right"><%= glyphicon_link_to new_fellow_project_members_path(@project), 'plus'%></span></h2>
+          </div>
+            <%= render partial: 'shared/members_profile_table', locals: {members: @fellows} %>
+            <%= will_paginate @fellows,
+                param_name: 'fellows_page',
+                renderer: BootstrapPagination::Rails %>
+        </div>
+      </dd>
+      <dt></dt>
+      <dd>
+        <div class="panel panel-default">
+          <div class="panel-heading">
             <h2 class="panel-title">Openings <span class="pull-right"><%= glyphicon_link_to new_project_openings_path(@project), 'plus'%></span></h2>
           </div>
             <%= render partial: 'shared/openings_table', locals: {openings: @openings} %>

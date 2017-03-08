@@ -1,11 +1,11 @@
-[![Travis build](https://travis-ci.org/code4romania/volunt-app.svg?branch=master)](https://travis-ci.org/code4romania/volunt-app)
-[![Code Climate](https://codeclimate.com/github/code4romania/volunt-app/badges/gpa.svg)](https://codeclimate.com/github/code4romania/volunt-app)
+[![Travis build](https://travis-ci.org/gov-ithub/volunt-app.svg?branch=master)](https://travis-ci.org/gov-ithub/volunt-app)
+[![Code Climate](https://codeclimate.com/github/gov-ithub/volunt-app/badges/gpa.svg)](https://codeclimate.com/github/gov-ithub/volunt-app)
 
 # Gestiunea voluntarilor si proiectelor Code4Romania
 Un sistem de gestiune a voluntarilor si proiectelor Code4Romania disponibil la http://colab.code4.ro/
 
-Când aplicația este folosită de un coordinator:
-- Înregistrarea voluntarilor, completarea de profil (locație, contact, skills, tags)
+Cind aplicatia este folosita de un bursier sau coordinator:
+- Inregistrarea voluntarilor, completarea de profil (locatie, contact, skills, tags)
 - Cautare voluntari dupa locatie, skils, taguri
 - Inregistrarea proiectelor Code4Romania
 - Managementul alocarii de voluntari per proiect, incarcare etc
@@ -59,7 +59,7 @@ createdb voluntari_test --host=localhost --port=5432 --owner=voluntapp
 ```
 
 ```
-git clone https://github.com/code4romania/volunt-app.git
+git clone https://github.com/gov-ithub/volunt-app.git
 cd volunt-app
 bundle install
 cp config/.env.sample .env
