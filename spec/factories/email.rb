@@ -4,10 +4,10 @@ FactoryGirl.define do
   end
 
   sequence :full_name do |n|
-    "Nelu Omăț#{n}"
+    Faker::Name.name
   end
 
   sequence :nick_name do |n|
-    "Neluțu#{n}"
+    "user#{n}"
   end
 end
