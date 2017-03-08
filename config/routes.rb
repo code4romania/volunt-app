@@ -18,7 +18,12 @@ Rails.application.routes.draw do
 
     resource :request_reset, only: [:show, :create],  path: '/request-reset'
     resources :validation_tokens, only: [:show, :update]
-
+    resource :users, only: [] do
+      member do
+        get :change_password
+        put :set_password
+      end
+    end
     
     # top level status-reports must precede the nested routes
     # otherwise the nested routes hijack the collection methods
