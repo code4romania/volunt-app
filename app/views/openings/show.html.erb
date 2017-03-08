@@ -20,7 +20,7 @@
       <dt>Tags<dt>
       <dd><%= render partial: 'shared/tags', locals: {tags: @opening.tags} %></dd>
       <dd>Esti interesat sa ajuti? Contacteaza <%= @opening.contact_info %>.</dd>
-      <% if is_coordinator? %>
+      <% if is_user_level_fellow? %>
       <dd>
         <%= form_for(@opening, method: :delete) do |f| %>
           <div class="btn-group" role='group'>

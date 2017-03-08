@@ -7,4 +7,5 @@ class ProjectMember < ApplicationRecord
   validates :profile_id, presence: true, uniqueness: {scope: :project, message: 'is already assigned to this project'}
 
   scope :volunteers, -> { joins(:profile).merge(Profile.volunteers) }
+  scope :fellows, -> { joins(:profile).merge(Profile.fellows) }
 end

@@ -15,8 +15,7 @@ module LoginConcern
     profile = Profile.for_email(user.email)
     if profile
       session_data[:profile_id] = profile.id
-
-      if profile.is_coordinator?
+      if profile.is_fellow? or profile.is_coordinator?
         session_data[:level] = USER_LEVEL_FELLOW
       elsif profile && profile.is_volunteer?
         session_data[:level] = USER_LEVEL_VOLUNTEER
@@ -77,7 +76,7 @@ module LoginConcern
     return is_user_level_authorized? USER_LEVEL_VOLUNTEER
   end
 
-  def is_coordinator?
+  def is_user_level_fellow?
     return is_user_level_authorized? USER_LEVEL_FELLOW
   end
 
@@ -87,7 +86,7 @@ module LoginConcern
 
   def layout_for_current_user
     return 'new_user' if is_new_user?
-    return 'application' if is_coordinator?
+    return 'application' if is_user_level_authorized? USER_LEVEL_FELLOW
     return 'volunteer' if is_user_level_authorized? USER_LEVEL_VOLUNTEER
     return 'community'
   end
@@ -95,7 +94,7 @@ module LoginConcern
   included do
     helper_method :current_user_email, :is_new_user?,
         :is_user_level_volunteer?,
-        :is_coordinator?
+        :is_user_level_fellow?
 
     layout :layout_for_current_user
 

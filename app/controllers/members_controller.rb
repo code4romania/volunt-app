@@ -21,6 +21,13 @@ class MembersController < ApplicationController
     render 'new'
   end
 
+  def new_fellow
+    @member = ProjectMember.new(project: @project)
+    @profiles = Profile.fellows
+    @member_type = Profile::PROFILE_FLAG_FELLOW
+    render 'new'
+  end
+
   # GET /members/1/edit
   def edit
     @profiles = [@member.profile]
@@ -30,13 +37,12 @@ class MembersController < ApplicationController
   def create
     @member = ProjectMember.new(member_params)
     @member.project = @project
-
     if @member.save
       redirect_to back_path, notice: 'Member was successfully added to project.'
     else
       puts @member.errors.inspect
       @member_type = params.fetch(:member_type, Profile::PROFILE_FLAG_VOLUNTEER)
-      @profiles = Profile.volunteers
+      @profiles = Profile::PROFILE_FLAG_FELLOW.to_s == @member_type.to_s ? Profile.fellows : Profile.volunteers
       render :new
     end
   end

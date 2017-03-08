@@ -35,19 +35,20 @@
           <%= f.text_field :tags_string, label: 'Tags',
               placeholder: tags_placeholder,
               help: "Tag-uri care permit filtrare, cautare si identificarea;\ndisponibil: remote, on-site;\nparticipant la hackathon: hackathon" %>
-          <% if is_coordinator? %>
+          <% if is_user_level_fellow? %>
             <%= f.text_field :hidden_tags_string, label: 'Hidden Tags',
                 placeholder: 'SEMNAT NDA, PENDING REVIEW',
-                help: 'Tag-uri care pot fi văzute sau editate doar de către coordonatori' %>
+                help: 'Tag-uri care pot fi vazute sau editate doar de catre bursieri' %>
             <%= f.text_area :notes,
                           help: "Note administrative referitoare la #{profile_resource_name}",
                           label: 'Notițe',
                           data: html_text_area %>
           <% end %>
-          <% if is_coordinator? %>
+          <% if is_user_level_fellow? %>
             <%= f.select :flags, options_for_select([
                       ['Comunitate', Profile::PROFILE_FLAG_APPLICANT],
                       ['Voluntar', Profile::PROFILE_FLAG_VOLUNTEER],
+                      ['Bursier', Profile::PROFILE_FLAG_FELLOW],
                       ['Coordonator', Profile::PROFILE_FLAG_COORDINATOR]
                     ],
                     profile.flags),
