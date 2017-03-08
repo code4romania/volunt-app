@@ -38,7 +38,7 @@
           <% if is_coordinator? %>
             <%= f.text_field :hidden_tags_string, label: 'Hidden Tags',
                 placeholder: 'SEMNAT NDA, PENDING REVIEW',
-                help: 'Tag-uri care pot fi vazute sau editate doar de catre bursieri' %>
+                help: 'Tag-uri care pot fi văzute sau editate doar de către coordonatori' %>
             <%= f.text_area :notes,
                           help: "Note administrative referitoare la #{profile_resource_name}",
                           label: 'Notițe',
