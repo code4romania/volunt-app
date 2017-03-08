@@ -1,13 +1,13 @@
 <tr>
   <td><%= profile_row.full_name %></td>
-  <% if is_user_level_fellow? %>
+  <% if is_coordinator? %>
     <td><%= profile_row.email %></td>
   <% end %>
   <td><%= profile_row.location %></td>
   <td><%= render partial: 'shared/profile_attributes', locals: {profile: profile_row} %></td>
   <td><%= render partial: 'shared/skills', locals: {skills: profile_row.skill_wish_list} %></td>
   <td>
-    <% if is_user_level_fellow? %>
+    <% if is_coordinator? %>
       <%= glyphicon_link_to profile_path(profile_row) %>
     <% end %>
   </td>
