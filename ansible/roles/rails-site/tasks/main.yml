@@ -67,7 +67,7 @@
   become_user: "{{ site_app_user }}"
 
 - name: setup the db
-  command: bundle exec rails db:setup
+  command: bundle exec rails db:create db:migrate
   args:
     chdir: "{{ site_deployment_path }}"
   become: yes
