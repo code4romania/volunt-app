@@ -13,4 +13,8 @@ class Project < ApplicationRecord
   belongs_to :owner, class_name: 'Profile', required: false
   
   default_scope { order('name ASC') }
+
+  def is_subscribed?(profile)
+    members.where(profile_id: profile.id).exists?
+  end
 end

@@ -1,0 +1,9 @@
+<% if !@project.is_subscribed?(current_user_profile) %>
+  <dt></dt>
+  <dd>
+    <%= link_to("Alătură-te", project_members_path(project_id: @project.id,
+                                                   project_member: {profile_id: current_user_profile.id,
+                                                                    role: "Voluntar"}),
+                class: "btn btn-primary", method: :post) %>
+  </dd>
+<% end %>
