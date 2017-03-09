@@ -14,10 +14,10 @@ class UserMailer < ApplicationMailer
   end
 
   def welcome(user)
-    validation = ValidationToken.reset_password user
+    validation = ValidationToken.reset_password(user)
     @url = validation_token_url(validation)
     @user = user
     @to = @user.email
-    mail(to: @user.email, subject: 'Bine ai venit in comunitatea Code4Romania')
+    mail(to: @user.email, subject: 'Bine ai venit în comunitatea Code4Romania')
   end
 end
