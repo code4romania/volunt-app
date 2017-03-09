@@ -16,3 +16,6 @@ end
 
 ActionMailer::Base.register_interceptor(VoluntariEmailInterceptor)
 
+if Rails.env.production?
+  ActionMailer::Base.default_url_options = {host: Rails.configuration.x.domains.mail_url_host}
+end
