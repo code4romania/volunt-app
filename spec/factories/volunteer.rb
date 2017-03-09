@@ -1,6 +1,5 @@
 FactoryGirl.define do
-  factory :volunteer, class: User do
-    email
+  factory :volunteer, parent: :user do
     flags Profile::PROFILE_FLAG_VOLUNTEER
 
     after(:create) do |volunteer|
