@@ -1,6 +1,6 @@
 <table class="table fixed-table profiles-table">
   <colgroup>
-    <% if is_user_level_fellow? %>
+    <% if is_coordinator? %>
       <col class="col-xs-3" />
       <col class="col-xs-2" />
       <col class="col-xs-2" />
@@ -17,7 +17,7 @@
   <thead>
     <tr>
       <th>Nume</th>
-      <% if is_user_level_fellow? %>
+      <% if is_coordinator? %>
         <th>Email</th>
       <% end %>
       <th>Locatie</th>
@@ -34,7 +34,7 @@
               hide_label: true,
               placeholder: 'Alex',
               append: glyphicon_submit_helper('search') %></td>
-      <% if is_user_level_fellow? %>
+      <% if is_coordinator? %>
         <td><%= f.text_field :email,
                 hide_label: true,
                 placeholder: 'NOT @gmail',

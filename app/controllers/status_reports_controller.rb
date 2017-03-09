@@ -126,14 +126,12 @@ class StatusReportsController < ApplicationController
 
   helper_method :back_path, :form_submit_path
   def back_path
-    return fellow_path(@profile) unless @profile.nil?
     return project_path(@project) unless @project.nil?
     return status_reports_path
   end
 
   def form_submit_path
     return status_report_path(@status_report) unless @status_report.new_record?
-    return fellow_status_reports_path(@profile) unless @profile.nil?
     return project_status_reports_path(@project) unless @project.nil?
   end
 
@@ -147,7 +145,6 @@ class StatusReportsController < ApplicationController
 
     def set_profile_or_project
       @project = Project.find(params[:project_id]) if params.has_key? :project_id
-      @profile = Profile.fellows.find(params[:fellow_id]) if params.has_key? :fellow_id
     end
 
     # Only allow a trusted parameter "white list" through.

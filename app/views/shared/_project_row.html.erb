@@ -1,7 +1,7 @@
 <%= project_status_tag(project_row, :tr) do %>
   <td><%= project_status_badge(project_row) %></td>
-  <td><%= link_to(project_row.name, project_path(project_row)) %></td>
-  <td><%= project_row.members.volunteers.count %>/<%= project_row.members.fellows.count %></td>
+  <td><%= project_row.name %></td>
+  <td><%= project_row.members.count %></td>
   <td><%= project_row.owner.full_name unless project_row.owner.nil? %></td>
   <td><%= project_row.beneficiary %></td>
   <td><%= render partial: 'shared/tags', locals: {tags: project_row.tags} %></td>

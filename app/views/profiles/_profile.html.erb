@@ -13,7 +13,7 @@
       <dt>Skill wish list</dt><dd><%= render partial: 'shared/skills', locals: {skills: profile.skill_wish_list} %></dd>
       <dt>Links</dt><dd><%= render partial: 'shared/urls', locals: {urls: profile.urls} %></dd>
       <dt>Tags</dt><dd><%= render partial: 'shared/tags', locals: {tags: profile.tags} %></dd>
-      <% if is_user_level_fellow? %>
+      <% if is_coordinator? %>
         <dt>Notițe</dt>
         <dd><%= sanitize_html_area(profile.notes) %></dd>
         <dt>Hidden Tags</dt>

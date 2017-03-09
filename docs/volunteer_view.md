@@ -15,7 +15,7 @@ Este necesar ca volunt-app sa poata sa fie folosit si de catre voluntari si comu
  - [ ] propune noi proiecte
 
 Odata acceptata ca colaborator intr-un proiect, voluntarii trebuie sa:
-  
+
  - [ ] sa vada ceilalti voluntari care contribuie la proiect
  - [ ] sa vada task-uri ale proiectului si status_reports private
  - [ ] sa raporteze progres in task-urile proiectelor
@@ -29,21 +29,21 @@ Pentru inceput este necesar sa implementam primele doua puncte (vedere/editare p
  - [x] un layout diferit in aplicatie pentru voluntari vs. bursieri. Chiar daca controller-ele auorizeaza user-ul, nu e un user-experience bun daca aplicattion layout (si implicit navbar-ul) ramine cel de la bursieri.
  - [x] la login user-ul trebuie directionat la pagina de profil propiu.
 
-11.04: dupa [7f43bbc4cacb51d4ae4e56f462723ef4e8ffaf42](https://github.com/gov-ithub/volunt-app/commit/7f43bbc4cacb51d4ae4e56f462723ef4e8ffaf42) multe din punctele de mai sus au fost fixate. Exista un layer de autorizare, nu am folosit CanCan(Can) din cauza cerintei ca un user sa-si poata edita propriul profil indiferent de nivel/rol. 
+11.04: dupa [7f43bbc4cacb51d4ae4e56f462723ef4e8ffaf42](https://github.com/code4romania/volunt-app/commit/7f43bbc4cacb51d4ae4e56f462723ef4e8ffaf42) multe din punctele de mai sus au fost fixate. Exista un layer de autorizare, nu am folosit CanCan(Can) din cauza cerintei ca un user sa-si poata edita propriul profil indiferent de nivel/rol.
 
 ## Signup
- 
+
  - [x] Curent un login este permis daca exista `User`, dar nu exista posibilitatea de a aduga useri (nu exista sign-up). Este necesar flow de sign-up, pentru ca doritorii sa poata sa aplice ca voluntari la Gov IT Hub.
  - [x] Nu exista enforcement la email verification. Flow-ul trebuie sa fie Signup -> Verify -> Profile. La login user-ul trebuie blocat intr-o pagina de 'pending verification' pina link-ul din email (validation_token) este validata, abia apoi permisa navigarea mai departe (profil). Acesta trebuie enforced pe toate controllel-le 'private'. Asta creeaza problem cu user-ii care nu primesc mail-ul de validare, dar daca nu se face enforcement intreaga infrastructura de user-profile se duce de ripa pentru ca este bazata pe email === identity
- 
+
 ## Email storage
 
 In acest moment modul cum se tin emailurile in `Profile` este broken (as in really broken). Exista un cimp `email`, string indexat, si exista `contacts` care este jsonb si `TagsConcern` marcheaza emailurile din el ca `email:`, `email1:`, `email2:`. `Profile.for_email` cauta in `email` si in `contacts`, folosing PsotgreSQL json operators, ca sa gaseasca profilul corespunzator unui email (folosit de eg. pentru a afisa profilul propriu in ruta `/me`, si folosit si in taskurile de import (`lib/tasks/*.rake`). Citeva probleme:
 
  - [ ] cautarea `Profile.for_email` este ineficienta (scan). Un [`gin`](https://www.postgresql.org/docs/9.1/static/textsearch-indexes.html) index ar ajuta, dar nu asta este ce este nevoie.
- - [ ] emailurile nu sunt validate. In afara de problema de comunicare (trimiterea de newsletter fara verificare), exista o problema de autorizare. User-ul x poate adauga adresa de email foo@example.com in profilul sau. Apoi, cind foo@example.com se logheaza in volunt-app, este directionat spre profilul lui X, pentru ca identificarea profilui se face pe baza oricarui email declarat in profil. 
+ - [ ] emailurile nu sunt validate. In afara de problema de comunicare (trimiterea de newsletter fara verificare), exista o problema de autorizare. User-ul x poate adauga adresa de email foo@example.com in profilul sau. Apoi, cind foo@example.com se logheaza in volunt-app, este directionat spre profilul lui X, pentru ca identificarea profilui se face pe baza oricarui email declarat in profil.
 
-Trebuie sa pastram posibilitatea de a adauga mai multe email-uri per profile. Ma gindesc o tabele `emails` si has_many: in profil. Fiecare email trebuie validat separat si doar cele validate pot fi folosite in volunt-app. NB. tabela `users` este in principiu un overlap significant cu o tabela `emails` (e deja index uniq pentru `user.email`). 
+Trebuie sa pastram posibilitatea de a adauga mai multe email-uri per profile. Ma gindesc o tabele `emails` si has_many: in profil. Fiecare email trebuie validat separat si doar cele validate pot fi folosite in volunt-app. NB. tabela `users` este in principiu un overlap significant cu o tabela `emails` (e deja index uniq pentru `user.email`).
 
 ## SSO
 

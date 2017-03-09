@@ -1,5 +1,5 @@
 <div class="container">
-  <% if is_user_level_fellow? %>
+  <% if is_coordinator? %>
   <div class="btn-group" role="group">
     <%= link_to new_opening_path, class: 'btn btn-default' do %>
       Adauga Opening
