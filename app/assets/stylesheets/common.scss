@@ -267,5 +267,9 @@ ul.dropdown-menu-wide {
 
 span.export-csv {
   cursor: pointer;
+  background-image: url(image-path("csv-icon.png"));
+  background-size: contain;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
 }
-

@@ -2,7 +2,8 @@
 
 $(function() {
   
-  $('table.table > thead > tr > th:nth-last-child(1)').append('<span class="glyphicon glyphicon-th-list export-csv" title="Exporta tabela"></span>')
+  $('table.table > thead > tr > th:nth-last-child(1)')
+    .append('<span class="export-csv" title="Exportă tabela în CSV"></span>');
   $('span.export-csv').on('click', function() {
     var csvFile = '';
     var table = $(this).closest('table');
