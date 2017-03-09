@@ -11,7 +11,6 @@ class Profile < ApplicationRecord
 
   PROFILE_FLAG_APPLICANT    = 0x00000001
   PROFILE_FLAG_VOLUNTEER    = 0x00000002
-  PROFILE_FLAG_FELLOW       = 0x00000004
   PROFILE_FLAG_COORDINATOR  = 0x00000008
 
   MAX_LENGTH_FULL_NAME = 128
@@ -19,7 +18,6 @@ class Profile < ApplicationRecord
 
   flag_bit :applicant
   flag_bit :volunteer
-  flag_bit :fellow
   flag_bit :coordinator
 
   scope :volunteers, -> { where('profiles.flags & ? > 0', PROFILE_FLAG_VOLUNTEER) }
@@ -64,5 +62,4 @@ class Profile < ApplicationRecord
 SQL
     self.where(sql,  email: email).first
   end
-
 end
