@@ -1,6 +1,7 @@
 class MembersController < ApplicationController
   include LoginConcern
-  authorization_required
+  authorization_required(USER_LEVEL_FELLOW, except: [:create])
+  authorization_required(USER_LEVEL_VOLUNTEER, only: [:create])
   before_action :set_member, only: [:show, :edit, :update, :destroy]
   before_action :set_project
 

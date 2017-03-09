@@ -46,7 +46,7 @@
           <% end %>
           <% if is_coordinator? %>
             <%= f.select :flags, options_for_select([
-                      ['Comunitate', Profile::PROFILE_FLAG_APPLICANT],
+                      ['Aplicant', Profile::PROFILE_FLAG_APPLICANT],
                       ['Voluntar', Profile::PROFILE_FLAG_VOLUNTEER],
                       ['Coordonator', Profile::PROFILE_FLAG_COORDINATOR]
                     ],

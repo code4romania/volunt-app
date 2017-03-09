@@ -1,3 +1,7 @@
+<%= content_for :project_header do %>
+  <%= render 'join_link' %>
+<% end %>
+
 <div class="container">
   <div class="row">
    <span class="text-info notice"><%= notice %></span>
@@ -29,7 +33,7 @@
       <dd>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h2 class="panel-title">Voluntari 
+            <h2 class="panel-title">Membri
               <span class="pull-right"><%= glyphicon_link_to new_volunteer_project_members_path(@project), 'plus'%></span></h2>
           </div>
             <%= render partial: 'shared/members_profile_table', locals: {members: @volunteers} %>
