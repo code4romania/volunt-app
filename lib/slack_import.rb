@@ -20,6 +20,7 @@ class SlackImport
 
       unless user
         user = User.new(email: email)
+        user.set_random_password
 
         if user.save
           @stats[:users] += 1
