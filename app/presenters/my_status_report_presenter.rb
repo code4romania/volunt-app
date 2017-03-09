@@ -65,6 +65,7 @@ class MyStatusReportPresenter
       #         }
       #    }
       # }
+
     profile_params = values.require(:status_report).permit(:report_date, :summary, :details, :tags_string, :id, :profile_id)
     
     profile = Profile.find profile_params[:profile_id]

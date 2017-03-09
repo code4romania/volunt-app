@@ -42,7 +42,9 @@
       <% end %>
       <div class="btn-group col-sm-offset-3 col-sm-9" role='group'>
         <%= f.submit 'Save', class: 'btn btn-primary', name: 'save' %>
-        <%= f.submit 'Add Project', class: 'btn btn-default', name: 'add_project' %>
+        <% if @my_status_report.project_status_reports.present? %>
+         <%= f.submit('Add Project', class: 'btn btn-default', name: 'add_project') %>
+        <% end %>
         <%= link_to 'Cancel', my_status_reports_path, class: 'btn btn-default' %>
       </div>
     <% end %>
