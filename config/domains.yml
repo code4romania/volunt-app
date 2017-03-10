@@ -3,12 +3,12 @@ common: &common
 
 development:
   <<: *common
-  mail_url_host: test-contribute.rusanu.com
+  mail_url_host: localhost.local
 
 test:
   <<: *common
-  mail_url_host: www.example.com
+  mail_url_host: example.com
 
 production:
   <<: *common
-  mail_url_host: voluntari.ithub.gov.ro
+  mail_url_host: comunitate.code4.ro
