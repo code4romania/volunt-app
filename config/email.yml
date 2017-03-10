@@ -1,9 +1,9 @@
 common: &common
-  
+  from: noreply@example.com
 
 development:
   <<: *common
-  from: <%= ENV['VOLUNTARI_EMAIL_DEVELOPMENT_FROM'] %>
+  from: nobody@localhost.local
   to: <%= ENV['VOLUNTARI_EMAIL_DEVELOPMENT_TO'] %>
   daily_to: <%= ENV['VOLUNTARI_EMAIL_DEVELOPMENT_DAILY_TO'] %>
   

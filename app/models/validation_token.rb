@@ -2,7 +2,6 @@ require 'securerandom'
 require 'base64'
 
 class ValidationToken < ActiveRecord::Base
-  belongs_to :account, optional: true
   belongs_to :user, optional: true
 
   TOKEN_CATEGORY_EMAIL_CONFIRMATION = 1
@@ -12,11 +11,13 @@ class ValidationToken < ActiveRecord::Base
   def self.find_token(token)
     begin
       decoded = nil
+
       begin
         decoded  = Base64.urlsafe_decode64(token)
       rescue Exception => e
-        Rails.logger.error "usrlsafe_decode64: #{token}: #{e.class}: #{e.message}"
+        Rails.logger.error "urlsafe_decode64: #{token}: #{e.class}: #{e.message}"
       end
+
       if decoded.nil?
         # Is possible the mail client has stripped the terminal '=' or '=='
         begin
@@ -25,9 +26,11 @@ class ValidationToken < ActiveRecord::Base
           Rails.logger.error "decode64: #{token}: #{e.class}: #{e.message}"
         end
       end
-      if (decoded.nil?)
+
+      if decoded.nil?
         return nil
       end
+
       self.where(token: decoded).first
     rescue Exception => e
       Rails.logger.error "ValidationToken.find_token: #{e.class} #{e.message}"
@@ -78,5 +81,4 @@ class ValidationToken < ActiveRecord::Base
       category: TOKEN_CATEGORY_INVITATION,
       token: token)
   end
-
 end

@@ -10,7 +10,7 @@ class ChangePasswordPresenter
   validate :check_old_password
 
   def check_old_password
-    unless user.is_password_match?(old_password)
+    unless user.authenticate(old_password)
       errors.add(:old_password, "Parola veche este incorectă")
     end
   end

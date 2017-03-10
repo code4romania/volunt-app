@@ -49,7 +49,6 @@ RSpec.describe SlackImport do
       expect(user_profile.nick_name).to eq("84colors")
       expect(user_profile.title).to eq("UX, data visualization, front-end")
       expect(user_profile.is_coordinator?).to eq(false)
-      expect(user_profile.is_fellow?).to eq(false)
       expect(user_profile.is_volunteer?).to eq(true)
 
       admin_email = user_list[1]["profile"]["email"]
@@ -61,7 +60,6 @@ RSpec.describe SlackImport do
       expect(admin_profile.nick_name).to eq("seven")
       expect(admin_profile.title).to eq("Ruby developer")
       expect(admin_profile.is_coordinator?).to eq(true)
-      expect(admin_profile.is_fellow?).to eq(false)
       expect(admin_profile.is_volunteer?).to eq(true)
     end
   end
