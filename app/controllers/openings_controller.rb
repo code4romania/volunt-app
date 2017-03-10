@@ -1,6 +1,6 @@
 class OpeningsController < ApplicationController
   include LoginConcern
-  authorization_required LoginConcern::USER_LEVEL_FELLOW,
+  authorization_required LoginConcern::USER_LEVEL_COORDINATOR,
       except: [:index, :show]
   authorization_required LoginConcern::USER_LEVEL_COMMUNITY,
       only: [:index, :show]
@@ -29,11 +29,13 @@ class OpeningsController < ApplicationController
   # POST /openings
   def create
     @opening = Opening.new(opening_params)
+
     if @project
-      @opening.project =  @project
+      @opening.project = @project
     end
 
     if @opening.save
+      @project.notify_members(@opening) if @project
       redirect_to back_path, notice: 'Opening was successfully created.'
     else
       render :new

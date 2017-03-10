@@ -159,13 +159,13 @@ module ProfilesControllerConcern
 
   def authorization_required_or_self
     redirect_to login_path if !is_user_logged_in? or (
-      !is_user_level_authorized?(LoginConcern::USER_LEVEL_FELLOW) and
+      !is_user_level_authorized?(LoginConcern::USER_LEVEL_COORDINATOR) and
       !@profile.has_email?(current_user_email))
   end
 
   def authorization_required_or_new_user
     redirect_to login_path if !is_user_logged_in? or (
-      !is_user_level_authorized?(LoginConcern::USER_LEVEL_FELLOW) and
+      !is_user_level_authorized?(LoginConcern::USER_LEVEL_COORDINATOR) and
       !is_new_user?)
   end
 

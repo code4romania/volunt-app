@@ -4,7 +4,7 @@ module LoginConcern
   USER_LEVEL_NEWUSER   =   1
   USER_LEVEL_COMMUNITY =  10
   USER_LEVEL_VOLUNTEER =  20
-  USER_LEVEL_FELLOW    = 100
+  USER_LEVEL_COORDINATOR    = 100
 
   def login_user(user)
     session_data= {
@@ -17,7 +17,7 @@ module LoginConcern
       session_data[:profile_id] = profile.id
 
       if profile.is_coordinator?
-        session_data[:level] = USER_LEVEL_FELLOW
+        session_data[:level] = USER_LEVEL_COORDINATOR
       elsif profile && profile.is_volunteer?
         session_data[:level] = USER_LEVEL_VOLUNTEER
       else
@@ -78,7 +78,7 @@ module LoginConcern
   end
 
   def is_coordinator?
-    return is_user_level_authorized? USER_LEVEL_FELLOW
+    return is_user_level_authorized? USER_LEVEL_COORDINATOR
   end
 
   def ensure_user_is_logged_in
@@ -111,9 +111,11 @@ module LoginConcern
   end
 
   module ClassMethods
-    def authorization_required(required_level = USER_LEVEL_FELLOW, opts={})
+    def authorization_required(required_level = USER_LEVEL_COORDINATOR, opts={})
       before_action opts do
-        redirect_to login_path, notice: 'Higher level authorization is required to access requested resource' if !is_user_logged_in? or !is_user_level_authorized?(required_level)
+        if !is_user_logged_in? or !is_user_level_authorized?(required_level)
+          redirect_to login_path, notice: 'Higher level authorization is required to access requested resource'
+        end
       end
     end
   end
