@@ -58,4 +58,8 @@ Rails.application.configure do
     g.test_framework :rspec
   end
 
+  if ENV["MAIL_CATCHER"]
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  end
 end

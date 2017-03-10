@@ -1,0 +1,36 @@
+<div class="email_content">
+  <dl class="dl-horizontal">
+    <dt>Titlu<dt>
+    <dd><%= @opening.title %></dd>
+    <dt>Data limită de aplicare<dt>
+    <dd><%= @opening.deadline.to_date unless @opening.deadline.nil? %></dd>
+    <dt>Data Publicat<dt>
+    <dd><%= @opening.publish_date.to_date unless @opening.publish_date.nil? %></dd>
+    <dt>Descriere<dt>
+    <dd><%= sanitize_html_area(@opening.description) %></dd>
+    <dt>Skills<dt>
+    <dd><%= render partial: 'shared/skills', locals: {skills: @opening.skills} %></dd>
+    <dt>Experiență<dt>
+    <dd><%= sanitize_html_area(@opening.experience) %></dd>
+    <dt></dt>
+    <dt>Tags<dt>
+    <dd><%= render partial: 'shared/tags', locals: {tags: @opening.tags} %></dd>
+    <dd>Ești interesat să ajuți? Contactează <%= @opening.contact_info %>.</dd>
+
+    <% if @project %>
+      <dt></dt>
+      <dd><h4><%= project_with_link(@project) %></h4></dd>
+      <dt>Descriere Proiect</dt>
+      <dd><%= sanitize_html_area(@project.description) %></dd>
+      <dt>Obiectiv Proiect</dt>
+      <dd><%= sanitize_html_area(@project.objective) %></dd>
+      <% if @project.owner %>
+        <dt>Lider Proiect</dt>
+        <dd><%= @project.owner.full_name %></dd>
+      <% end %>
+    <% end %>
+  </dl>
+
+  <a class="btn btn-primary center-block text-center"
+     href="<%= opening_url(@opening) %>">Detalii</a>
+</div>

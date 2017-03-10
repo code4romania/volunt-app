@@ -16,7 +16,6 @@ describe VolunteersController, type: :controller do
   describe 'GET #new' do
     it 'sets profile flag and assigns profile with current email' do
       get :new, { params: { protocol: 'https' } }
-      expect(profile.flags).to eq(volunteer.flags)
       expect(profile.email).to eq(volunteer.email)
       expect(assigns(:profile)).to be_an_instance_of(Profile)
       expect(assigns(:profile).email).to eq(volunteer.email)
