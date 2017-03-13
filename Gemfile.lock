@@ -125,7 +125,7 @@ GEM
     premailer-rails (1.9.4)
       actionmailer (>= 3, < 6)
       premailer (~> 1.7, >= 1.7.9)
-    puma (3.6.0)
+    puma (3.8.1)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -243,7 +243,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   pg (~> 0.18)
   premailer-rails
-  puma (~> 3.0)
+  puma (~> 3.8.0)
   rails (~> 5.0.0)
   rails-assets-bowser!
   rails-assets-d3!
