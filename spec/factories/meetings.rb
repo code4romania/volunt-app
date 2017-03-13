@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :meeting do
-    location "Somehwere"
+    location "Somewhere"
     agency "Some ministry"
     date "2016-11-20"
     attendees ["Somebody"]
