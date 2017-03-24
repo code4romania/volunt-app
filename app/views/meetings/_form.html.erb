@@ -7,7 +7,7 @@
 
     <%= f.fields_for :meeting, meeting_presenter.meeting do |m| %>
       <%= m.date_field :date, label: 'Data' %>
-      <%= m.text_field :agency, label: 'Beneficiar', placeholder: 'Ministerul Muncii' %>
+      <%= m.text_field :agency, label: 'Partener', placeholder: 'Ministerul Muncii' %>
       <%= m.text_field :location, label: 'Locatia', placeholder: 'Sediul D.A.R.P.A' %>
       <%= m.text_area :attendees_string, label: 'Participanti',
           placeholder: "Niels Bohr, Josef Alexander Schrödinger",
