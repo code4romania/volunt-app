@@ -144,7 +144,6 @@ module ProfilesControllerConcern
         :contacts_string,
         :location,
         :title,
-        :workplace,
         :email,
         :description,
         :urls_string]
