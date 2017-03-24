@@ -5,7 +5,7 @@
     role: :form) do |f| %>
 
     <%= f.text_field :name, label: 'Nume' %>
-    <%= f.text_field :beneficiary, label: 'Beneficiar', placeholder: 'Ministerul Sanatatii' %>
+    <%= f.text_field :beneficiary, label: 'Partener', placeholder: 'Ministerul Sanatatii' %>
     <%= f.select(:status,
           options_for_project_status(project.status),
           label: 'Status') %>
