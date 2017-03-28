@@ -2,28 +2,13 @@
 [![Code Climate](https://codeclimate.com/github/code4romania/volunt-app/badges/gpa.svg)](https://codeclimate.com/github/code4romania/volunt-app)
 
 # Gestiunea voluntarilor si proiectelor Code4Romania
-Un sistem de gestiune a voluntarilor si proiectelor Code4Romania disponibil la http://colab.code4.ro/
-
-Când aplicația este folosită de un coordinator:
-- Înregistrarea voluntarilor, completarea de profil (locație, contact, skills, tags)
-- Cautare voluntari dupa locatie, skils, taguri
-- Inregistrarea proiectelor Code4Romania
-- Managementul alocarii de voluntari per proiect, incarcare etc
-- Inregistrera progresului pe proiecte, integrare cu GitHub/JIRA
-- Pozitii disponibile in proiect (openings, jobs)
-- Mass mailing pentru comunitate, voluntari, contributori la proiecte
-
-Cind aplicatia este folosita de un voluntar:
-- Signup, aplicare
-- Editare profil personal
-- Acces lista de proiecte, informatii publice in proiect
-- Acces lista de pozitii, cautare dupa skills/atribute
-- Aplicare la pozitii (disponibilitate de a lucra la un proiect)
+Un sistem de gestiune a voluntarilor si proiectelor Code4Romania disponibil la http://comunitate.code4.ro/
 
 
 ## Development
 
 - Instalează Vagrant și VirtualBox
+- Instalează Ansible
 - Clonează proiectul:
 ```bash
 git clone https://github.com/code4romania/volunt-app ~/dev/volunt-app
@@ -33,39 +18,21 @@ git clone https://github.com/code4romania/volunt-app ~/dev/volunt-app
 cd ~/dev/volunt-app
 vagrant up
 ```
-- Ca să accesezi aplicația, intră în VM și pornește serverul:
-```bash
-vagrant ssh
-cd /vagrant
-rails s -b 0.0.0.0
-```
+
 - Poți accesa aplicația în browser la adresa `http://localhost:8000` (Vagrant
 se ocupă de port forwarding de la 8000 la 3000)
 
-
-## Install
-
-Applicatia se conecteaza la o baza de PostgreSQL.
-
+- Ca să încarci baza de date cu niște date dummy, trebuie să intri în VM:
+```bash
+vagrant ssh
+cd /vagrant
+bundle exec rake db:seed
 ```
-psql
-CREATE ROLE voluntapp;
-ALTER ROLE voluntapp WITH LOGIN;
-```
-
-```
-createdb voluntari_development --host=localhost --port=5432 --owner=voluntapp
-createdb voluntari_test --host=localhost --port=5432 --owner=voluntapp
-```
-
-```
-git clone https://github.com/code4romania/volunt-app.git
-cd volunt-app
-bundle install
-cp config/.env.sample .env
-rails db:setup
-rails server
-rspec # will run all tests in spec/
+- La fel și ca să rulezi teste:
+```bash
+vagrant ssh
+cd /vagrant
+rspec
 ```
 
 **Made with :heart: by [GovITHub](http://ithub.gov.ro)**
