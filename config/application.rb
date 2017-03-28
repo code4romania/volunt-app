@@ -16,3 +16,8 @@ module Voluntari
     config.autoload_paths += %W(#{config.root}/app/presenters)
   end
 end
+
+Raven.configure do |config|
+  config.dsn = 'https://ad2ba2f5f5264b5cbd1fc373e367f1e8:1df2cbb8424d4443ac1506b5ea745e71@logs.code4.ro/4'
+  config.environments = ['staging', 'production']
+end
