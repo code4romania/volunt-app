@@ -38,6 +38,9 @@ gem 'email_validator'
 # gem 'sass-rails', git: 'https://github.com/rails/sass-rails.git'
 gem 'bootstrap-sass', '~> 3.2'
 
+# Sentry for logging
+gem 'sentry-raven'
+
 # Gems used only for assets and not required
 # in production environments by default.
 # group :assets do
