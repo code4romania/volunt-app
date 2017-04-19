@@ -2,18 +2,23 @@
 # The YAML item record name is the hash key, so keep it as a correct symbol (smallcase, no spaces, no dashes)
 github1:
   label: GitHub
-  helptext: Link la repo în GitHub (de exemplu API)
-  placeholder: https://github.com/code4romania/volunt-app
+  helptext: Link la repo pe GitHub (de exemplu API)
+  placeholder: https://github.com/code4romania/volunt-app-api
 
 github2:
   label: GitHub
-  helptext: Link la repo în GitHub (de exemplu client)
-  placeholder: https://github.com/code4romania/volunt-app
+  helptext: Link la repo pe GitHub (de exemplu client)
+  placeholder: https://github.com/code4romania/volunt-app-client
 
 slack:
   label: Slack
   helptext: Link la canalul de Slack
   placeholder: https://code4romania.slack.com/messages/project_colabapp/
+
+drive:
+  label: Google Drive
+  helptext: Link la folderul de Google Drive
+  placeholder: https://docs.google.com/document/d/foo
 
 site:
   label: Site
