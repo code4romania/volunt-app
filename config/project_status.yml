@@ -2,32 +2,41 @@
 # You cannot change exiting values. If you must, a migration is required.
 
 0:  
-  status: Initial
+  status: Aprobat
   bgcolor: grey
   textcolor: white
 
 1:
-  status: Executie
+  status: Formare echipă
   bgcolor: green
   textcolor: white
 
 2:
-  status: Blocat
+  status: Incubare
   bgcolor: yellow
   textcolor: black
 
 3:
-  status: Analiza
+  status: UX/UI
   bgcolor: grey
   textcolor: black
 
 4:
-  status: Abandonat
-  bgcolor: red
+  status: Arhitectură
+  bgcolor: green
   textcolor: white
 
 5:
-  status: Failed
-  bgcolor: red
+  status: Dezvoltare
+  bgcolor: green
   textcolor: black
 
+6:
+  status: Testare
+  bgcolor: orange
+  textcolor: black
+
+7:
+  status: Lansare
+  bgcolor: blue
+  textcolor: black
