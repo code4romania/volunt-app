@@ -1,8 +1,13 @@
 # This file defines the project Links 
 # The YAML item record name is the hash key, so keep it as a correct symbol (smallcase, no spaces, no dashes)
-github:
+github1:
   label: GitHub
-  helptext: Link la proiect in GitHub
+  helptext: Link la repo în GitHub (de exemplu API)
+  placeholder: https://github.com/code4romania/volunt-app
+
+github2:
+  label: GitHub
+  helptext: Link la repo în GitHub (de exemplu client)
   placeholder: https://github.com/code4romania/volunt-app
 
 slack:
@@ -12,6 +17,6 @@ slack:
 
 site:
   label: Site
-  helptext: Link la proiectul live, daca e cazul
-  placeholder: http://colab.code4.ro
+  helptext: Link la proiectul live, dacă e cazul
+  placeholder: http://comunitate.code4.ro
 
