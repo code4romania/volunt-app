@@ -13,6 +13,13 @@
     <%= f.fields_for(:project, @project) do |ff| %>
       <%= ff.text_field :name, disabled: true, label: 'Proiect' %>
     <% end %>
-    <%= f.text_field :role, label: 'Rol', placeholder: 'Programator' %>
+    <%= f.select :role, options_for_select([
+            ['Comunicare', 'Comunicare'],
+            ['Developer', 'Developer'],
+            ['UX/UI', 'UX/UI'],
+            ['Coordonator', 'Coordonator'],
+            ['Tech Lead', 'Tech Lead']
+        ]),
+        label: 'Rol' %>
     <%= yield f %>
 <% end %>
