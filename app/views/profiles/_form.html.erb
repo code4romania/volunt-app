@@ -34,6 +34,15 @@
           <%= f.text_field :tags_string, label: 'Tags',
               placeholder: tags_placeholder,
               help: "Tag-uri care permit filtrare, cautare si identificarea;\ndisponibil: remote, on-site;\nparticipant la hackathon: hackathon" %>
+          <%# Only show them on sign up %>
+          <% if @profile.new_record? %>
+            <%= f.form_group :political_affiliation do %>
+              <%= f.check_box :political_affiliation, label: 'Nu sunt asociat(ă) cu un partid politic' %>
+            <% end %>
+            <%= f.form_group :read_code_of_conduct do %>
+              <%= f.check_box :read_code_of_conduct, label: ("Am citit #{link_to 'Codul de Conduită', 'http://code4.ro/codul-de-conduita/'}").html_safe %>
+            <% end %>
+          <% end %>
           <% if is_coordinator? %>
             <%= f.text_field :hidden_tags_string, label: 'Hidden Tags',
                 placeholder: 'SEMNAT NDA, PENDING REVIEW',

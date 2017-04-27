@@ -146,7 +146,9 @@ module ProfilesControllerConcern
         :title,
         :email,
         :description,
-        :urls_string]
+        :urls_string,
+        :political_affiliation,
+        :read_code_of_conduct]
     if is_coordinator?
       permitted << :flags
       permitted << :status

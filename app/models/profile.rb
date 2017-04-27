@@ -9,6 +9,9 @@ class Profile < ApplicationRecord
   hash_field :urls, urls: true
   hash_field :contacts
 
+  attr_accessor :political_affiliation
+  attr_accessor :read_code_of_conduct
+
   PROFILE_FLAG_APPLICANT    = 0x00000001
   PROFILE_FLAG_VOLUNTEER    = 0x00000002
   PROFILE_FLAG_COORDINATOR  = 0x00000008
@@ -27,6 +30,8 @@ class Profile < ApplicationRecord
   validates :full_name, presence: true, length: { maximum: MAX_LENGTH_FULL_NAME }
   validates :nick_name, presence: true, length: { maximum: MAX_LENGTH_NICK_NAME }
   validates :email, presence: true, uniqueness: true, email: true
+  validates :political_affiliation, acceptance: true, on: :create
+  validates :read_code_of_conduct, acceptance: true, on: :create
 
   has_many :memberships, class_name: 'ProjectMember', dependent: :delete_all
   has_many :projects, through: :memberships
