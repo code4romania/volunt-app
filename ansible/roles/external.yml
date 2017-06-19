@@ -1,1 +1,3 @@
 - src: https://github.com/LucianU/ansible-locale
+
+- src: https://github.com/LucianU/ansible-secure
