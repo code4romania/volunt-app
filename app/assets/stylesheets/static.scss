@@ -13,7 +13,23 @@
  *= require_self
  */
 
+
+//TODO: Compile using Gulp 
+//// Desing Dependencies
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "elements/colors";
-@import "elements/common";
+
+
+
+//// Core 
+@import "core/mixins";
+@import "core/colors";
+@import "core/common";
+
+//// Elements
+@import "elements/common/header";
+@import "elements/common/content";
+@import "elements/common/footer";
+@import "elements/general";
+
+//// Pages
