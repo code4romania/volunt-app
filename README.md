@@ -24,12 +24,15 @@ git clone https://github.com/code4romania/volunt-app ~/dev/volunt-app
 
 #### Steps
 
+For local configuration there is a file called  **.env.local**. Contains the required environment
+variables for your project to run. For development make sure you set
 
 Following will bring up the necessary gems into your system and create database and
 corresponding tables. 
 
 ```bash 
 bundle install
+source .env.local
 bundle exec rake db:create
 bundle exec rake db:migrate
 bundle exec rake db:seed
@@ -38,7 +41,6 @@ bundle exec rake db:seed
 Start the application with 
 
 ```bash 
-source config/.env.sample
 bundle exec rails s
 ```
  You can access the app via browser at `http://localhost:3000` and you can find the logs under
@@ -47,6 +49,21 @@ bundle exec rails s
   For login you can use an *admin user* ( credentials are: admin@example.com, pass) or
   *normal user*: (credentials are: user@example.com, pass).  
 
+For clearing up the db:
+
+```
+bundle exec rake db:drop
+```
+
+For running tests, please use:
+
+```
+export RAILS_ENV=test
+bundle exec rake db:create
+bundle exec rake db:migrate
+bundle exec rake db:seed
+bundle exec rspec
+```
 
 ### Vagrant environment 
 
