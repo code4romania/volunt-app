@@ -8,7 +8,7 @@
   <%= stylesheet_link_tag "application", media: "all" %>
 </head>
 <body id="default-body">
-  <div id="main-nav" class="navbar bs-docs-nav fixed" role="banner">
+  <header id="main-nav" class="navbar bs-docs-nav fixed" role="banner">
     <div class="container">
       <div class="navbar-header responsive-logo">
         <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
@@ -19,9 +19,13 @@
         </button>
         <a href="/" class="navbar-brand"><%= image_tag 'code4-small.png', alt: "Code4Romania" %></a>
       </div>
-      <nav class="navbar-collapse bs-navbar-collapse collapse" role="navigation" id="site-navigation">
-        <ul id="menu-nou" class="nav navbar-nav navbar-right responsive-nav main-nav-list">
-          <li role="presentation" class="dropdown">
+      <nav class="main-navigation" role="navigation" id="site-navigation">
+
+
+        <ul id="menu-nou" class="nav navbar-nav responsive-nav main-nav-list">
+
+
+          <li role="presentation" class="nav-item dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               Profile <span class="caret"></span>
             </a>
@@ -33,10 +37,14 @@
               <li><%= link_to 'Participare', assignments_volunteers_path %></li>
             </ul>
           </li>
-          <li><%= link_to 'Proiecte', projects_path %></li>
-          <li><%= link_to 'Openings', openings_path %></li>
+          <li class="nav-item">
+            <%= link_to 'Proiecte', projects_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Openings', openings_path %>
+          </li>
           <%# render 'shared/documents_menu' %>
-          <li role="presentation" class="dropdown">
+          <li role="presentation" class="nav-item dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               Status<span class="caret"></span>
             </a>
@@ -47,7 +55,7 @@
               <li><%= link_to 'Intilniri', meetings_path %></li>
             </ul>
           </li>
-          <li role="presentation" class="dropdown">
+          <li role="presentation" class="nav-item dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               <span class=""><%= current_user_email %><span class="caret"></span>
             </a>
@@ -58,10 +66,14 @@
               <li><%= link_to 'Logout', logout_path %></li>
             </ul>
           </li>
+
+
         </ul>
+
+
       </nav>
     </div>
-  </div>
+  </header>
   <div class="main-content app-content">
     <%= yield %>
   </div>
