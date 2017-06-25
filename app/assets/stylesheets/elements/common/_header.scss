@@ -1,0 +1,32 @@
+
+
+
+
+
+.main-navigation {
+  display: inline-block;
+  width: 100%;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.nav {
+  float: none;
+  margin: 0;
+
+  .nav-item { 
+    display: inline-block;
+    margin-right: 10px;
+    &:last-child { margin-right: 0; } 
+    background: #352245;
+    border-radius: 3px;
+
+    a {
+      padding: 8px 30px 8px;
+      color: #ffd42d;
+      font-size: 13px;
+      transition: color .5s ease-in-out;
+      &:hover {color:lighten(#ffd42d, 20%);}
+    }
+  }
+}
