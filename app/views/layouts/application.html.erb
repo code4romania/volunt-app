@@ -20,22 +20,9 @@
         <a href="/" class="navbar-brand"><%= image_tag 'code4-small.png', alt: "Code4Romania" %></a>
       </div>
       <nav class="main-navigation" role="navigation" id="site-navigation">
-
-
         <ul id="menu-nou" class="nav navbar-nav responsive-nav main-nav-list">
-
-
-          <li role="presentation" class="nav-item dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-              Profile <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to 'Aplicanți', applicants_path %></li>
-              <li><%= link_to 'Voluntari', volunteers_path %></li>
-              <li><%= link_to 'Coordonatori', coordinators_path %></li>
-              <li role="separator" class="divider"></li>
-              <li><%= link_to 'Participare', assignments_volunteers_path %></li>
-            </ul>
+          <li class="nav-item">
+            <%= link_to 'Home', projects_path %>
           </li>
           <li class="nav-item">
             <%= link_to 'Proiecte', projects_path %>
@@ -59,15 +46,19 @@
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               <span class=""><%= current_user_email %><span class="caret"></span>
             </a>
+            <%# Moved Profile dropdown to account dropdown %>
             <ul class="dropdown-menu">
               <li><%= link_to 'Profil', me_path %></li>
               <li><%= link_to 'Schimbă parola', change_password_users_path %></li>
+              <li><%= link_to 'Aplicanți', applicants_path %></li>
+              <li><%= link_to 'Voluntari', volunteers_path %></li>
+              <li><%= link_to 'Coordonatori', coordinators_path %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to 'Participare', assignments_volunteers_path %></li>
               <li role="separator" class="divider"></li>
               <li><%= link_to 'Logout', logout_path %></li>
             </ul>
           </li>
-
-
         </ul>
 
 
