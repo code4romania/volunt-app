@@ -25,6 +25,12 @@ test:
   username: <%= ENV['VOLUNTARI_DATABASE_TEST_USER'] %>
   password: <%= ENV['VOLUNTARI_DATABASE_TEST_PASSWORD'] %>
 
+staging:
+  <<: *default
+  database: comunitate_staging
+  username: <%= ENV['VOLUNTARI_DATABASE_STAGING_USER'] %>
+  password: <%= ENV['VOLUNTARI_DATABASE_STAGING_PASSWORD'] %>
+
 production:
   <<: *default
   database: voluntari_production
