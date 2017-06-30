@@ -7,6 +7,7 @@ tmp_dir = "#{app_dir}/tmp"
 # Default to production
 rails_env = ENV.fetch('RAILS_ENV') { "production" }
 environment rails_env
+daemonize false
 
 # Listen on
 bind "unix://#{tmp_dir}/puma/puma.sock"

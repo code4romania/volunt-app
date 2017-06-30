@@ -7,6 +7,7 @@ tmp_dir = "#{app_dir}/tmp"
 # Environment in which Puma runs
 rails_env = ENV.fetch("RAILS_ENV") { "development" }
 environment rails_env
+daemonize false
 
 # Listen on
 bind "tcp://0.0.0.0:3000"
