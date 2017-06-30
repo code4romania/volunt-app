@@ -40,6 +40,7 @@ galaxy_info:
   #  - 5.8
   #  - 5.9
   #  - 6.0
+  #  - 6.1
   #- name: Fedora
   #  versions:
   #  - all
@@ -142,6 +143,7 @@ galaxy_info:
   #  - wily
   #  - xenial
   #  - yakkety
+  #  - zesty
   #- name: Debian
   #  versions:
   #  - all

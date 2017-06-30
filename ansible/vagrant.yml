@@ -3,6 +3,6 @@
   remote_user: vagrant
   roles:
     - external/ansible-locale
-    - voluntapp
+    - postgres
     - rails-site
     - puma

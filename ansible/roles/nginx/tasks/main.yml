@@ -5,6 +5,31 @@
     state: present
   become: yes
 
+- name: generate strong Diffie-Hellman group
+  command: openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+  args:
+    creates: /etc/ssl/certs/dhparam.pem
+  notify:
+    - restart nginx
+  become: yes
+
+- name: install SSL params file
+  copy:
+    src: ssl-params.conf
+    dest: /etc/nginx/snippets/ssl-params.conf
+  notify:
+    - restart nginx
+  become: yes
+
+- name: install SSL files
+  template:
+    src=ssl-server-name.conf.j2
+    dest=/etc/nginx/snippets/ssl-{{ nginx_server_name }}.conf
+    mode=0644
+  notify:
+    - restart nginx
+  become: yes
+
 - name: install nginx virtual host config
   template:
     src: nginx_vhost.conf.j2
