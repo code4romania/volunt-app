@@ -9,10 +9,10 @@ rails_env = ENV.fetch('RAILS_ENV') { "production" }
 environment rails_env
 
 # Listen on
-bind "unix://#{tmp_dir}/sockets/puma.sock"
+bind "unix://#{tmp_dir}/puma/puma.sock"
 
 # Logging
-stdout_redirect "#{tmp_dir}/log/puma.stdout.log", "#{tmp_dir}/log/puma.stderr.log", true
+stdout_redirect "#{app_dir}/log/puma.stdout.log", "#{app_dir}/log/puma.stderr.log", true
 
 # Set master PID and state locations
 pidfile "#{tmp_dir}/pids/puma.pid"
