@@ -1,21 +1,14 @@
 ---
-- name: install config files
+- name: install puma service file
   template:
-    src: "{{ item.src }}"
-    dest: "/etc/init/{{ item.dest }}"
-  with_items:
-    - src: puma.conf.j2
-      dest: puma.conf
-    - src: puma-manager.conf.j2
-      dest: puma-manager.conf
+    src: puma.service.j2
+    dest: /etc/systemd/system/{{ site_app_user }}.service
   notify:
-    - restart puma
+    - restart puma app
   become: yes
 
-- name: install app config
-  template:
-    src: app.puma.conf.j2
-    dest: /etc/puma.conf
-  notify:
-    - restart puma
+- name: enable puma service
+  systemd:
+    name: "{{ site_app_user }}"
+    enabled: yes
   become: yes

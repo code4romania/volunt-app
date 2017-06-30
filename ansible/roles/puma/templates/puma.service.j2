@@ -1,0 +1,16 @@
+[Unit]
+Description=Puma Rails Server
+After=network.target postgresql@.service
+Wants=postgresql@.service
+
+[Service]
+Type=simple
+User={{ site_app_user }}
+WorkingDirectory={{ site_deployment_path }}
+ExecStart=/usr/local/bin/bundle exec puma -C {{ site_deployment_path }}/config/{{ puma_config }}.rb
+ExecStop=/usr/local/bin/bundle exec pumactl -F {{ site_deployment_path }}/config/{{ puma_config }}.rb stop
+TimeoutSec=15
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

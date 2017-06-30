@@ -1,5 +1,0 @@
----
-- include: postgres.yml
-
-- include: nginx.yml
-  when: ENV != "development"

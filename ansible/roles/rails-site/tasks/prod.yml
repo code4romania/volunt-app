@@ -3,7 +3,6 @@
   user:
     name: "{{ site_app_user }}"
     home: "{{ site_deployment_path }}"
-    createhome: no
     state: present
   become: yes
 
@@ -25,7 +24,7 @@
 - name: copy project to deployment location
   command: rsync -avz --delete /tmp/colabapp/ {{ site_deployment_path }}
   notify:
-    - restart puma
+    - restart puma app
   become: yes
 
 - name: set permissions
