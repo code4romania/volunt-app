@@ -19,6 +19,7 @@
   git:
     repo: "{{ site_repo_url }}"
     dest: /tmp/colabapp
+    version: "{{ site_repo_branch }}"
     accept_hostkey: yes
 
 - name: copy project to deployment location

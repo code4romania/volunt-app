@@ -3,6 +3,7 @@ ENV: development
 
 site_deployment_path: /vagrant
 site_app_user: vagrant
+site_repo_branch: develop
 
 postgres_host: 127.0.0.1
 postgres_master_user: throwaway
