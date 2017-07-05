@@ -3,6 +3,5 @@
 
 require_relative 'config/application'
 require_relative 'config/patches/active_record_patch'
-require_relative 'config/patches/actionpack_patch'
 
 Rails.application.load_tasks
