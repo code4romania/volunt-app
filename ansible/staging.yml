@@ -1,0 +1,10 @@
+- hosts: staging
+  gather_facts: no
+  remote_user: ubuntu
+  roles:
+    - external/ansible-locale
+    - ansible-certbot
+    - nginx
+    - postgres
+    - rails-site
+    - puma
