@@ -75,7 +75,7 @@
   become_user: "{{ site_app_user }}"
 
 - name: precompile assets
-  command: bundler exec rails assets:precompile
+  command: bundle exec rails assets:precompile
   args:
     chdir: "{{ site_deployment_path }}"
   when: ENV == "production"
