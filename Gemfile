@@ -41,6 +41,8 @@ gem 'bootstrap-sass', '~> 3.2'
 # Sentry for logging
 gem 'sentry-raven'
 
+#gem 'actionpack', '5.0.0.1', :path => '~/actionpack-5.1.1'
+
 # Gems used only for assets and not required
 # in production environments by default.
 # group :assets do
