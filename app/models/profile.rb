@@ -2,6 +2,9 @@ class Profile < ApplicationRecord
   include FlagBitsConcern
   include TagsConcern
 
+  #labels role: coordinator, label:coordinator
+  # role :volunteer , label: techlead / communicate lead / ux lead
+
   array_field :tags
   array_field :skills
   array_field :skill_wish_list

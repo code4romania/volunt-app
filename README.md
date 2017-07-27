@@ -100,7 +100,19 @@ In case app does not start try restarting puma:
 ```bash
 sudo service puma-manager restart
 ```
+* Generate Diagrams
 
+We use **railroady** gem for generating diagrams.For more information please contact [RailRoady ](https://github.com/preston/railroady)
+
+
+```
+bundle exec rake diagram:all
+railroady -M | neato -Tjpeg > models.jpeg
+railroady -C | neato -Tjpeg > controllers.jpeg
+
+```
+
+Diagrams with extension **svg** can be opened via browser.
 
 **Made with :heart: by [GovITHub](http://ithub.gov.ro)**
 
