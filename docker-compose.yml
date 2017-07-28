@@ -3,12 +3,9 @@ version: '3'
 services:
 
   db:
-    image: postgres:9.6
+    image: postgres:9.5
     ports:
-      - ${VOLUNTARI_DATABSE_PORT}:${VOLUNTARI_DATABSE_PORT}
-    environment:
-      POSTGRES_USER: ${VOLUNTARI_DATABASE_DEVELOPMENT_USER}
-      POSTGRES_PASSWORD: ${VOLUNTARI_DATABASE_DEVELOPMENT_PASSWORD}
+      - ${VOLUNTARI_DATABASE_PORT}:${VOLUNTARI_DATABASE_PORT}
 
   app:
     environment:
