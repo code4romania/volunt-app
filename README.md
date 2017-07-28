@@ -142,17 +142,32 @@ services:
 docker-compose build
 ```
 
-Apoi poți face setările finale: 
+Apoi poți face setările de environment:
 
 ```bash
 cp .env.local .env
 # Editează fișierul .env astfel încât valoarea lui VOLUNTARI_DATABASE_HOST
 # sa fie db nu localhost 
+``` 
+
+Apoi porneste containerul de **db** , pentru a crea baza de date si a o popula.
+```bash
+docker-compose up db
 docker-compose run app rake db:setup
 ```
 
-Pentru a porni container-ul, folosești `docker-compose up` și va porni automat
-două containere: unul cu aplicația și celălalt cu baza de date.
+Aplicatia o pornesti:
+
+```bash
+docker-compose up app 
+```
+
+Ca sa pornesti si aplicatia si baza de date ( va porni automat cele 2 containere: unul cu aplicatia, si celelalt cu
+baza de date)
+
+```
+docker-compose up
+```
 
 De acum încolo, pentru a rula comenzi în interiorul container-ului va trebui să
 înlocuiești `bundle exec` cu `docker-compose run app`. De exemplu, pentru a 
@@ -165,6 +180,12 @@ docker-compose run app rake db:migrate
 În general, e o idee bună să faci niște aliasuri pentru `docker-compose run app`
 și `docker-compose up` deoarece le vei rula destul de frecvent.
 
+Pentru a omora aplicatia si baza de data
+
+```bash
+docker-compose kill app
+docker-compose kill db
+```
 
 ### Manual
 
@@ -177,6 +198,12 @@ Aplicația folosește:
 Unele gem-uri vor avea nevoie de anumite librării, care depinde de la un sistem
 de operare la altul. 
 
+```bash
+bundle install
+source .env_local
+bundle exec rake db:setup 
+bundle exec rails s
+```
 
 ## Teste
 
@@ -187,9 +214,9 @@ bundle exec rspec
 ```
 
 
-* Generate Diagrams
+* Generare de diagrame 
 
-We use **railroady** gem for generating diagrams. For more information please 
+Folosim  **railroady** gem pentru a genera diagrame de modele/controllere. Pentru mai multe detalii
 contact [RailRoady](https://github.com/preston/railroady).
 
 
@@ -199,6 +226,6 @@ railroady -M | neato -Tjpeg > models.jpeg
 railroady -C | neato -Tjpeg > controllers.jpeg
 ```
 
-Diagrams with extension **svg** can be opened via browser.
+Diagramele cu extensia **svg** pot fi deschise via browser.
 
 **Made with :heart: by [GovITHub](http://ithub.gov.ro) and [Code 4 Romania](https://code4.ro)**
