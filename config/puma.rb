@@ -21,5 +21,4 @@ activate_control_app
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
 
-
-# prune_bundler
+prune_bundler

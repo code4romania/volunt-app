@@ -1,0 +1,13 @@
+.dockerignore
+.env.local
+.idea
+.git
+.gitignore
+.ruby-version
+.travis.yml
+ansible*
+doc
+docs
+docker-compose*
+Dockerfile
+Vagrantfile

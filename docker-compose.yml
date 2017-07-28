@@ -8,10 +8,8 @@ services:
       - ${VOLUNTARI_DATABASE_PORT}:${VOLUNTARI_DATABASE_PORT}
 
   app:
-    environment:
-      PORT: $PORT
     build: .
-    command: puma -C config/puma.rb
+    command: rails server -b '0.0.0.0' -p ${PORT}
     ports:
       - ${PORT}:${PORT}
     links:
