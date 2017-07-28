@@ -1,12 +1,11 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.1.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
-gem 'puma', '~> 3.8.0'
+gem 'puma', '~> 3.9'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -30,7 +29,7 @@ gem 'will_paginate-bootstrap'
 gem 'premailer-rails'
 
 # Bootstrap-form for bootstraop styled forms
-gem 'bootstrap_form', git: 'https://github.com/bootstrap-ruby/rails-bootstrap-forms.git'
+gem 'bootstrap_form'
 
 # email model validator
 gem 'email_validator'
@@ -40,8 +39,6 @@ gem 'bootstrap-sass', '~> 3.2'
 
 # Sentry for logging
 gem 'sentry-raven'
-
-#gem 'actionpack', '5.0.0.1', :path => '~/actionpack-5.1.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -61,6 +58,7 @@ gem 'sentry-raven'
     gem 'rails-assets-google-code-prettify'
     gem 'rails-assets-bowser'
   end
+
   gem 'summernote-rails'
 #end
 
@@ -68,11 +66,12 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'dotenv-rails'
-  gem 'rspec-rails', git: 'https://github.com/rspec/rspec-rails.git'
+  gem 'rspec-rails'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'rails-controller-testing'
   gem 'faker'
+  gem 'railroady'
 end
 
 group :development do
@@ -80,11 +79,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'railroady'
 end
 
 group :test do
   gem 'database_cleaner'
-  gem 'railroady'
-
 end
