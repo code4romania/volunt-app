@@ -11,7 +11,7 @@ Un sistem de gestiune a voluntarilor si proiectelor Code4Romania disponibil la
 
 În acest moment, sunt două metode prin care se poți să rulezi aplicația:
 
-1. Automat, folosind fie [Vagrant] [vagrant] sau [Docker] [docker]
+1. Automat, folosind fie [Vagrant][vagrant] sau [Docker][docker]
 2. Manual, când trebuie să rezolvi tu toate dependințele (Ruby, gem-uri, 
    Postgres, nginx, etc)
 
@@ -49,7 +49,7 @@ din producție.
 
 Dacă folosești Windows și ai versiunea Pro, e recomandat să folosești Hyper-V în
 loc de VirtualBox. Pentru mai multe detalii, vezi 
-[documentația provider-ului de Hyper-V din Vagrant] [hyperv].
+[documentația provider-ului de Hyper-V din Vagrant][hyperv].
 
 [hyperv]: https://www.vagrantup.com/docs/hyperv/
 
@@ -81,8 +81,8 @@ portul 3000, Vagrant va expune portul 8000 lcoal. Deci în loc să deschizi
 Spre diferență de Vagrant, care doar oferă un layer de abstractizare peste
 un provider de mașini virtuale (cum e VirtualBox, de exemplu), Docker a fost 
 conceput pentru a permite definirea unor „containere”. Cum toți marii provideri
-de SaaS ([Amazon EC2] [aws], [Microsoft Azure] [azure], 
-[Google Cloud Engine] [google-ce]) sau PaaS ([Heroku] [heroku]) oferă suport
+de SaaS ([Amazon EC2][aws], [Microsoft Azure][azure], 
+[Google Cloud Engine][google-ce]) sau PaaS ([Heroku][heroku]) oferă suport
 pentru configurarea instanțelor oferite prin Docker, există posibilitatea de a
 avea un mediu de dezvoltare local identic cu cel de producție.
 
@@ -97,7 +97,7 @@ ceea ce permite un pic mai puțină flexibilitate decât Vagrant (de exemplu,
 Docker nu funcționează pe mașini cu Windows non-Pro deoarece nu se poate instala
 Hyper-V).
 
-Primul pas e să instalezi [Docker CE pentru sistemul tău de operare] [docker-ce],
+Primul pas e să instalezi [Docker CE pentru sistemul tău de operare][docker-ce],
 apoi trebuie să adaugi un fișier local numit `docker-compose.override.yml` care
 poate conține o serie de setări locale pentru sistemul tău (fișierul e adăugat
 în `.gitignore` deci nu va putea fi commit-uit din greșeală). Recomandarea ar fi
@@ -194,7 +194,7 @@ bundle exec rspec
 * Generate Diagrams
 
 We use **railroady** gem for generating diagrams. For more information please 
-contact [RailRoady ](https://github.com/preston/railroady).
+contact [RailRoady](https://github.com/preston/railroady).
 
 
 ```
