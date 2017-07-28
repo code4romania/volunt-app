@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres:9.6
+    ports:
+      - ${VOLUNTARI_DATABSE_PORT}:${VOLUNTARI_DATABSE_PORT}
+    environment:
+      POSTGRES_USER: ${VOLUNTARI_DATABASE_DEVELOPMENT_USER}
+      POSTGRES_PASSWORD: ${VOLUNTARI_DATABASE_DEVELOPMENT_PASSWORD}
+
+  app:
+    environment:
+      PORT: $PORT
+    build: .
+    command: puma -C config/puma.rb
+    ports:
+      - ${PORT}:${PORT}
+    links:
+      - db
