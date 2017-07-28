@@ -180,12 +180,13 @@ docker-compose run app rake db:migrate
 În general, e o idee bună să faci niște aliasuri pentru `docker-compose run app`
 și `docker-compose up` deoarece le vei rula destul de frecvent.
 
-Pentru a omora aplicatia si baza de data
+Pentru a omora aplicatia si baza de date
 
 ```bash
-docker-compose kill app
-docker-compose kill db
+docker-compose down
 ```
+
+Daca opresti aplicatia via **CTRl_C** sterge fisierul **/tmp/pids/server.pid***
 
 ### Manual
 
