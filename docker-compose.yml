@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres:9.5
+    ports:
+      - ${VOLUNTARI_DATABASE_PORT}:${VOLUNTARI_DATABASE_PORT}
+
+  app:
+    build: .
+    command: rails server -b '0.0.0.0' -p ${PORT}
+    ports:
+      - ${PORT}:${PORT}
+    links:
+      - db
