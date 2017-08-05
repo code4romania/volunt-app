@@ -4,7 +4,9 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building..'
-        sh 'docker --version'
+        sh '''#!/bin/bash
+DOCKER_LOGIN=`aws ecr get-login --region eu-west-1`
+${DOCKER_LOGIN}'''
       }
     }
     stage('Test') {
