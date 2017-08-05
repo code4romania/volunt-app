@@ -1,12 +1,14 @@
 pipeline {
-  agent any
+  agent {
+    dockerfile {
+      filename 'Dockerfile'
+    }
+    
+  }
   stages {
     stage('Build') {
       steps {
         echo 'Building..'
-        sh '''#!/bin/bash
-DOCKER_LOGIN=`aws ecr get-login --region eu-west-1`
-${DOCKER_LOGIN}'''
       }
     }
     stage('Test') {
@@ -19,5 +21,10 @@ ${DOCKER_LOGIN}'''
         echo 'Deploying....'
       }
     }
+  }
+  environment {
+    POSTGRES_DB = 'voluntari_development'
+    POSTGRES_USER = 'voluntapp'
+    POSTGRES_PASSWORD = 'voluntapp'
   }
 }
