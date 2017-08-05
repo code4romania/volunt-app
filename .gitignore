@@ -39,3 +39,5 @@ ansible/roles/external/*
 ansible/staging.yml
 
 /docker-compose.override.yml
+/docker-compose-ecs.yml
+.env.production
