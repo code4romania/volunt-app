@@ -26,13 +26,11 @@ describe VolunteersController, type: :controller do
   describe 'GET #show' do
     let(:project)         { create(:project) }
     let!(:memberships)    { profile.memberships = [create(:project_member, profile: profile, project: project)] }
-    let!(:status_reports) { profile.status_reports = [create(:status_report, profile: profile, project: project)] }
 
     it 'assigns profile and project members' do
       get :show, { params: { id: volunteer.id, protocol: 'https' } }
       expect(assigns(:profile)).to eq(profile)
       expect(assigns(:memberships)).to eq(memberships)
-      expect(assigns(:status_reports)).to eq(status_reports)
       expect(response).to render_template('profiles/me')
     end
   end

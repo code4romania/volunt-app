@@ -40,9 +40,6 @@ class Profile < ApplicationRecord
   has_many :projects, through: :memberships
   has_many :lead_projects, foreign_key: 'owner', class_name: 'Project'
 
-  has_many :status_reports, dependent: :delete_all
-  has_and_belongs_to_many :meetings
-
   default_scope { order('full_name ASC') }
 
   def select_name

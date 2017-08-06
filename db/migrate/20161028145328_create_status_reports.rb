@@ -17,3 +17,4 @@ class CreateStatusReports < ActiveRecord::Migration[5.0]
 
   end
 end
+# TODO Delete this before going live, or else everyone will have to rebuild their DB

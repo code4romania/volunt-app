@@ -25,18 +25,6 @@ Rails.application.routes.draw do
       end
     end
     
-    # top level status-reports must precede the nested routes
-    # otherwise the nested routes hijack the collection methods
-    resources :status_reports,
-        except: [:new, :create],
-        path: 'status-reports' do
-      collection do
-        get 'my', to: 'status_reports#my'
-        get 'my/edit', to: 'status_reports#my_edit'
-        post 'my/edit', to: 'status_reports#my_edit_post'
-      end
-    end
-    
     [:volunteers, :applicants, :coordinators].each do |p|
       resources p do
         collection do
@@ -53,11 +41,9 @@ Rails.application.routes.draw do
           get 'new_volunteer'
         end
       end
-      resources :status_reports, shallow: true, path: 'status-reports'
       resource :openings, shallow: true
     end
 
     resources :openings
-    resources :meetings
   end
 end

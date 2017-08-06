@@ -18,9 +18,6 @@ describe Profile, type: :model do
   it { is_expected.to have_many :projects }
   it { is_expected.to have_many(:lead_projects).class_name('Project')
        .with_foreign_key('owner') }
-  it { is_expected.to have_many :status_reports }
-
-  it { is_expected.to have_and_belong_to_many :meetings }
 
   it 'is valid with valid attributes' do
     expect(profile).to be_valid

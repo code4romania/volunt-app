@@ -25,21 +25,6 @@ module ApplicationHelper
     end
   end
 
-  def status_report_publish_tag(report)
-    clasz = "label label-default"
-    text = "Draft"
-    if report.new_record?
-      text = "Nesalvat"
-    elsif report.is_published?
-      clasz = "label label-primary"
-      text = "Publicat"
-    elsif report.is_due?
-      clasz = "label label-danger"
-      text = "Depasit"
-    end
-    content_tag(:span, text, class: clasz)
-  end
-
   def meeting_attendees(meeting)
     capture do
       meeting.attendees.each do |a|
