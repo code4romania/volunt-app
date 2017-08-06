@@ -1,5 +1,4 @@
 class Profile < ApplicationRecord
-  include FlagBitsConcern
   include TagsConcern
 
   #labels role: coordinator, label:coordinator
@@ -12,23 +11,30 @@ class Profile < ApplicationRecord
   hash_field :urls, urls: true
   hash_field :contacts
 
+  enum role: {
+      applicant: 0,
+      volunteer: 1,
+      coordinator: 2
+  }
+
+  self.roles.each do |role, enum_value|
+    define_method("is_#{role}?") do
+      self.try(role + '?')
+    end
+    define_method("is_#{role}=") do |value|
+      self.role = role if value
+    end
+  end
+
   attr_accessor :political_affiliation
   attr_accessor :read_code_of_conduct
-
-  PROFILE_FLAG_APPLICANT    = 0x00000001
-  PROFILE_FLAG_VOLUNTEER    = 0x00000002
-  PROFILE_FLAG_COORDINATOR  = 0x00000008
 
   MAX_LENGTH_FULL_NAME = 128
   MAX_LENGTH_NICK_NAME = 50
 
-  flag_bit :applicant
-  flag_bit :volunteer
-  flag_bit :coordinator
-
-  scope :volunteers, -> { where('profiles.flags & ? > 0', PROFILE_FLAG_VOLUNTEER) }
-  scope :applicants, -> { where('profiles.flags & ? > 0', PROFILE_FLAG_APPLICANT) }
-  scope :coordinators, -> { where('profiles.flags & ? > 0', PROFILE_FLAG_COORDINATOR) }
+  scope :volunteers, -> { volunteer }
+  scope :applicants, -> { applicant}
+  scope :coordinators, -> { coordinator }
 
   validates :full_name, presence: true, length: { maximum: MAX_LENGTH_FULL_NAME }
   validates :nick_name, presence: true, length: { maximum: MAX_LENGTH_NICK_NAME }

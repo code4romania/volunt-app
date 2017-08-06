@@ -11,7 +11,7 @@ module ProfilesControllerConcern
 
   def new
     @profile = Profile.new
-    profile_set_flag(@profile)
+    profile_set_role(@profile)
     if is_new_user?
       @profile.email = current_user_email
     end
@@ -24,7 +24,7 @@ module ProfilesControllerConcern
 
   def create
     @profile = Profile.new(profile_params)
-    profile_set_flag(@profile)
+    profile_set_role(@profile)
     if is_new_user?
       @profile.email = current_user_email
     end
@@ -149,7 +149,7 @@ module ProfilesControllerConcern
         :political_affiliation,
         :read_code_of_conduct]
     if is_coordinator?
-      permitted << :flags
+      permitted << :role
       permitted << :status
       permitted << :hidden_tags_string
       permitted << :notes
@@ -178,7 +178,6 @@ module ProfilesControllerConcern
       controllers_search_path = "search_#{controller}s_path"
       controllers_path = "#{controller}s_path"
       controller_scope = "#{controller}s"
-      profile_flag = "Profile::PROFILE_FLAG_#{controller.upcase}".constantize
 
       # Define the route helpers as aliases of the current type
       helper_method :profile_path,
@@ -216,8 +215,8 @@ module ProfilesControllerConcern
         Profile.send(controller_scope)
       end
 
-      define_method 'profile_set_flag' do |profile|
-        profile.flags = profile_flag
+      define_method 'profile_set_role' do |profile|
+        profile.role = controller.to_sym
       end
 
     end

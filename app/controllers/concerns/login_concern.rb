@@ -95,8 +95,8 @@ module LoginConcern
   included do
     helper_method :current_user_email, :is_new_user?,
                   :current_user_profile,
-        :is_user_level_volunteer?,
-        :is_coordinator?
+                  :is_user_level_volunteer?,
+                  :is_coordinator?
 
     layout :layout_for_current_user
 

@@ -21,6 +21,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+gem 'pundit', '~> 1.1.0'
 
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
@@ -72,6 +73,8 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'faker'
   gem 'railroady'
+  gem 'pry-rails'
+  gem 'pry-remote'
 end
 
 group :development do
