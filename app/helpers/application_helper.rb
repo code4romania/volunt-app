@@ -14,7 +14,7 @@ module ApplicationHelper
   end
 
   def glyphicon_submit_helper(glyph)
-    button_tag(type: 'submit', class: 'btn btn-primary') do
+    button_tag(type: 'submit', class: 'btn btn-primary btn-lg') do
       glyphicon_tag(glyph)
     end
   end
@@ -141,14 +141,10 @@ module ApplicationHelper
     return if project.nil?
     statuses = Rails.configuration.x.project_status
     text = 'Unknown'
-    bgcolor = 'grey'
-    textcolor = 'white'
     if statuses.has_key? project.status
       text = statuses[project.status]["status"]
-      bgcolor = statuses[project.status]["bgcolor"]
-      textcolor = statuses[project.status]["textcolor"]
     end
-    content_tag(:span, text, class: "label", style: "color: #{textcolor}; background-color: #{bgcolor}")
+    content_tag(:span, text, class: "label")
   end
 
   def html_text_area

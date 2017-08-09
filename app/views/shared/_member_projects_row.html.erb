@@ -1,6 +1,7 @@
 <%= project_status_tag(member_projects_row.project, :tr) do %>
-  <td><%= project_status_badge(member_projects_row.project) %></td>
-  <td><%= member_projects_row.project.name %></td>
-  <td><%= member_projects_row.role %></td>
-  <td><%= glyphicon_link_to project_member_path(member_projects_row.project, member_projects_row) %></td>
+  <li>
+    <%= project_status_badge(member_projects_row.project) %>
+    <h2><%= member_projects_row.project.name %></h2>
+    <%= link_to project_member_path(member_projects_row.project, member_projects_row) %>
+  </li>
 <% end %>

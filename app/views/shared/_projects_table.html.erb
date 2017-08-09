@@ -1,42 +1,24 @@
-<table class="table fixed-table projects-table">
-  <colgroup>
-    <col class="col-xs-1"/>
-    <col class="col-xs-3"/>
-    <col class="col-xs-1"/>
-    <col class="col-xs-2"/>
-    <col class="col-xs-3"/>
-    <col class="col-xs-1"/>
-    <col class="col-xs-1"/>
-  </colgroup>
-  <thead>
-    <tr>
-      <th>Status</th>
-      <th>Nume</th>
-      <th>Voluntari</th>
-      <th>Lider</th>
-      <th>Partener</th>
-      <th>Tags</th>
-      <th></th>
-    </tr>
-    <tr>
-    <%= bootstrap_form_for(@project_search_presenter,
+<div class="project-list">
+
+  <div class="row search">
+    <div class="col-xs-12 col-md-3">
+      <div class="search-call">Cateva cuvinte despre proiecte aici</div>
+    </div>
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <%= bootstrap_form_for(@project_search_presenter,
           url: search_projects_path,
           class: 'form-inline',
           method: 'POST') do |f| %>
-      <td />
-      <td><%= f.text_field :name,
+        <%= f.text_field :name,
               hide_label: true,
               placeholder: 'volunt-app',
-              append: glyphicon_submit_helper('search') %></td>
-      <td />
-      <td />
-      <td />
-      <td />
-      <td />
-    <% end %>
-    </tr>
-  </thead>
-  <tbody>
+              class: 'input-lg',
+              append: glyphicon_submit_helper('search') %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row row-eq-height">
     <%= render partial: 'shared/project_row', collection: projects %>
-  </tbody>
-</table>
+  </div>
+</div>

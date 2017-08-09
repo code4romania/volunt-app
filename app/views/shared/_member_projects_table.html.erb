@@ -13,7 +13,9 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
-    <%= render partial: 'shared/member_projects_row.html.erb', collection: members %>
-  </tbody>
+  
 </table>
+
+<ul class="listing-items">
+  <%= render partial: 'shared/member_projects_row.html.erb', collection: members %>
+</ul>

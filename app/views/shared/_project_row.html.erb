@@ -1,9 +1,15 @@
 <%= project_status_tag(project_row, :tr) do %>
-  <td><%= project_status_badge(project_row) %></td>
-  <td><%= project_row.name %></td>
-  <td><%= project_row.members.count %></td>
-  <td><%= project_row.owner.full_name unless project_row.owner.nil? %></td>
-  <td><%= project_row.beneficiary %></td>
-  <td><%= render partial: 'shared/tags', locals: {tags: project_row.tags} %></td>
-  <td><%= glyphicon_link_to project_path(project_row) %></td>
+  <div class="col-xs-6 col-md-4 col-lg-3">
+    <div class="project">
+      <a class="project-action" href="<%= project_path(project_row) %>">
+        <div class="project-status"><%= project_status_badge(project_row) %></div>
+        <h2 class="project-title"><%= project_row.name %></h2>
+        <div class="project-count">
+          <span class="glyphicon glyphicon-user"></span>
+          <%= project_row.members.count %>
+        </div>
+        <div><%= render partial: 'shared/tags', locals: {tags: project_row.tags} %></div>
+      </a>
+    </div>
+  </div>
 <% end %>

@@ -1,0 +1,24 @@
+.project {
+  margin-bottom: 20px;
+}
+
+.project-action {
+  background: $secondary;
+  border: 1px solid #ccc;
+  display: block;
+  padding: 30px 20px;
+
+  &:hover {
+    text-decoration: none;
+    border-color: #222;
+    color: #222;
+
+    .label {
+      background: #222;
+    }
+  }
+}
+
+.project-title {
+
+}
