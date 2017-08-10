@@ -1,12 +1,12 @@
 // Common styles used on all views
 
 // Google fonts
-@import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates:400,600,900&subset=latin-ext');
+@import url('//fonts.googleapis.com/css?family=Montserrat:400,600,800&subset=latin-ext');
 
 // General styles
 body {
   background: #fff;
-  font: 400 14px/1.46 'Montserrat Alternates', 'sans-serif';
+  font: 400 14px/1.46 'Montserrat', 'sans-serif';
   color: #222;
 }
 
@@ -20,7 +20,7 @@ a {
 
 h1, .h1,
 h2, .h2 {
-  font-weight: 900;
+  font-weight: 600;
 }
 
 .label {

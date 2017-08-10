@@ -1,0 +1,33 @@
+<%= project_status_tag(projects_item, :tr) do %>
+  <div class="col-xs-6 col-md-4 col-lg-3">
+    <div class="project">
+      <a class="project-action" href="<%= project_path(projects_item) %>">
+        <div class="project-count">
+          <span class="glyphicon glyphicon-user"></span>
+          <%= projects_item.members.count %>
+          voluntari
+        </div>
+        <div class="project-status"><%= project_status_badge(projects_item) %></div>
+        <h2 class="project-title"><%= projects_item.name %></h2>
+        <ul class="project-team">
+          <li>
+            <i class="glyphicon glyphicon-ok"></i>
+            <span class="need-label">CO</span>
+          </li>
+          <li>
+            <i class="glyphicon glyphicon-ok"></i>
+            <span class="need-label">TL</span>
+          </li>
+          <li>
+            <i class="glyphicon glyphicon-remove"></i>
+            <span class="need-label">UX</span>
+          </li>
+          <li>
+            <i class="glyphicon glyphicon-remove"></i>
+            <span class="need-label">CM</span>
+          </li>
+        </ul>
+      </a>
+    </div>
+  </div>
+<% end %>
