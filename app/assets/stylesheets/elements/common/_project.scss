@@ -1,4 +1,4 @@
-.project-list {
+.projects-list {
   margin-bottom: 80px;
 }
 
@@ -34,14 +34,9 @@
 }
 
 .project-count {
-  display: none;
   float: right;
   font-weight: 400;
   line-height: 20px;
-
-  @media (min-width: $screen-sm) {
-    display: inline-block;
-  }
 
   .glyphicon {
     margin-right: 7px;
@@ -56,13 +51,19 @@
 
   > li {
     display: inline-block;
-    width: 25%;
+    width: auto;
     color: #222;
     opacity: .3;
+    margin-right: 5px;
+
+    @media (min-width: $screen-lg) {
+      width: 25%;
+      margin-right: 0;
+    }
 
     .glyphicon {
       font-size: 12px;
-      margin-right: 5px;
+      margin-right: 8px;
     }
   }
 }
