@@ -17,7 +17,8 @@
             <div class="panel-heading">
               <h2 class="panel-title">Proiecte</h2>
             </div>
-            <%= render partial: 'shared/member_projects_list', locals: {members: @memberships} %>
+            <%# TODO: fix render aici, am facut rename la 'member_projects_list' in 'projects_list'  %>
+            <%# render partial: 'shared/projects_list', locals: {members: @memberships} %>
             <%= will_paginate @memberships,
                 param_name: 'memberships_page',
                 renderer: BootstrapPagination::Rails %>
