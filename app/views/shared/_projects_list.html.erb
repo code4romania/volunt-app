@@ -1,0 +1,23 @@
+<div class="projects-list">
+  <div class="row search">
+    <div class="col-xs-12 col-md-3">
+      <div class="search-call">Cateva cuvinte despre proiecte aici</div>
+    </div>
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <%= bootstrap_form_for(@project_search_presenter,
+          url: search_projects_path,
+          class: 'form-inline',
+          method: 'POST') do |f| %>
+        <%= f.text_field :name,
+              hide_label: true,
+              placeholder: 'volunt-app',
+              class: 'input-lg',
+              append: glyphicon_submit_helper('search') %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row row-eq-height">
+    <%= render partial: 'shared/projects_item', collection: projects %>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.main-footer {
+  border-top: 1px solid #ccc;
+  background: rgba($secondary, .2);
+  text-align: center;
+  padding: 60px 0;
+}
+
+.footer-copy {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.footer-logo {
+  display: inline-block;
+  height: 30px;
+  opacity: 1;
+
+  img {
+    height: 100%;
+  }
+}

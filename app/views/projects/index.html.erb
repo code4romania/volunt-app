@@ -1,17 +1,28 @@
-<div class="container">  
+<div class="container">
+
   <% if is_coordinator? %>
-    <div class="btn-group" role="group">
-      <%= link_to new_project_path, class: 'btn btn-default' do %>
-        Creeaza Proiect
-      <% end %>
+    <div class="row">
+      <div class="cols-xs-12">
+        <div class="coordinate clearfix">
+          <div class="btn-group" role="group">
+            <%= link_to new_project_path, class: 'btn btn-md btn-primary' do %>
+              <span class="glyphicon glyphicon-plus"></span>
+              Creeaza proiect
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   <% end %>
+
   <div class="row">
     <span class="text-info notice"><%= notice %></span>
   </div>
+
   <div class="row">
-    <%= render partial: 'shared/projects_table', locals: {projects: @projects} %> 
+    <%= render partial: 'shared/projects_list', locals: {projects: @projects} %> 
   </div>
+
   <div class="row will-paginate">
     <%= will_paginate @projects, renderer: BootstrapPagination::Rails %>
   </div>

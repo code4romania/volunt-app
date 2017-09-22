@@ -1,3 +1,16 @@
-.main-content {
-  background: #fff;
+.coordinate {
+  background: $secondary;
+  padding: 30px 20px;
+  margin-bottom: 40px;
+}
+
+.search-call {
+  margin-bottom: 20px;
+  // line-height: 46px;
+}
+
+.search {
+  .form-group {
+    margin-bottom: 40px;
+  }
 }

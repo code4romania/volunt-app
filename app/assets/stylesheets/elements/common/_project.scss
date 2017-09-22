@@ -1,0 +1,75 @@
+.projects-list {
+  margin-bottom: 80px;
+}
+
+.project {
+  margin-bottom: 20px;
+}
+
+.project-action {
+  background: $secondary;
+  border: 1px solid #ccc;
+  display: block;
+  padding: 30px 20px;
+
+  &:hover {
+    text-decoration: none;
+    border-color: #222;
+    color: #222;
+
+    .label {
+      background: #222;
+    }
+
+    .project-team {
+      > li {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.project-title {
+  margin: 20px 0;
+}
+
+.project-count {
+  float: right;
+  font-weight: 400;
+  line-height: 20px;
+
+  .glyphicon {
+    margin-right: 7px;
+  }
+}
+
+.project-team {
+  list-style: inside none;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+
+  > li {
+    display: inline-block;
+    width: auto;
+    color: #222;
+    opacity: .3;
+    margin-right: 5px;
+
+    @media (min-width: $screen-lg) {
+      width: 25%;
+      margin-right: 0;
+    }
+
+    .glyphicon {
+      font-size: 12px;
+      margin-right: 8px;
+    }
+  }
+}
+
+.need-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
