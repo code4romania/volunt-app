@@ -115,7 +115,7 @@ să ai următorul conținut:
 [docker-ce]: https://store.docker.com/search?offering=community&type=edition
 
 ```yaml
-version: '3'
+version: '2'
 
 services:
 
