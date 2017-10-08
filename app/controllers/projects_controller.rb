@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
+    authorize Project
     @project_search_presenter = ProjectSearchPresenter.new
     @projects = Project.all.includes(:owner).paginate(page: params[:page])
   end
@@ -29,6 +30,7 @@ class ProjectsController < ApplicationController
 
   # POST /projects/search
   def search
+    authorize Project
     @project_search_presenter = ProjectSearchPresenter.new search_params
     if @project_search_presenter.blank?
       redirect_to projects_path
@@ -45,6 +47,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    authorize @project
   end
 
   # GET /projects/1/edit
@@ -54,6 +57,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.new(project_params)
+    authorize @project
 
     if @project.save
       redirect_to @project, notice: 'Project was successfully created.'
@@ -81,6 +85,7 @@ class ProjectsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:id])
+      authorize @project
     end
 
     def search_params

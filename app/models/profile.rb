@@ -15,7 +15,9 @@ class Profile < ApplicationRecord
   enum role: {
       applicant: 0,
       volunteer: 1,
-      coordinator: 2
+      coordinator: 2,
+      hr: 3,
+      admin: 4
   }
 
   self.roles.each do |role, enum_value|
