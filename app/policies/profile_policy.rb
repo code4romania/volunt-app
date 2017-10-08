@@ -38,4 +38,8 @@ class ProfilePolicy < ApplicationPolicy
     false
   end
 
+  private
+  def profile
+    user.profile
+  end
 end

@@ -5,4 +5,12 @@ class VolunteerPolicy < ProfilePolicy
     @user = user
     @volunteer = volunteer
   end
+
+  def create?
+    profile.admin? || profile.hr?
+  end
+
+  def update?
+    profile.admin? || profile.hr?
+  end
 end
