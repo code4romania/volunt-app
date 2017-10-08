@@ -51,6 +51,10 @@ class Profile < ApplicationRecord
 
   default_scope { order('full_name ASC') }
 
+  def self.policy_class
+
+  end
+
   def select_name
     "%-20s: %s" % [full_name, email]
   end
