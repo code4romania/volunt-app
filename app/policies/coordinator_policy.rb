@@ -1,4 +1,4 @@
-class CoordinatorPolicy < ApplicationPolicy
+class CoordinatorPolicy < ProfilePolicy
   attr_reader :user, :coordinator
 
   def initialize(user, coordinator)
@@ -6,15 +6,4 @@ class CoordinatorPolicy < ApplicationPolicy
     @coordinator = coordinator
   end
 
-  def index?
-    false
-  end
-
-  def show?
-    false
-  end
-
-  def search?
-    false
-  end
 end
