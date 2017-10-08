@@ -11,7 +11,7 @@ class ProfilePolicy < ApplicationPolicy
   end
 
   def show?
-    profile.user_id = user.id
+    profile.user_id == user.id
   end
 
   def search?
@@ -23,15 +23,15 @@ class ProfilePolicy < ApplicationPolicy
   end
 
   def new?
-    false
+    create?
   end
 
   def update?
-    false
+    profile.user_id == user.id
   end
 
   def edit?
-    false
+    update?
   end
 
   def destroy?
