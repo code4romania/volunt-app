@@ -6,7 +6,6 @@ module ProfilesControllerConcern
 
   included do
     before_action :set_profile, only: [:show, :edit, :update, :destroy]
-
   end
 
   def new
@@ -15,6 +14,7 @@ module ProfilesControllerConcern
     if is_new_user?
       @profile.email = current_user_email
     end
+    authorize_profile @profile
     render 'profiles/new'
   end
 
@@ -30,6 +30,7 @@ module ProfilesControllerConcern
     end
     @profile.user = current_user
     @profile.hidden_tags = ['NEW PROFILE', 'FOR REVIEW', Date.today.to_s]
+    authorize_profile @profile
     if @profile.save
       # if is a new user, re-login to force his new level.
       # Otherwise the user can create new profiles ad-nauseam
@@ -61,6 +62,7 @@ module ProfilesControllerConcern
   def index
     @profile_search_presenter = ProfileSearchPresenter.new
     @profiles = profiles_scope.order(:full_name).paginate(page: params[:page])
+    authorize_profile Profile
     render 'profiles/index'
   end
 
@@ -80,6 +82,7 @@ module ProfilesControllerConcern
       return
     end
 
+    authorize_profile Profile
     profiles = profiles_scope
     profiles = chain_where_like(profiles, 'full_name', @profile_search_presenter.full_name);
     profiles = chain_where_like(profiles, 'email', @profile_search_presenter.email);
@@ -131,6 +134,7 @@ module ProfilesControllerConcern
 
   def set_profile
     @profile = profiles_scope.find params[:id]
+    authorize_profile @profile
   end
 
   def profile_params
@@ -220,6 +224,12 @@ module ProfilesControllerConcern
         profile.role = controller.to_sym
       end
 
+      define_method 'authorize_profile' do |resource|
+        policy = (controller.capitalize.to_s + 'Policy').constantize || ApplicationPolicy
+        unless policy.new(current_user, resource).try(self.action_name + '?')
+          raise Pundit::NotAuthorizedError, "not allowed to #{self.action_name} this #{resource.inspect}"
+        end
+      end
     end
 
   end

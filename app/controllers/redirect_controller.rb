@@ -7,15 +7,15 @@ class RedirectController < ApplicationController
     profile = Profile.for_email(current_user_email)
 
     if profile.nil?
-      redirect_to new_applicant_path
-    elsif profile.is_coordinator?
-      redirect_to coordinator_path(profile)
-    elsif profile.is_volunteer?
       redirect_to volunteer_path(profile)
-    elsif profile.is_applicant?
-      redirect_to applicant_path(profile)
-    else
-      redirect_to new_applicant_path
+    elsif profile.coordinator?
+      redirect_to coordinator_path(profile)
+    elsif profile.volunteer?
+      redirect_to volunteer_path(profile)
+    elsif profile.admin?
+      redirect_to admin_path(profile)
+    elsif profile.hr?
+      redirect_to hr_path(profile)
     end
   end
 end

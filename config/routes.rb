@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       end
     end
     
-    [:volunteers, :applicants, :coordinators].each do |p|
+    [:volunteers, :hrs, :coordinators, :admins].each do |p|
       resources p do
         collection do
           match 'search', via: [:get, :post]

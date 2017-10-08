@@ -1,15 +1,12 @@
 class OpeningsController < ApplicationController
   include LoginConcern
-  authorization_required LoginConcern::USER_LEVEL_COORDINATOR,
-      except: [:index, :show]
-  authorization_required LoginConcern::USER_LEVEL_COMMUNITY,
-      only: [:index, :show]
 
   before_action :set_opening, only: [:show, :edit, :update, :destroy]
   before_action :set_project, only: [:new, :create]
 
   # GET /openings
   def index
+    authorize Opening
     @openings = openings.paginate(page: params[:page])
   end
 
@@ -20,6 +17,7 @@ class OpeningsController < ApplicationController
   # GET /openings/new
   def new
     @opening = Opening.new(project: @project)
+    authorize @opening
   end
 
   # GET /openings/1/edit
@@ -29,6 +27,7 @@ class OpeningsController < ApplicationController
   # POST /openings
   def create
     @opening = Opening.new(opening_params)
+    authorize @opening
 
     if @project
       @opening.project = @project
@@ -77,6 +76,7 @@ class OpeningsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_opening
       @opening = openings.find(params[:id])
+      authorize @opening
     end
 
     def set_project
