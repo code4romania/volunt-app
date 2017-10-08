@@ -13,4 +13,12 @@ class VolunteerPolicy < ProfilePolicy
   def update?
     profile.admin? || profile.hr?
   end
+
+  def index?
+    true
+  end
+
+  def search?
+    true
+  end
 end

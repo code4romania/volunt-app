@@ -7,7 +7,7 @@ class ProfilePolicy < ApplicationPolicy
   end
 
   def index?
-    true
+    false
   end
 
   def show?
@@ -15,7 +15,7 @@ class ProfilePolicy < ApplicationPolicy
   end
 
   def search?
-    true
+    false
   end
 
   def create?
@@ -23,7 +23,7 @@ class ProfilePolicy < ApplicationPolicy
   end
 
   def new?
-    create?
+    false
   end
 
   def update?
@@ -31,7 +31,7 @@ class ProfilePolicy < ApplicationPolicy
   end
 
   def edit?
-    update?
+    false
   end
 
   def destroy?

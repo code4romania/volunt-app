@@ -62,7 +62,7 @@ module ProfilesControllerConcern
   def index
     @profile_search_presenter = ProfileSearchPresenter.new
     @profiles = profiles_scope.order(:full_name).paginate(page: params[:page])
-    authorize_profile @profiles
+    authorize_profile Profile
     render 'profiles/index'
   end
 
