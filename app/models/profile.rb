@@ -3,6 +3,7 @@ class Profile < ApplicationRecord
 
   #labels role: coordinator, label:coordinator
   # role :volunteer , label: techlead / communicate lead / ux lead
+  belongs_to :user
 
   array_field :tags
   array_field :skills

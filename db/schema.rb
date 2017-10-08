@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170806115946) do
+ActiveRecord::Schema.define(version: 20170922112956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,12 +81,14 @@ ActiveRecord::Schema.define(version: 20170806115946) do
     t.string "skill_wish_list", array: true
     t.text "notes"
     t.integer "role"
+    t.bigint "user_id"
     t.index ["email"], name: "index_profiles_on_email", unique: true
     t.index ["full_name"], name: "index_profiles_on_full_name"
     t.index ["hidden_tags"], name: "index_profiles_on_hidden_tags", using: :gin
     t.index ["skill_wish_list"], name: "index_profiles_on_skill_wish_list", using: :gin
     t.index ["skills"], name: "index_profiles_on_skills", using: :gin
     t.index ["tags"], name: "index_profiles_on_tags", using: :gin
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "project_members", force: :cascade do |t|
@@ -176,6 +178,7 @@ ActiveRecord::Schema.define(version: 20170806115946) do
   add_foreign_key "meetings_profiles", "meetings"
   add_foreign_key "meetings_profiles", "profiles"
   add_foreign_key "openings", "projects"
+  add_foreign_key "profiles", "users"
   add_foreign_key "project_members", "profiles"
   add_foreign_key "project_members", "projects"
   add_foreign_key "status_reports", "profiles"

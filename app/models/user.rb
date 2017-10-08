@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
+  has_one :profile
 
   validates :email, uniqueness: {case_sensitive: false}, allow_nil: false, on: :create, email: :true
 

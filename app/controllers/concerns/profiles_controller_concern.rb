@@ -28,6 +28,7 @@ module ProfilesControllerConcern
     if is_new_user?
       @profile.email = current_user_email
     end
+    @profile.user = current_user
     @profile.hidden_tags = ['NEW PROFILE', 'FOR REVIEW', Date.today.to_s]
     if @profile.save
       # if is a new user, re-login to force his new level.

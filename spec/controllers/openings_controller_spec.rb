@@ -7,7 +7,7 @@ RSpec.describe OpeningsController, type: :controller do
   let(:session_data) {{"id" => admin.id, "level" => LoginConcern::USER_LEVEL_COORDINATOR}}
   let!(:project) { create :project }
   let!(:user) { create :volunteer }
-  let!(:member) { create :project_member, profile: Profile.for_email(user.email), project: project }
+  let!(:member) { create :project_member, profile: user.profile, project: project }
 
   before do
     session[:user_id] = session_data
