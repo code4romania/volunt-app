@@ -36,8 +36,9 @@ class Profile < ApplicationRecord
   MAX_LENGTH_NICK_NAME = 50
 
   scope :volunteers, -> { volunteer }
-  scope :applicants, -> { applicant}
   scope :coordinators, -> { coordinator }
+  scope :admins, -> { admin }
+  scope :hrs, -> { hr }
 
   validates :full_name, presence: true, length: { maximum: MAX_LENGTH_FULL_NAME }
   validates :nick_name, presence: true, length: { maximum: MAX_LENGTH_NICK_NAME }
