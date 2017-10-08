@@ -18,7 +18,7 @@ class MembersController < ApplicationController
   def new_volunteer
     @member = ProjectMember.new(project: @project)
     @profiles = Profile.volunteers
-    @member_type = Profile::PROFILE_FLAG_VOLUNTEER
+    @member_type = :volunteer
     render 'new'
   end
 
@@ -36,7 +36,7 @@ class MembersController < ApplicationController
       redirect_to back_path, notice: 'Member was successfully added to project.'
     else
       puts @member.errors.inspect
-      @member_type = params.fetch(:member_type, Profile::PROFILE_FLAG_VOLUNTEER)
+      @member_type = params.fetch(:member_type, :volunteer)
       @profiles = Profile.volunteers
       render :new
     end

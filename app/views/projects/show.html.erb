@@ -21,18 +21,6 @@
       <dd>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h2 class="panel-title">Status <span class="pull-right"><%= glyphicon_link_to new_project_status_report_path(@project), 'plus' %></span></h2>
-          </div>
-            <%= render partial: 'shared/status_reports_table', locals: {status_reports: @status_reports} %>
-            <%= will_paginate @status_reports,
-                param_name: 'status_reports_page',
-                renderer: BootstrapPagination::Rails %>
-        </div>
-      </dd>
-      <dt></dt>
-      <dd>
-        <div class="panel panel-default">
-          <div class="panel-heading">
             <h2 class="panel-title">Membri
               <span class="pull-right"><%= glyphicon_link_to new_volunteer_project_members_path(@project), 'plus'%></span></h2>
           </div>

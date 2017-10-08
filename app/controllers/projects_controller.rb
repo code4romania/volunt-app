@@ -17,7 +17,6 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
-    @status_reports = @project.status_reports.paginate(page: params[:status_reports_page])
     @volunteers = @project.members.volunteers.includes(:profile).paginate(page: params[:volunteers_page])
     openings = is_coordinator? ? @project.openings : @project.openings.visible
     @openings = openings.paginate(page: params[:openings_page])

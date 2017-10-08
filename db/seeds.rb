@@ -18,8 +18,6 @@ User.create!(email: user_email, password: 'pass')
 user_profile = Profile.create!(email: user_email, is_volunteer: true, full_name: "User", nick_name: 'user')
 ProjectMember.create!(project: p, profile: user_profile, role: 'Developer')
 
-StatusReport.create!(project: p, profile: profile, summary: "Lansarea campanieie de promovare", report_date: Time.now)
-
 USER_COUNT.times do
   email = Faker::Internet.email
   User.create!(email: email, password: 'pass')

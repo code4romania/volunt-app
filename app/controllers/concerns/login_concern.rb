@@ -12,7 +12,7 @@ module LoginConcern
       email: user.email, 
       level: USER_LEVEL_NEWUSER
     }
-    profile = Profile.for_email(user.email)
+    profile = user.profile
     if profile
       session_data[:profile_id] = profile.id
 
@@ -45,8 +45,8 @@ module LoginConcern
     if session[:user_id].has_key? "profile_id"
       profile = Profile.find session[:user_id]["profile_id"]
     end
-    if profile.nil? or !profile.has_email?(current_user_email)
-      profile = Profile.for_email current_user_email
+    if profile.nil? or user.profile
+      profile = user.profile
     end
     return profile
   end
@@ -95,8 +95,8 @@ module LoginConcern
   included do
     helper_method :current_user_email, :is_new_user?,
                   :current_user_profile,
-        :is_user_level_volunteer?,
-        :is_coordinator?
+                  :is_user_level_volunteer?,
+                  :is_coordinator?
 
     layout :layout_for_current_user
 
