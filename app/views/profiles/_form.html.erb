@@ -53,7 +53,7 @@
                           data: html_text_area %>
           <% end %>
           <% if is_coordinator? %>
-            <%= f.select :role, options_for_select(Profile.roles), label: 'Rol' %>
+            <%= f.select :role, Profile.roles.keys.to_a, label: 'Rol' %>
           <% end %>
       </div>
       <div class="row">
