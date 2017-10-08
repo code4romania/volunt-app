@@ -2,11 +2,6 @@ class ProjectsController < ApplicationController
   include LoginConcern
   include SearchConcern
 
-  authorization_required LoginConcern::USER_LEVEL_COORDINATOR,
-    except: [:index, :show, :search]
-  authorization_required LoginConcern::USER_LEVEL_COMMUNITY,
-    only: [:index, :show, :search]
-
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects

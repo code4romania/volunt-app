@@ -1,9 +1,9 @@
-class ProjectPolicy < ApplicationPolicy
-  attr_reader :user, :project
+class OpeningPolicy < ApplicationPolicy
+  attr_reader :user, :opening
 
-  def initialize(user, project)
+  def initialize(user, opening)
     @user = user
-    @project = project
+    @opening = opening
   end
 
   def index?
@@ -19,7 +19,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def create?
-    profile.admin?
+    not_volunteer
   end
 
   def new?
@@ -27,7 +27,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def update?
-    profile.admin? || (profile.coordinator? && profile == project.owner)
+    not_volunteer
   end
 
   def edit?
@@ -35,12 +35,16 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def destroy?
-    profile.admin?
+    not_volunteer
   end
   
   private
   def profile
     user.profile
+  end
+
+  def not_volunteer
+    profile.admin? || profile.hr? || profile.coordinator?
   end
 
 
