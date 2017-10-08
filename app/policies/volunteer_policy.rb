@@ -15,7 +15,6 @@ class VolunteerPolicy < ProfilePolicy
   end
 
   def show?
-    binding.remote_pry
     volunteer.user_id == user.id || !profile.volunteer?
   end
 

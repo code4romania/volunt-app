@@ -7,6 +7,7 @@ class MembersController < ApplicationController
 
   # GET /members
   def index
+    authorize ProjectMember
     @members = ProjectMember.all.paginate(page: params[:page])
   end
 
@@ -31,6 +32,7 @@ class MembersController < ApplicationController
   def create
     @member = ProjectMember.new(member_params)
     @member.project = @project
+    authorize @member
 
     if @member.save
       redirect_to back_path, notice: 'Member was successfully added to project.'
@@ -72,6 +74,7 @@ class MembersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_member
       @member = ProjectMember.find(params[:id])
+      authorize @member
     end
     
     def set_project
