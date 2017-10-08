@@ -1,4 +1,4 @@
-class HrController < ApplicationController
+class HrsController < ApplicationController
   include ProfilesControllerConcern
   include ProfileDefaultAuthorization
 
