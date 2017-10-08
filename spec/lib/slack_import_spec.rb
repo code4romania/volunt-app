@@ -34,7 +34,7 @@ RSpec.describe SlackImport do
       ]
     end
 
-    it 'works' do
+    xit 'works' do
       expect {
         service = SlackImport.new(user_list)
         service.import

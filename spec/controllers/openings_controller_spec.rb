@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe OpeningsController, type: :controller do
   let!(:admin) { create :user }
-  let!(:admin_profile) { create(:profile, email: admin.email, flags: Profile::PROFILE_FLAG_VOLUNTEER) }
+  let!(:admin_profile) { create(:profile, email: admin.email, role: :volunteer) }
 
   let(:session_data) {{"id" => admin.id, "level" => LoginConcern::USER_LEVEL_COORDINATOR}}
   let!(:project) { create :project }

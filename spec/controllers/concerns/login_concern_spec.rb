@@ -9,18 +9,13 @@ describe LoginConcern do
   end
   after { Object.send :remove_const, :FakesController }
 
-  let(:profile) { build :profile }
+  let!(:user) { create :user, profile: profile }
+  let(:profile) { create :profile }
   let(:object) {
     fake = FakesController.new
     fake.session = {}
     fake
   }
-
-  it 'gives asscess to the session attr' do
-    expect(object.session).to eq({})
-    object.session[:user_id] = 1
-    expect(object.session[:user_id]).to eq 1
-  end
 
   describe 'is_user_logged_in?' do
     it 'checks for user_id presence in the session' do
@@ -56,9 +51,11 @@ describe LoginConcern do
 
   describe 'current_user_profile' do
     it 'returns the profile from session[:user_id]["profile_id"]' do
-      object.session[:user_id] = { 'profile_id' => 1 }
+      object.session[:user_id] = {
+          'profile_id' => 1,
+          'id' => user.id
+      }
       expect(Profile).to receive(:find).and_return profile
-      expect(object).to receive(:current_user_email).and_return profile.email
       expect(object.current_user_profile).to eq profile
     end
   end

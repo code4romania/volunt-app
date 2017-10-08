@@ -45,8 +45,8 @@ module LoginConcern
     if session[:user_id].has_key? "profile_id"
       profile = Profile.find session[:user_id]["profile_id"]
     end
-    if profile.nil? or user.profile
-      profile = user.profile
+    if profile.nil? or current_user.profile
+      profile = current_user.profile
     end
     return profile
   end

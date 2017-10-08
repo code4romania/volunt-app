@@ -28,7 +28,7 @@ describe VolunteersController, type: :controller do
     let!(:memberships)    { profile.memberships = [create(:project_member, profile: profile, project: project)] }
 
     it 'assigns profile and project members' do
-      get :show, { params: { id: volunteer.id, protocol: 'https' } }
+      get :show, { params: { id: volunteer.profile.id, protocol: 'https' } }
       expect(assigns(:profile)).to eq(profile)
       expect(assigns(:memberships)).to eq(memberships)
       expect(response).to render_template('profiles/me')
@@ -40,7 +40,7 @@ describe VolunteersController, type: :controller do
 
     it 'updates the profile' do
       put :update, { params: {
-        'id'      => volunteer.id,
+        'id'      => volunteer.profile.id,
         'profile' => {
           'full_name'          => full_name,
           'nick_name'          => 'Porecla',
@@ -62,7 +62,7 @@ describe VolunteersController, type: :controller do
       expect(assigns(:profile)).to eq(profile)
       expect(assigns(:profile).full_name).to eq(full_name)
       expect(assigns(:profile).hidden_tags).to eq(['SELF UPDATED'])
-      expect(response).to redirect_to("/volunteers/#{volunteer.id}")
+      expect(response).to redirect_to("/volunteers/#{volunteer.profile.id}")
     end
   end
 
