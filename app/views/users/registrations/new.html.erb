@@ -1,0 +1,97 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="field">
+      <%= f.label :nume %><br/>
+      <%= f.text_field :nume, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :prenume %><br/>
+      <%= f.text_field :prenume %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email %><br/>
+      <%= f.email_field :email %>
+    </div>
+
+    <div class="field">
+      <%= f.label :telefon, 'Număr de telefon (ne ajută să te contactăm rapid)' %><br/>
+      <%= f.telephone_field :telefon %>
+    </div>
+
+    <div class="field">
+      <%= f.label :url, 'Profil de LinkedIn (sau link către alt profil social sau profesional) ' %><br/>
+      <%= f.url_field :url %>
+    </div>
+
+    <div class="field">
+      <p>Dintre proiectele actuale care au nevoie de voluntari, mi-ar plăcea să contribui pe: </p>
+
+
+      <!-- TODO: Lista ar trebui populata dinamic cu proiectele existente -->
+
+      <%= check_box_tag(:monitorizare_vot) %>
+      <%= label_tag(:monitorizare_vot, 'Monitorizare Vot') %><br />
+
+      <%= check_box_tag(:centru_civic) %>
+      <%= label_tag(:centru_civic, 'Centru Civic') %><br />
+
+      <%= check_box_tag(:harta_accesibilitatii) %>
+      <%= label_tag(:harta_accesibilitatii, 'Harta Accesibilității') %><br />
+    </div>
+
+    <div class="field">
+      <p>Pot să ajut cu: </p>
+
+      <!-- TODO: Lista ar trebui populata dinamic -->
+
+      <%= check_box_tag(:art_direction) %>
+      <%= label_tag(:monitorizare_vot, 'Art direction') %><br />
+
+      <%= check_box_tag(:copyright) %>
+      <%= label_tag(:centru_civic, 'Copyrighting / Content') %><br />
+
+      <%= check_box_tag(:pr) %>
+      <%= label_tag(:pr, 'PR') %><br />
+    </div>
+
+    <div class="field">
+      <%= label_tag :altele, 'Dacă nu ai găsit nimic să te încânte în lista de mai sus, scrie aici cu ce crezi că ne-ai putea ajuta:' %><br/>
+      <%= text_field_tag :altele %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :altele, 'Dacă nu ai găsit nimic să te încânte în lista de mai sus, scrie aici cu ce crezi că ne-ai putea ajuta:' %><br/>
+      <%= text_field_tag :altele %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :motivatie, 'Vreau să mă implic pentru că' %><br/>
+      <%= text_field_tag :motivatie %>
+    </div>
+
+    <div class="field">
+      <%= f.label :locatie, 'Locatie' %><br/>
+      <%= f.text_field :locatie %>
+    </div>
+
+    <div class="field">
+      <p> Vreau să primesc newsletterul Code for Romania:</p>
+
+      <%= radio_button_tag(:subscribe, 'yes') %>
+      <%= label_tag(:subscribe_yes, 'Da') %><br />
+      <%= radio_button_tag(:subscribe, 'no') %>
+      <%= label_tag(:subscribe_no, 'Nu') %><br />
+    </div>
+
+
+    <div class="actions">
+      <%= f.submit "Sign up" %>
+    </div>
+<% end %>
+
+<%= render "users/shared/links" %>

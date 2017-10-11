@@ -5,7 +5,7 @@
         <%= render partial: 'shared/notice' %>
         <%= bootstrap_form_for(@signup_presenter,
               method: :post,
-              url: signup_path,
+              url: user_registration_path,
               role: :form) do |f| %>
             <%= f.email_field :email,
                 placeholder: 'you@example.com',

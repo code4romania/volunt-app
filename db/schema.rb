@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170922112956) do
+ActiveRecord::Schema.define(version: 20171011111017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "unaccent"
 
-  create_table "meetings", force: :cascade do |t|
+  create_table "meetings", id: :serial, force: :cascade do |t|
     t.string "location", null: false
     t.string "agency", null: false
     t.datetime "date", null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170922112956) do
     t.index ["profile_id"], name: "index_meetings_profiles_on_profile_id"
   end
 
-  create_table "openings", force: :cascade do |t|
+  create_table "openings", id: :serial, force: :cascade do |t|
     t.string "title", null: false
     t.datetime "deadline"
     t.datetime "publish_date"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20170922112956) do
     t.index ["title"], name: "index_openings_on_title"
   end
 
-  create_table "profiles", force: :cascade do |t|
+  create_table "profiles", id: :serial, force: :cascade do |t|
     t.string "full_name"
     t.string "nick_name"
     t.string "email"
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20170922112956) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
-  create_table "project_members", force: :cascade do |t|
+  create_table "project_members", id: :serial, force: :cascade do |t|
     t.string "role"
     t.integer "project_id", null: false
     t.integer "profile_id", null: false
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 20170922112956) do
     t.index ["project_id"], name: "index_project_members_on_project_id"
   end
 
-  create_table "projects", force: :cascade do |t|
+  create_table "projects", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
     t.string "tags", array: true
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 20170922112956) do
     t.index ["urls"], name: "index_projects_on_urls", using: :gin
   end
 
-  create_table "status_reports", force: :cascade do |t|
+  create_table "status_reports", id: :serial, force: :cascade do |t|
     t.integer "project_id"
     t.integer "profile_id"
     t.datetime "report_date", null: false
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20170922112956) do
     t.index ["tags"], name: "index_status_reports_on_tags", using: :gin
   end
 
-  create_table "templates", force: :cascade do |t|
+  create_table "templates", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.string "subject"
     t.text "body"
@@ -154,17 +154,37 @@ ActiveRecord::Schema.define(version: 20170922112956) do
     t.index ["tags"], name: "index_templates_on_tags", using: :gin
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", null: false
     t.binary "password_digest"
     t.integer "status", default: 0, null: false
     t.integer "flags", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nume", null: false
+    t.string "prenume", null: false
+    t.string "telefon", null: false
+    t.string "url", null: false
+    t.string "locatie", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "validation_tokens", force: :cascade do |t|
+  create_table "validation_tokens", id: :serial, force: :cascade do |t|
     t.binary "token", null: false
     t.integer "user_id"
     t.integer "category", null: false
