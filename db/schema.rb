@@ -156,7 +156,6 @@ ActiveRecord::Schema.define(version: 20171011111017) do
 
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", null: false
-    t.binary "password_digest"
     t.integer "status", default: 0, null: false
     t.integer "flags", default: 0, null: false
     t.datetime "created_at", null: false
