@@ -1,0 +1,12 @@
+{
+  "types": {
+    "FRONTEND": [
+      "ANGULARJS",
+      "ANGULAR4"
+    ],
+    "BACKEND": [
+      "EXPRESSJS"
+    ]
+  },
+  "levels": ["BEGINNER", "ADVANCED", "MIDDLE"]
+}
