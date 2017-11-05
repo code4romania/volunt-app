@@ -3,7 +3,7 @@
   "license": "MIT",
   "author": "Williams Medina <williams.medinaa@gmail.com>",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --port 3005",
     "lint": "tslint --project tsconfig.json src/**/*.ts",
     "test": "NODE_ENV=testing karma start --single-run",
     "build": "NODE_ENV=production webpack",
