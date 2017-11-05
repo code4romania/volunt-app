@@ -1,2 +1,0 @@
-class LoginConcernException < StandardError
-end

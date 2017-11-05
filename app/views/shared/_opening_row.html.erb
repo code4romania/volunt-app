@@ -1,8 +1,0 @@
-<tr>
-  <td><%= opening_visibility_dates(opening_row) %></td>
-  <td><%= opening_row.project.name unless opening_row.project.nil? %> </td>
-  <td><%= opening_row.title %></td>
-  <td><%= render partial: 'shared/tags', locals: {tags: opening_row.tags} %>
-      <%= render partial: 'shared/skills', locals: {skills: opening_row.skills} %></td>
-  <td><%= glyphicon_link_to opening_path(opening_row) %></td>
-</tr>

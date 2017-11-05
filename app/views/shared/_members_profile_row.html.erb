@@ -1,7 +1,0 @@
-<tr>
-  <td><%= members_profile_row.profile.full_name %></td>
-  <td><%= members_profile_row.profile.email %></td>
-  <td><%= members_profile_row.role %></td>
-  <td><%= render partial: 'shared/profile_attributes', locals: {profile: members_profile_row.profile} %></td>
-  <td><%= glyphicon_link_to project_member_path(members_profile_row.project, members_profile_row)  %><td>
-</tr>

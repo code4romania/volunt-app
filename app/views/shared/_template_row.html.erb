@@ -1,6 +1,0 @@
-<tr>
-  <td><%= template_row.name %></td>
-  <td><%= template_row.subject %></td>
-  <td><%= render partial: 'shared/tags', locals: {tags: template_row.tags } %></td>
-  <td><%= glyphicon_link_to template_path(template_row) %></td>
-</tr>

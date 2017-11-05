@@ -1,8 +1,0 @@
-<ul class="list-unstyled project-urls">
-  <% Rails.configuration.x.project_urls.each do |k,v| %>
-    <% next if project.send("urls_#{k}").blank? %>
-    <li><span class="label label-default label-project-url"><%= v["label"] %></span>
-      <%= link_to project.send("urls_#{k}"), project.send("urls_#{k}") %>
-    </li>
-  <% end %>
-</ul>

@@ -1,7 +1,0 @@
-<tr>
-  <td><%= status_report_row.report_date.to_date %></td>
-  <td><%= status_report_row.ref %></td>
-  <td><%= status_report_row.summary %></td>
-  <td><%= status_report_publish_tag(status_report_row) %><%= render partial: 'shared/tags', locals: {tags: status_report_row.tags} %></td>
-  <td><%= glyphicon_link_to status_report_path(status_report_row)  %></td>
-</tr>
