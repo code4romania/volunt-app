@@ -13,6 +13,7 @@ export interface UserAttributes {
   twitterUrl?: string
   additionalSkills?: string
   joinReason?: string
+  Technology?: Array<any>
 }
 
 export interface UserInstance extends Sequelize.Instance<UserAttributes> {
@@ -21,6 +22,7 @@ export interface UserInstance extends Sequelize.Instance<UserAttributes> {
   updatedAt: Date
   email: string
   pwd: string
+  Technology: Array<any>
 }
 
 export default function defineUser(sequelize: Sequelize.Sequelize, DataTypes) {
@@ -40,11 +42,10 @@ export default function defineUser(sequelize: Sequelize.Sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         User.belongsToMany(models.Technology, {
-          through: 'UserTechnologies',
-          as: 'technologies'
+          through: models.UserTechnologies
         })
       }
     }
-  });
+  })
   return User
 }

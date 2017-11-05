@@ -1,4 +1,5 @@
 'use strict';
+const data = require('../../data/technologies.json');
 module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('UserTechnologies', {
@@ -21,6 +22,9 @@ module.exports = {
           as: 'UserId'
         },
         primaryKey: true
+      },
+      level: {
+        type: Sequelize.ENUM(data.levels)
       },
       createdAt: {
         allowNull: false,

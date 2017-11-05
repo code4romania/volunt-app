@@ -7,10 +7,12 @@ const config = require('../config/config.json')
 // Import model specification from its own definition file.
 import { UserInstance, UserAttributes } from './user'
 import { TechnologyInstance, TechnologyAttributes } from './technology'
+import { UserTechnologiesAttributes, UserTechnologiesInstance } from './userTechnologies'
 
 interface DbConnection {
   User: Sequelize.Model<UserInstance, UserAttributes>
   Technology: Sequelize.Model<TechnologyInstance, TechnologyAttributes>
+  UserTechnologies: Sequelize.Model<UserTechnologiesInstance, UserTechnologiesAttributes>
 }
 let db = {}
 

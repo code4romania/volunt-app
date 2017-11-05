@@ -20,14 +20,11 @@ export default function defineTechnology(sequelize: Sequelize.Sequelize, DataTyp
     type: DataTypes.ENUM(_.keys(types))
   }, {
     classMethods: {
-      classMethods: {
         associate: function(models) {
           Technology.belongsToMany(models.User, {
-            through: 'UserTechnologies',
-            as: 'users'
+            through: models.UserTechnologies
           })
         }
-      }
     }
   })
   return Technology

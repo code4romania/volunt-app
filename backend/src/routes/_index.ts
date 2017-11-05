@@ -11,7 +11,7 @@ export function initRoutes(app: Express) {
   }))
 
   UserRoutes.routes(app)
-  TechnologyRoutes.routes(app);
+  TechnologyRoutes.routes(app)
 
   app.all('*', (req: Request, res: Response) => res.boom.notFound())
 }

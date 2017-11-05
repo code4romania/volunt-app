@@ -4,17 +4,23 @@ import { UserInstance } from './../sqlz/models/user'
 
 export function create(appUser: UserInstance): Promise<any> {
   return db.User
-    .create(appUser)
+    .create(appUser).then((user: any) => {
+      return user.addTechnologies(appUser.Technology).then(() => {
+        return user
+      })
+    })
 }
 
 export function findAll(): Promise<any> {
   return db.User
-    .findAll({ include: [{ all: true }] })
+    .findAll({ include: [db.Technology] })
 }
 
 export function find(id: string): Promise<any> {
   return db.User
-    .findById(id)
+    .findById(id, {include: [{
+      model: db.Technology
+    }]})
 }
 
 export function login(appUser: UserInstance): Promise<any> {
