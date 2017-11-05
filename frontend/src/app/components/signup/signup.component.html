@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="signup-form">
+    <form (ngSubmit)="onSubmit(signupForm)" #signupForm="ngForm">
+      <h4>Personal Information</h4>
+      <div class="form-group">
+        <label for="email">First Name:</label>
+        <input type="text" [(ngModel)]="user.firstName" name="firstName"
+               class="form-control" id="firstName" placeholder="Enter your first name">
+      </div>
+      <div class="form-group">
+        <label for="email">Last Name:</label>
+        <input type="text" [(ngModel)]="user.lastName" name="lastName"
+               class="form-control" id="lastName" placeholder="Enter your last name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email address:</label>
+        <input type="email" [(ngModel)]="user.email" name="email"
+               class="form-control" id="email" placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+        <label for="password">Phone:</label>
+        <input type="tel" [(ngModel)]="user.phone" name="phone"
+               class="form-control" id="phone" placeholder="Enter your phone number">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" [(ngModel)]="user.password" name="password"
+               class="form-control" id="password" placeholder="Enter password">
+      </div>
+      <h4>Technologies & Skills</h4>
+      <div class="tech-description">
+        Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Signup</button>
+    </form>
+  </div>
+</div>

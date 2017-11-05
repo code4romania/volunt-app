@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="project-logo">
+    <img src="http://via.placeholder.com/200x200">
+  </div>
+  <div class="text-center mb-2">{{ project.name }}</div>
+  <div class="project-positions-container">
+    <div [ngClass]="{'project-position--open': !project.mainPositions[0]}"
+      class="project-position col-2">C</div>
+    <div [ngClass]="{'project-position--open': !project.mainPositions[1]}"
+      class="project-position col-2">UX</div>
+    <div [ngClass]="{'project-position--open': !project.mainPositions[2]}"
+      class="project-position col-2">TL</div>
+    <div [ngClass]="{'project-position--open': !project.mainPositions[3]}"
+      class="project-position col-2">CM</div>
+    <div [ngClass]="{'project-position--open': !project.mainPositions[4]}"
+      class="project-position col-2">E</div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="login-form">
+    <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+      <div class="form-group">
+        <label for="email">Email address:</label>
+        <input type="email" [(ngModel)]="user.email" name="email"
+               class="form-control" id="email" placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" [(ngModel)]="user.password" name="password"
+               class="form-control" id="password" placeholder="Enter password">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
+      <span>Don't have an account?</span>
+      <button type="button" class="btn btn-secondary btn-block" routerLink="/signup">Sign up</button>
+    </form>
+  </div>
+</div>
