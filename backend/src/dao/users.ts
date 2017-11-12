@@ -4,11 +4,7 @@ import { UserInstance } from './../sqlz/models/user'
 
 export function create(appUser: UserInstance): Promise<any> {
   return db.User
-    .create(appUser).then((user: any) => {
-      return user.addTechnologies(appUser.Technology).then(() => {
-        return user
-      })
-    })
+    .create(appUser)
 }
 
 export function findAll(): Promise<any> {

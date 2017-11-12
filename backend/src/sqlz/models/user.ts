@@ -13,7 +13,7 @@ export interface UserAttributes {
   twitterUrl?: string
   additionalSkills?: string
   joinReason?: string
-  Technology?: Array<any>
+  technologies?: Array<any>
 }
 
 export interface UserInstance extends Sequelize.Instance<UserAttributes> {
@@ -22,7 +22,7 @@ export interface UserInstance extends Sequelize.Instance<UserAttributes> {
   updatedAt: Date
   email: string
   password: string
-  Technology: Array<any>
+  technologies: Array<any>
 }
 
 export default function defineUser(sequelize: Sequelize.Sequelize, DataTypes) {

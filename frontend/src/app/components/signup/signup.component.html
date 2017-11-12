@@ -1,38 +1,114 @@
 <div class="container">
   <div class="signup-form">
     <form (ngSubmit)="onSubmit(signupForm)" #signupForm="ngForm">
-      <h4>Personal Information</h4>
-      <div class="form-group">
-        <label for="email">First Name:</label>
-        <input type="text" [(ngModel)]="user.firstName" name="firstName"
-               class="form-control" id="firstName" placeholder="Enter your first name">
+      <div class="form-section">
+        <h4 class="mb-4">Personal Information</h4>
+        <div class="form-group form-inline">
+          <label for="firstName" class="col-12 col-md-3 col-lg-2 no-gutters">First Name:</label>
+          <input type="text" [(ngModel)]="user.firstName" name="firstName" required
+                 #firstName="ngModel"
+                 class="form-control col-12 col-md-9 col-lg-10" id="firstName" placeholder="Enter your first name">
+          <div [hidden]="firstName.valid || firstName.pristine"
+               class="alert alert-danger col-12 col-md-9 col-lg-10 offset-md-3 offset-lg-2">
+            This field is mandatory!
+          </div>
+        </div>
+        <div class="form-group form-inline">
+          <label for="lastName" class="col-12 col-md-3 col-lg-2 no-gutters">Last Name:</label>
+          <input type="text" [(ngModel)]="user.lastName" name="lastName" required
+                 class="form-control col-12 col-md-9 col-lg-10" id="lastName" placeholder="Enter your last name">
+        </div>
+        <div class="form-group form-inline">
+          <label for="email" class="col-12 col-md-3 col-lg-2 no-gutters">Email address:</label>
+          <input type="email" [(ngModel)]="user.email" name="email" required
+                 class="form-control col-12 col-md-9 col-lg-10" id="email" placeholder="Enter your email">
+        </div>
+        <div class="form-group form-inline">
+          <label for="phone" class="col-12 col-md-3 col-lg-2 no-gutters">Phone:</label>
+          <input type="tel" [(ngModel)]="user.phone" name="phone"
+                 class="form-control col-12 col-md-9 col-lg-10" id="phone" placeholder="Enter your phone number">
+        </div>
+        <div class="form-group form-inline">
+          <label for="city" class="col-12 col-md-3 col-lg-2 no-gutters">City:</label>
+          <input type="text" [(ngModel)]="user.city" name="city" required
+                 class="form-control col-12 col-md-9 col-lg-10" id="city" placeholder="Where are you located?">
+        </div>
+        <div class="form-group form-inline">
+          <label for="password" class="col-12 col-md-3 col-lg-2 no-gutters">Password:</label>
+          <input type="password" [(ngModel)]="user.password" name="password"
+                 class="form-control col-12 col-md-9 col-lg-10" id="password" placeholder="Enter password">
+        </div>
       </div>
-      <div class="form-group">
-        <label for="email">Last Name:</label>
-        <input type="text" [(ngModel)]="user.lastName" name="lastName"
-               class="form-control" id="lastName" placeholder="Enter your last name">
+      <div class="form-section">
+        <h4 class="mb-4">Technologies & Skills</h4>
+        <div class="form-group form-inline">
+          <label class="col-12 col-md-3 col-lg-2 no-gutters">Senior:</label>
+          <div class="col-12 col-md-9 col-lg-10 no-gutters">
+            <ng-select  [multiple]="true"
+                        [items]="items"
+                        [active]="user.skills.senior"
+                        (data)="refreshValue($event, 'senior')"
+                        (selected)="selected($event)"
+                        (removed)="removed($event)"
+                        placeholder="Add a skill or technology..."></ng-select>
+          </div>
+        </div>
+        <div class="form-group form-inline">
+          <label class="col-12 col-md-3 col-lg-2 no-gutters">Medium:</label>
+          <div class="col-12 col-md-9 col-lg-10 no-gutters">
+            <ng-select  [multiple]="true"
+                        [items]="items"
+                        [active]="user.skills.medium"
+                        (data)="refreshValue($event, 'medium')"
+                        (selected)="selected($event)"
+                        (removed)="removed($event)"
+                        placeholder="Add a skill or technology..."></ng-select>
+          </div>
+        </div>
+        <div class="form-group form-inline">
+          <label class="col-12 col-md-3 col-lg-2 no-gutters">Junior:</label>
+          <div class="col-12 col-md-9 col-lg-10 no-gutters">
+            <ng-select  [multiple]="true"
+                        [items]="items"
+                        [active]="user.skills.junior"
+                        (data)="refreshValue($event, 'junior')"
+                        (selected)="selected($event)"
+                        (removed)="removed($event)"
+                        placeholder="Add a skill or technology..."></ng-select>
+          </div>
+        </div>
+        <div class="form-group form-inline">
+          <label class="col-12 col-md-3 col-lg-2 no-gutters">Want to learn:</label>
+          <div class="col-12 col-md-9 col-lg-10 no-gutters">
+            <ng-select  [multiple]="true"
+                        [items]="items"
+                        [active]="user.skills.wannabe"
+                        (data)="refreshValue($event, 'wannabe')"
+                        (selected)="selected($event)"
+                        (removed)="removed($event)"
+                        placeholder="Add a skill or technology..."></ng-select>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="email">Email address:</label>
-        <input type="email" [(ngModel)]="user.email" name="email"
-               class="form-control" id="email" placeholder="Enter your email">
+      <div class="form-section">
+        <h4 class="mb-4">Other Information</h4>
+        <div class="form-group">
+          <label for="otherSkills">Did not find your skills in the list? Leave us a message:</label>
+          <textarea type="text" [(ngModel)]="user.otherSkills" name="otherSkills" rows="4"
+                    class="form-control" id="otherSkills"
+                    placeholder="...">
+          </textarea>
+        </div>
+        <div class="form-group">
+          <label for="motivation">Why did you join Code4Romania?</label>
+          <textarea type="text" [(ngModel)]="user.motivation" name="motivation" rows="4"
+                    class="form-control" id="motivation"
+                    placeholder="...">
+          </textarea>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="password">Phone:</label>
-        <input type="tel" [(ngModel)]="user.phone" name="phone"
-               class="form-control" id="phone" placeholder="Enter your phone number">
-      </div>
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" [(ngModel)]="user.password" name="password"
-               class="form-control" id="password" placeholder="Enter password">
-      </div>
-      <h4>Technologies & Skills</h4>
-      <div class="tech-description">
-        Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-      </div>
-
-      <button type="submit" class="btn btn-primary btn-block">Signup</button>
+      <button type="submit" class="btn btn-primary btn-block cursor-pointer">SUBMIT</button>
     </form>
+
   </div>
 </div>
