@@ -11,7 +11,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.ENUM(_.concat(data.types.FRONTEND, data.types.BACKEND))
+        type: Sequelize.ENUM(_.concat(data.types.FRONTEND, data.types.BACKEND, data.types.SOFT_SKILLS))
       },
       type: {
         type: Sequelize.ENUM(_.keys(data.types))

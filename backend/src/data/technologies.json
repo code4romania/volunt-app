@@ -6,7 +6,10 @@
     ],
     "BACKEND": [
       "EXPRESSJS"
+    ],
+    "SOFT_SKILLS": [
+
     ]
   },
-  "levels": ["BEGINNER", "ADVANCED", "MIDDLE"]
+  "levels": ["JUNIOR", "MIDDLE", "SENIOR", "WANNABE"]
 }
