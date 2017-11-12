@@ -5,7 +5,7 @@ export interface UserAttributes {
   firstName?: string
   lastName?: string
   email?: string
-  pwd?: string
+  password?: string
   slackId?: string
   city?: string
   facebookUrl?: string
@@ -21,14 +21,14 @@ export interface UserInstance extends Sequelize.Instance<UserAttributes> {
   createdAt: Date
   updatedAt: Date
   email: string
-  pwd: string
+  password: string
   Technology: Array<any>
 }
 
 export default function defineUser(sequelize: Sequelize.Sequelize, DataTypes) {
   const User = sequelize.define('User', {
     email: DataTypes.STRING,
-    pwd: DataTypes.STRING,
+    password: DataTypes.STRING,
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     slackId: DataTypes.STRING(255),

@@ -7,6 +7,27 @@ import * as expressValidator from 'express-validator'
 import { json, urlencoded } from 'body-parser'
 import { Express } from 'express'
 import * as routes from './routes/_index'
+import * as jwt from 'jsonwebtoken'
+import * as passport from 'passport'
+import { Strategy as JwtStrategy, ExtractJwt, StrategyOptions } from 'passport-jwt'
+import * as db from './sqlz/models/_index'
+
+const User = db.default.User
+
+let jwtOptions: StrategyOptions = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt'),
+  secretOrKey: 'test'
+}
+
+passport.use(new JwtStrategy(jwtOptions, (payload, done) => {
+  console.log(payload)
+  User.findById(payload.id).then((user) => {
+    console.log(user)
+    done(null, user)
+  }).catch((err) => {
+    done(null, null)
+  })
+}))
 
 const PORT: number = 3000
 
@@ -20,6 +41,9 @@ export class Server {
 
   constructor() {
     this.app = express()
+
+    // Init passport
+    this.app.use(passport.initialize())
 
     // Express middleware
     this.app.use(cors({

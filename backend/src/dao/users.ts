@@ -23,6 +23,13 @@ export function find(id: string): Promise<any> {
     }]})
 }
 
+export function findByCredentials(email: string, password: string): Promise<any> {
+  return db.User.findOne({where: {
+    email: email,
+    password: password
+  }})
+}
+
 export function login(appUser: UserInstance): Promise<any> {
   return db.User
     .findOne({
