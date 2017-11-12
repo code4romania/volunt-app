@@ -12,6 +12,7 @@ export function initRoutes(app: Express) {
   app.get('/api', (req: Request, res: Response) => res.status(200).send({
     message: 'server is running!'
   }))
+
   let authenticate = passport.authenticate('jwt', { session: false })
   UserRoutes.routes(app, authenticate)
   TechnologyRoutes.routes(app, authenticate)

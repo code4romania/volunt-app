@@ -47,5 +47,6 @@ export default function defineUser(sequelize: Sequelize.Sequelize, DataTypes) {
       }
     }
   })
+
   return User
 }

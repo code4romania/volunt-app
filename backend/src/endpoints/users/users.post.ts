@@ -2,7 +2,6 @@ import { Request, Response } from 'express'
 import { UserDao } from '../../dao/_index'
 
 export function create(req: Request, res: Response) {
-
   req.getValidationResult()
     .then(function(result) {
       if (result.isEmpty()) {
