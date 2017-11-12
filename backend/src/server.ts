@@ -20,9 +20,7 @@ let jwtOptions: StrategyOptions = {
 }
 
 passport.use(new JwtStrategy(jwtOptions, (payload, done) => {
-  console.log(payload)
   User.findById(payload.id).then((user) => {
-    console.log(user)
     done(null, user)
   }).catch((err) => {
     done(null, null)

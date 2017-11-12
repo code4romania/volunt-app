@@ -35,7 +35,7 @@ export function login(appUser: UserInstance): Promise<any> {
     .findOne({
       where: {
         email: appUser.email,
-        pwd: appUser.pwd
+        pwd: appUser.password
       }
     })
 }
