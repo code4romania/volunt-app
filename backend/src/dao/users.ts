@@ -1,10 +1,19 @@
 import * as uuid from 'uuid'
 import db from '../sqlz/models/_index'
-import { UserInstance } from './../sqlz/models/user'
+import { UserInstance } from '../sqlz/models/user'
+import * as _ from 'lodash'
 
 export function create(appUser: UserInstance): Promise<any> {
   return db.User
-    .create(appUser)
+    .create(appUser).then((response) => {
+      _.each(appUser.technologies, (technology) => {
+        db.UserTechnologies.create({
+          TechnologyId: technology.id,
+          UserId: response.id,
+          level: technology.level
+        })
+      })
+    })
 }
 
 export function findAll(): Promise<any> {

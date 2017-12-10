@@ -24,7 +24,7 @@ module.exports = {
         primaryKey: true
       },
       level: {
-        type: Sequelize.ENUM(data.levels)
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
