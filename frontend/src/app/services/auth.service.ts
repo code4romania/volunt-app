@@ -1,11 +1,12 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class AuthenticationService {
+export class AuthenticationService implements OnInit {
   public token: string;
+  private currentUser = new Subject<any>();
 
   constructor(private http: HttpClient) {
     // set token if saved in local storage
@@ -13,8 +14,15 @@ export class AuthenticationService {
     this.token = currentUser && currentUser.token;
   }
 
+  ngOnInit() {
+    this.currentUser.next(JSON.parse(localStorage.getItem('currentUser')));
+  }
+
+  getCurrentUser() {
+    return this.currentUser.asObservable();
+  }
+
   login(email: string, password: string): Observable<any> {
-    console.log('trying to login');
     return this.http.post('http://localhost:3000/api/login', {
       email: email,
       password: password
@@ -28,6 +36,7 @@ export class AuthenticationService {
 
           // store username and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify({email: email, token: token}));
+          this.currentUser.next({email: email, token: token});
 
           // return true to indicate successful login
           return true;
@@ -42,5 +51,6 @@ export class AuthenticationService {
     // clear token remove user from local storage to log user out
     this.token = null;
     localStorage.removeItem('currentUser');
+    this.currentUser.next(null);
   }
 }

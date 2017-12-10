@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from "../../services/auth.service";
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from "../../services/auth.service";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +12,12 @@ export class LoginComponent implements OnInit {
   public user: any;
   public error: string = '';
   public loading: boolean = false;
+
   constructor(
     private router: Router,
-    private authenticationServer: AuthenticationService
-  ) { }
+    private authenticationService: AuthenticationService
+  ) {
+  }
 
   ngOnInit() {
     this.user = {};
@@ -23,8 +25,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
-    console.log('x', this.user);
-    this.authenticationServer.login(this.user.email, this.user.password)
+    this.authenticationService.login(this.user.email, this.user.password)
       .subscribe((result) => {
         if (result) {
           this.router.navigate(['/home']);

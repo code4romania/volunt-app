@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from '../../services/auth.service';
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'navbar',
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  public $currentUser: Observable<any>;
 
-  constructor() { }
+  constructor(
+    private authenticationService: AuthenticationService,
+  ) {
+  }
 
   ngOnInit() {
+    this.$currentUser = this.authenticationService.getCurrentUser();
+    this.$currentUser.subscribe((x) => console.log('x', x));
+  }
+
+  logout() {
+    console.log('logout');
+    this.authenticationService.logout();
   }
 
 }

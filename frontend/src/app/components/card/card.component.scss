@@ -20,11 +20,13 @@
   .project-position {
     padding: 10px 0;
     margin-right: 5px;
-    background: #1fff3e;
+    background: #72bb53;
     text-align: center;
+    font-size: 14px;
+    cursor: pointer;
 
     &--open {
-      background: #fb384d;
+      background: #e6160d;
     }
   }
 }

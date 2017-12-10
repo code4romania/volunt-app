@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthModule} from './auth/auth.module';
 
 import {AppComponent} from './app.component';
@@ -14,14 +14,16 @@ import {ProjectsComponent} from './components/projects/projects.component';
 import {HomeComponent} from './components/home/home.component';
 import {CardComponent} from './components/card/card.component';
 import {LoginComponent} from './components/login/login.component';
-import {SignupComponent} from './components/signup/signup.component';
+import {UserProfileComponent} from './components/userProfile/userProfile.component';
+import {UserService} from './components/userProfile/user.service';
 
-import {AuthGuard} from "./guards/auth.guard";
-import {AuthenticationService} from "./services/auth.service";
+import {AuthGuard} from './guards/auth.guard';
+import {AuthenticationService} from './services/auth.service';
 
 
 // 3rd party
 import {SelectModule} from 'ng2-select';
+import {ColabAppHttpInterceptor} from "./http.interceptor";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,7 @@ import {SelectModule} from 'ng2-select';
     HomeComponent,
     CardComponent,
     LoginComponent,
-    SignupComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,11 +42,17 @@ import {SelectModule} from 'ng2-select';
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     SelectModule,
-    AuthModule
+    AuthModule,
   ],
   providers: [
     AuthGuard,
-    AuthenticationService
+    AuthenticationService,
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ColabAppHttpInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })

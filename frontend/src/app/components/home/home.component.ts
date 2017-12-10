@@ -10,10 +10,10 @@ export class HomeComponent implements OnInit {
 
   constructor() {
     this.projects = [
-      {name: 'Monitorizare Vot', mainPositions: [true, true, false, true, true]},
-      {name: 'Colabapp', mainPositions: [true, false, false, true, true]},
-      {name: 'Brain Gain', mainPositions: [true, true, false, true, true]},
-      {name: 'Centru Civic', mainPositions: [true, true, false, true, true]},
+      {name: 'Monitorizare Vot', needsMembers: false},
+      {name: 'Colabapp', needsMembers: true},
+      {name: 'Brain Gain', needsMembers: true},
+      {name: 'Centru Civic', needsMembers: false},
     ]
   }
 
