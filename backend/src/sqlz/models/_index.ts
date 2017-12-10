@@ -8,11 +8,13 @@ const config = require('../config/config.json')
 import { UserInstance, UserAttributes } from './user'
 import { TechnologyInstance, TechnologyAttributes } from './technology'
 import { UserTechnologiesAttributes, UserTechnologiesInstance } from './userTechnologies'
+import {SequelizeStatic} from 'sequelize'
 
 interface DbConnection {
   User: Sequelize.Model<UserInstance, UserAttributes>
   Technology: Sequelize.Model<TechnologyInstance, TechnologyAttributes>
-  UserTechnologies: Sequelize.Model<UserTechnologiesInstance, UserTechnologiesAttributes>
+  UserTechnologies: Sequelize.Model<UserTechnologiesInstance, UserTechnologiesAttributes>,
+  sequelize: Sequelize.Sequelize
 }
 let db = {}
 
@@ -44,6 +46,5 @@ Object.keys(db).forEach(function(modelName) {
 })
 
 db['sequelize'] = sequelize
-db['Sequelize'] = Sequelize
 
 export default <DbConnection>db

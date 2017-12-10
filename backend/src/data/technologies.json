@@ -1,15 +1,17 @@
 {
   "types": {
     "FRONTEND": [
-      "ANGULARJS",
-      "ANGULAR4"
+      "AngularJS",
+      "Angular 4"
     ],
     "BACKEND": [
-      "EXPRESSJS"
+      "ExpressJS",
+      "RubyOnRails"
     ],
     "SOFT_SKILLS": [
-
+      "PR",
+      "Communication"
     ]
   },
-  "levels": ["JUNIOR", "MIDDLE", "SENIOR", "WANNABE"]
+  "levels": ["JUNIOR", "MEDIUM", "SENIOR", "WANNABE"]
 }

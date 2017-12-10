@@ -11,10 +11,13 @@ export interface UserTechnologiesInstance extends Sequelize.Instance<UserTechnol
 }
 
 export default function defineTechnology(sequelize: Sequelize.Sequelize, DataTypes) {
-  const levels = (<any>technologies).levels
+  const levels = (<any>technologies).levels;
+
   const UserTechnologies = sequelize.define('UserTechnologies', {
-    // level: DataTypes.ENUM(levels),
-    level: DataTypes.STRING
+    level: {
+      type: DataTypes.ENUM,
+      values: levels
+    }
   })
   return UserTechnologies
 }
