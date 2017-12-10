@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import {UserDao} from '../dao/_index'
 import * as jwt from 'jsonwebtoken'
+import * as _ from 'lodash'
 
 export function login(req: Request, res: Response) {
   let email, password
@@ -14,7 +15,7 @@ export function login(req: Request, res: Response) {
       // from now on we'll identify the user by the id and the id is the only personalized value that goes into our token
       const payload = {id: user.id}
       const token = jwt.sign(payload, 'test')
-      res.json({message: 'ok', token: token})
+      res.json(_.merge(user, {token: token}))
     } else {
       res.status(401).json({message: 'passwords did not match'})
     }
